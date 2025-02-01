@@ -7,6 +7,164 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+{% comment %} Calculate current semester {% endcomment %}
+{% assign current_year = "now" | date: "%y" %}
+{% assign current_month = "now" | date: "%m" | plus: 0 %}
+{% assign current_semester = current_year | append: "-1" %}
+{% if current_month >= 8 %}
+  {% assign current_semester = current_year | append: "-2" %}
+{% endif %}
+
+<div class="teaching-container">
+  <h2>Current Courses ({{ current_semester }})</h2>
+  
+  <div class="course-grid">
+    {% assign current_courses = site.teaching | where_exp: "course", "course.semester == current_semester" | sort: "date" | reverse %}
+    {% for course in current_courses %}
+      <a href="{{ course.url }}" class="course-card">
+        <div class="course-header">
+          <h3>{{ course.title }}</h3>
+        </div>
+        <div class="course-meta">
+          <span class="program">{{ course.program }}</span>
+          <span class="location">{{ course.location }}</span>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <h2>Previous Courses</h2>
+  
+  <div class="course-list">
+    {% assign previous_courses = site.teaching | where_exp: "course", "course.semester != current_semester" | sort: "semester" | reverse %}
+    {% for course in previous_courses %}
+      <div class="course-item">
+        <a href="{{ course.url }}" class="course-title">
+          {{ course.title }}
+          <span class="course-semester">{{ course.semester }}</span>
+        </a>
+        <div class="course-details">
+          {{ course.program }} • {{ course.location }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.teaching-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.course-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin-bottom: 40px;
+}
+
+.course-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  text-decoration: none !important;
+  color: #333;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.semester-badge {
+  background: #2a6496;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.course-meta {
+  font-size: 0.95em;
+  color: #666;
+  display: flex;
+  gap: 15px;
+}
+
+.course-list {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.course-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.course-title {
+  font-weight: 500;
+  color: #2a6496;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-semester {
+  font-size: 0.9em;
+  color: #666;
+  font-weight: normal;
+}
+
+.course-details {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .course-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* Prevent default layout from adding extra content */
+.page-header {
+    display: none;
+  }
+  
+  /* Custom course styling */
+  .course-metadata {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .metadata-item {
+    margin: 8px 0;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .label {
+    font-weight: 600;
+    color: #2a6496;
+    min-width: 100px;
+  }
+</style>
