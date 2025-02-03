@@ -25,7 +25,7 @@ redirect_from:
 <details>
   <summary>Viviane Rangel da Costa Romero</summary>
   <div class="student-details">
-    <strong>Title</strong>: Investigating the Polarity of Opportunities and Risks in the Financial Domain With Large Language Models<br>
+    <strong>Title</strong>: Investigating the Polarity of Opportunities and Risks in the Financial Domain With Gemini<br>
     <strong>Year</strong>: 2025<br>
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFF<br>
