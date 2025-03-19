@@ -1,14 +1,14 @@
 ---
-title: "Class 1"
+title: "Algoritmos e Grafos"
 semester: "25-1"
 permalink: /teaching/class-1-25-1
 professor: "Paulo Mann"
-class_code: "1"
-program: "Computer Science"
+class_code: "ICP368"
+program: "Ciência da Computação"
 discussion_group: "Discord"
-teaching_assistants: "to be decided"
-time: "Tuesday and Thursdays, 15:00-17:00"
-location: "F3-000 (CCMN)"
+teaching_assistants: "não possui"
+time: "Terça e Quinta, 10:00-12:00"
+location: "F2-007 (CCMN)"
 layout: custom-teaching
 ---
 
@@ -17,11 +17,11 @@ layout: custom-teaching
     <h1>{{ page.title }}</h1>
     <div class="course-metadata">
       <div class="metadata-item">
-        <span class="label">Semester:</span>
+        <span class="label">Semestre:</span>
         <span class="value">{{ page.semester }}</span>
       </div>
       <div class="metadata-item">
-        <span class="label">Class Code:</span>
+        <span class="label">Código:</span>
         <span class="value">{{ page.class_code }}</span>
       </div>
       <div class="metadata-item">
@@ -31,36 +31,29 @@ layout: custom-teaching
     </div>
   </header>
 
-<div style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed felis in urna cursus tincidunt eu sed risus. Ut molestie rutrum congue. Donec massa orci, venenatis facilisis porta eget, tristique nec tellus. Aenean vulputate libero sit amet nisi tempor vestibulum. Nullam vitae ipsum ac erat suscipit vulputate sed eu tellus. Sed maximus blandit odio quis tristique. Fusce luctus libero velit, sed consectetur arcu convallis at. Duis sit amet volutpat neque.</div>
+<div style="text-align: justify;">Nesta disciplina, iremos ver problemas clássicos em Teoria dos Grafos, que servirão de pano de fundo para a compreensão de técnicas de desenvolvimento e análise de algoritmos, ao mesmo tempo em que familiarizam o aluno com a representação e manipulação de grafos no computador.</div>
 
   <section class="course-section">
-    <h2 class="section-title">Basic Information</h2>
+    <h2 class="section-title">Informação Básica</h2>
     <div class="section-content">
-      <p>The main communication platform will be the Classroom group.</p>
-      <p>Classes will take place in person.</p>
+      <p>A plataforma de comunicação principal será o grupo no classroom.</p>
+      <p>As aulas serão presenciais.</p>
       <ul class="class-info">
-        <li><strong>Office Hours:</strong> on demand. </li>
-        <li><strong>Hours:</strong> {{ page.time }}</li>
-        <li><strong>Location:</strong> {{ page.location }}</li>
-        <li><strong>Teaching Assistants:</strong> {{ page.teaching_assistants }}</li>
+        <li><strong>Atendimento:</strong> sob demanda. </li>
+        <li><strong>Horário:</strong> {{ page.time }}</li>
+        <li><strong>Local:</strong> {{ page.location }}</li>
+        <li><strong>Monitor(a):</strong> {{ page.teaching_assistants }}</li>
       </ul>
     </div>
   </section>
 
   <section class="course-section">
-    <h2 class="section-title">Course Outline</h2>
-    <div class="section-content">
-      <ol class="curriculum-list">
-        <li>Content 1</li>
-        <li>Content 2</li>
-        <li>Content 3</li>
-        <li>Content 4</li>
-      </ol>
-    </div>
+    <h2 class="section-title">Ementa</h2>
+    Representação de Grafos; Ordenação Topológica; Buscas em grafos e Digrafos (largura e profundidade); Técnicas de Desenvolvimento de Algoritmos; Decomposição; Recursão; Algoritmo Guloso; Programação Dinâmica; Aplicação das Técnicas Usadas; Fluxo Máximo.
   </section>
 
 <div class="schedule-container">
- <h2 class="section-title">Schedule</h2>
+ <h2 class="section-title">Cronograma Planejado</h2>
     <div class="ufrj-schedule">
         <table>
             <thead>
@@ -72,369 +65,123 @@ layout: custom-teaching
                 </tr>
             </thead>
             <tbody>
-    
                 <tr>
                     <td>Ter 18/03</td>
-                    <td>Leitura 1</td>
-                    <td>Tópico 1</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 1</a>
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Introdução ao curso</td>
                 </tr>
-        
                 <tr>
                     <td>Qui 20/03</td>
-                    <td>Leitura 2</td>
-                    <td>Tópico 2</td>
+                    <td>Capítulo 20.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Motivação, definição e representação de grafos no computador</td>
                     <td>
-                        <a href="#" class="material-link">Slides 2</a>
+                        <ul>
+                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/196a95604877d326c6586e60477b59d4_MIT6_006S20_lec9.pdf">[Nota de aula do MIT]</a></li>
+                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                            <li><a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/f471f7b7034fabe8bbba5507df7d307f_MIT6_042JF10_chap05.pdf">[Nota de aula do MIT (Mathematics for Computer Science)]</a></li>
+                        </ul>
                     </td>
                 </tr>
-        
                 <tr>
                     <td>Ter 25/03</td>
-                    <td>Leitura 3</td>
-                    <td>Tópico 3</td>
+                    <td>Capítulo 20.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Busca em Largura</td>
                     <td>
-                        <a href="#" class="material-link">Slides 3</a>
+                        <ul>
+                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/196a95604877d326c6586e60477b59d4_MIT6_006S20_lec9.pdf">[Nota de aula do MIT (Busca em Largura)]</a></li>
+                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
-        
                 <tr>
                     <td>Qui 27/03</td>
-                    <td>Leitura 4</td>
-                    <td>Tópico 4</td>
+                    <td>Capítulo 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Busca em Profundidade</td>
                     <td>
-                        <a href="#" class="material-link">Slides 4</a>
+                        <ul>
+                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/f3e349e0eb3288592289d2c81e0c4f4d_MIT6_006S20_lec10.pdf">[Nota de aula do MIT (Busca em Profundidade)]</a></li>
+                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
-        
-                <tr>
-                    <td>Ter 01/04</td>
-                    <td>Leitura 5</td>
-                    <td>Tópico 5</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 5</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 03/04</td>
-                    <td>Leitura 6</td>
-                    <td>Tópico 6</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 6</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 08/04</td>
-                    <td>Leitura 7</td>
-                    <td>Tópico 7</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 7</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 10/04</td>
-                    <td>Leitura 8</td>
-                    <td>Tópico 8</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 8</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 15/04</td>
-                    <td>Leitura 9</td>
-                    <td>Tópico 9</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 9</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 17/04</td>
-                    <td>Leitura 10</td>
-                    <td>Tópico 10</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 10</a>
-                    </td>
-                </tr>
-        
+                <tr><td>Ter 01/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 03/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 08/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 10/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 15/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 17/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr>
                     <td>Ter 22/04</td>
-                    <td>Leitura 11</td>
-                    <td>Tópico 11</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 11</a>
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: recesso</td>
                 </tr>
-        
-                <tr>
-                    <td>Qui 24/04</td>
-                    <td>Leitura 12</td>
-                    <td>Tópico 12</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 12</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 29/04</td>
-                    <td>Leitura 13</td>
-                    <td>Tópico 13</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 13</a>
-                    </td>
-                </tr>
-        
+                <tr><td>Qui 24/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 29/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr>
                     <td>Qui 01/05</td>
-                    <td>Leitura 14</td>
-                    <td>Tópico 14</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 14</a>
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: dia do trabalhador</td>
                 </tr>
-        
-                <tr>
-                    <td>Ter 06/05</td>
-                    <td>Leitura 15</td>
-                    <td>Tópico 15</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 15</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 08/05</td>
-                    <td>Leitura 16</td>
-                    <td>Tópico 16</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 16</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 13/05</td>
-                    <td>Leitura 17</td>
-                    <td>Tópico 17</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 17</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 15/05</td>
-                    <td>Leitura 18</td>
-                    <td>Tópico 18</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 18</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 20/05</td>
-                    <td>Leitura 19</td>
-                    <td>Tópico 19</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 19</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 22/05</td>
-                    <td>Leitura 20</td>
-                    <td>Tópico 20</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 20</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 27/05</td>
-                    <td>Leitura 21</td>
-                    <td>Tópico 21</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 21</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 29/05</td>
-                    <td>Leitura 22</td>
-                    <td>Tópico 22</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 22</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 03/06</td>
-                    <td>Leitura 23</td>
-                    <td>Tópico 23</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 23</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 05/06</td>
-                    <td>Leitura 24</td>
-                    <td>Tópico 24</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 24</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 10/06</td>
-                    <td>Leitura 25</td>
-                    <td>Tópico 25</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 25</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 12/06</td>
-                    <td>Leitura 26</td>
-                    <td>Tópico 26</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 26</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 17/06</td>
-                    <td>Leitura 27</td>
-                    <td>Tópico 27</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 27</a>
-                    </td>
-                </tr>
-        
+                <tr><td>Ter 06/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 08/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 13/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 15/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 20/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 22/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 27/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 29/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 03/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 05/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 10/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 12/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 17/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr>
                     <td>Qui 19/06</td>
-                    <td>Leitura 28</td>
-                    <td>Tópico 28</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 28</a>
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: Corpus Christi</td>
                 </tr>
-        
-                <tr>
-                    <td>Ter 24/06</td>
-                    <td>Leitura 29</td>
-                    <td>Tópico 29</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 29</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 26/06</td>
-                    <td>Leitura 30</td>
-                    <td>Tópico 30</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 30</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 01/07</td>
-                    <td>Leitura 31</td>
-                    <td>Tópico 31</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 31</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 03/07</td>
-                    <td>Leitura 32</td>
-                    <td>Tópico 32</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 32</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 08/07</td>
-                    <td>Leitura 33</td>
-                    <td>Tópico 33</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 33</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 10/07</td>
-                    <td>Leitura 34</td>
-                    <td>Tópico 34</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 34</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 15/07</td>
-                    <td>Leitura 35</td>
-                    <td>Tópico 35</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 35</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 17/07</td>
-                    <td>Leitura 36</td>
-                    <td>Tópico 36</td>
-                    <td>
-                        <a href="#" class="material-link">Slides 36</a>
-                    </td>
-                </tr>
-        
+                <tr><td>Ter 24/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 26/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 01/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 03/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 08/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 10/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Ter 15/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 17/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
             </tbody>
         </table>
     </div>
 </div>
 
 <section class="course-section">
-  <h2 class="section-title">Bibliography</h2>
+  <h2 class="section-title">Bibliografia</h2>
   <div class="section-content">
     <div class="bibliography-category">
-      <h3>Required Reading</h3>
+      <h3>Bibliografia Primária</h3>
       <ul>
-        <li>First required reading item</li>
-        <!-- Add additional required reading items here -->
-        <li>Another required reading item</li>
+        <li>Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</li>
       </ul>
     </div>
     <div class="bibliography-category">
-      <h3>Supplementary Reading</h3>
+      <h3>Bibliografia Secundária</h3>
       <ul>
-        <li>First supplementary reading item</li>
-        <!-- Add additional supplementary reading items here -->
-        <li>Another supplementary reading item</li>
+        <li>Teoria Computacional de Grafos; os algoritmos. Jayme Luiz Swarcfiter, Fabiano S. Oliveira e Paulo E. D. Pinto. Elsevier, 2018.</li>
       </ul>
     </div>
   </div>
 </section>
 
   <section class="course-section">
-    <h2 class="section-title">Grading</h2>
+    <h2 class="section-title">Avaliação</h2>
     <div class="section-content">
       <ul class="evaluation">
-        <li>✅ 2 Exams (P1/P2)</li>
-        <li>✅ 1 Reposition Exam (PR) and 1 Final Exam (PF)</li>
-        <li>✅ In-class Active Participation (AP)</li>
+        <li>✅ 2 Provas (P1/P2)</li>
+        <li>✅ 1 Prova Substitutiva (PS) e 1 Prova Final (PF)</li>
       </ul>
       <div class="formula">
-        MF = 0.1 × AP + 0.9 × MP<br>
-        <small>(MP = Média das Provas 1 e 2)</small>
+        <small>MP = (P1 + P2) / 2</small><br>
+        <small>Se MP < 3 → Reprovado</small><br>
+        <small>Se MP ≥ 7 → Aprovado</small><br>
+        <small>Se 3 ≤ MP < 7 → Prova Final</small><br>
+        <small>Caso contrário, o aluno faz a Prova Final (PF)</small><br>
+        <small>Se (MP + PF) / 2 ≥ 5 → Aprovado</small><br>
+        <small>Se (MP + PF) / 2 < 5 → Reprovado</small>
       </div>
     </div>
   </section>

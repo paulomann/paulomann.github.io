@@ -8,7 +8,7 @@ redirect_from:
 ---
 
 <div style="text-align: justify;">
-Paulo Mann is an incoming Assistant Professor in Computer Science at the Federal University of Rio de Janeiro. His research interests include:
+Paulo Mann is an Assistant Professor in Computer Science at the Federal University of Rio de Janeiro (UFRJ). His research interests include:
 <ul>
 <li><strong>AI in mental health</strong></li>
 <li><strong>Computational social science</strong></li>
@@ -16,7 +16,7 @@ Paulo Mann is an incoming Assistant Professor in Computer Science at the Federal
 <li><strong>AI in agriculture</strong></li>
 </ul>
 Feel free to explore this website and 
-<a href="mailto:paulomannjr@gmail.com?subject=Contact%20from%20Website&body=Hello%20Paulo,%0A%0A[Your%20message%20here]%0A%0ABest%20regards," 
+<a href="mailto:paulomann@ic.ufrj.br?subject=Contact%20from%20Website&body=Hello%20Paulo,%0A%0A[Your%20message%20here]%0A%0ABest%20regards," 
    style="color: #2a6496; text-decoration: underline;">
    get in touch</a> 
 if you have any questions or would like to collaborate.
