@@ -8,7 +8,7 @@ program: "Ciência da Computação"
 discussion_group: "Discord"
 teaching_assistants: "não possui"
 time: "Terça e Quinta, 10:00-12:00"
-location: "F2-007 (CCMN)"
+location: "F3-004 (CCMN)"
 layout: custom-teaching
 ---
 
@@ -72,38 +72,44 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 20/03</td>
                     <td>Capítulo 20.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Motivação, definição e representação de grafos no computador</td>
+                    <td>Introdução, conceitos básicas de grafos direcionados e não direcionados</td>
                     <td>
                         <ul>
-                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/196a95604877d326c6586e60477b59d4_MIT6_006S20_lec9.pdf">[Nota de aula do MIT]</a></li>
-                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/6afd7e9a85d7d36e204533569f9fccf6_MIT6_006S20_r09.pdf">[Nota de aula do MIT]</a></li>
                             <li><a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/f471f7b7034fabe8bbba5507df7d307f_MIT6_042JF10_chap05.pdf">[Nota de aula do MIT (Mathematics for Computer Science)]</a></li>
                         </ul>
                     </td>
                 </tr>
                 <tr>
                     <td>Ter 25/03</td>
-                    <td>Capítulo 20.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Busca em Largura</td>
+                    <td>Capítulo 20.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Representação de grafos no computador; algoritmos básicos de inserção, remoção e consulta em grafos direcionados e não direcionados</td>
                     <td>
                         <ul>
-                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/196a95604877d326c6586e60477b59d4_MIT6_006S20_lec9.pdf">[Nota de aula do MIT (Busca em Largura)]</a></li>
-                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/6afd7e9a85d7d36e204533569f9fccf6_MIT6_006S20_r09.pdf">[Nota de aula do MIT]</a></li>
                         </ul>
                     </td>
                 </tr>
                 <tr>
                     <td>Qui 27/03</td>
-                    <td>Capítulo 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Busca em Profundidade</td>
+                    <td>Capítulo 20.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Busca em Largura</td>
                     <td>
                         <ul>
-                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/f3e349e0eb3288592289d2c81e0c4f4d_MIT6_006S20_lec10.pdf">[Nota de aula do MIT (Busca em Profundidade)]</a></li>
                             <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
                     </td>
                 </tr>
-                <tr><td>Ter 01/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 01/04</td>
+                    <td>Capítulo 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Busca em Profundidade e Ordenação Topológica</td>
+                    <td>
+                        <ul>
+                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
                 <tr><td>Qui 03/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 08/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 10/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
@@ -122,7 +128,10 @@ layout: custom-teaching
                 <tr><td>Ter 06/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 08/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 13/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 15/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 15/05</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>
+                </tr>
                 <tr><td>Ter 20/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 22/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 27/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
@@ -138,11 +147,18 @@ layout: custom-teaching
                 </tr>
                 <tr><td>Ter 24/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 26/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 01/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 03/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 08/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 10/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 15/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 01/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
+                </tr>
+                <tr><td>Qui 03/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Prova Substitutiva</td>
+                </tr>
+                <tr><td>Ter 08/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
+                </tr>
+                <tr><td>Ter 10/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 15/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 17/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
             </tbody>
         </table>
