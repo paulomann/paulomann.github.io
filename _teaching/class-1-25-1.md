@@ -102,6 +102,14 @@ layout: custom-teaching
                 </tr>
                 <tr>
                     <td>Ter 01/04</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: semana acadêmica</td>
+                </tr>
+                <tr>
+                    <td>Qui 03/04</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: semana acadêmica</td>
+                </tr>
+                <tr>
+                    <td>Ter 08/04</td>
                     <td>Capítulo 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Busca em Profundidade e Ordenação Topológica</td>
                     <td>
@@ -110,8 +118,6 @@ layout: custom-teaching
                         </ul>
                     </td>
                 </tr>
-                <tr><td>Qui 03/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 08/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 10/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 15/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 17/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
