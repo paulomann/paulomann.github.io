@@ -8,7 +8,7 @@ program: "Meteorologia e Matemática"
 discussion_group: "Discord"
 teaching_assistants: "Helena Sanches"
 time: "Terça e Quinta, 08:00-10:00"
-location: "Terça: F2-029, Quinta: LEP 2 (CCMN)"
+location: "Terça: F2-014, Quinta: LEP 2 (CCMN)"
 layout: custom-teaching
 ---
 
@@ -42,7 +42,9 @@ layout: custom-teaching
         <li><strong>Atendimento:</strong> sob demanda. </li>
         <li><strong>Horário:</strong> {{ page.time }}</li>
         <li><strong>Local:</strong> {{ page.location }}</li>
-        <li><strong>Monitor(a):</strong> {{ page.teaching_assistants }}</li>
+        <li><strong>Monitor(a):</strong> <a href="mailto:helena_snar@hotmail.com?subject=Monitoria%20Turma%20Comp1%20(12579)&body=Oi%20Helena,%0A%0A[Sua%20mensagem%20aqui]%0A%0AAbs," 
+   style="color: #2a6496; text-decoration: underline;">
+   {{ page.teaching_assistants }}</a></li>
       </ul>
     </div>
   </section>
@@ -77,13 +79,48 @@ layout: custom-teaching
                     <td>Ter 18/03</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: recepção dos novos alunos</td>
                 </tr>
-                <tr><td>Qui 20/03</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 25/03</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 27/03</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 01/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 03/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 08/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 10/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 20/03</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;"><a href="https://python.ic.ufrj.br/aulas/aula-01/index.html" 
+   style="color: #2a6496; text-decoration: underline;">
+   Introdução ao curso</a></td>    
+                </tr>
+                <tr>
+                    <td>Ter 25/03</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 1</a></td>
+                    <td>Conceitos Iniciais</td>
+                    <td>&mdash;</td>
+                </tr>
+                <tr>
+                    <td>Qui 27/03</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Funções</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/lab1.pdf" style="color: #2a6496; text-decoration: underline;">Lab 1</a></td>
+                </tr>
+                <tr>
+                    <td>Ter 01/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Funções, erros</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/lab1.pdf" style="color: #2a6496; text-decoration: underline;">Lab 1</a></td>
+                </tr>
+                <tr>
+                    <td>Qui 03/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Aula prática (Lab 1)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/lab1.pdf" style="color: #2a6496; text-decoration: underline;">Lab 1</a></td>
+                </tr>
+                <tr>
+                    <td>Ter 08/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Argumentos, funções compostas, módulos e tipos numéricos</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
+                </tr>
+                <tr>
+                    <td>Qui 10/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Aula prática (Lab 2)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
+                </tr>
                 <tr><td>Ter 15/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 17/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr>
@@ -98,7 +135,10 @@ layout: custom-teaching
                 </tr>
                 <tr><td>Ter 06/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 08/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 13/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 13/05</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>    
+                </tr>
                 <tr><td>Qui 15/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 20/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 22/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
@@ -132,17 +172,13 @@ layout: custom-teaching
     <div class="bibliography-category">
       <h3>Bibliografia Primária</h3>
       <ul>
-        <li>First required reading item</li>
-        <!-- Add additional required reading items here -->
-        <li>Another required reading item</li>
+        <li>Computação 1 - IC/UFRJ. Instituto de Computação, Universidade Federal do Rio de Janeiro. Disponível em <a href="https://python.ic.ufrj.br">https://python.ic.ufrj.br</a></li>
       </ul>
     </div>
     <div class="bibliography-category">
       <h3>Bibliografia Secundária</h3>
       <ul>
-        <li>First supplementary reading item</li>
-        <!-- Add additional supplementary reading items here -->
-        <li>Another supplementary reading item</li>
+        <li>Nilo N. C. Menezes. Introdução a programação com python - Algoritmos e Lógica de Programação para iniciantes. 3a edição. Novatec. 2019.</li>
       </ul>
     </div>
   </div>
@@ -159,8 +195,7 @@ layout: custom-teaching
         <small>MP = (P1 + P2) / 2</small><br>
         <small>Se MP < 3 → Reprovado</small><br>
         <small>Se MP ≥ 7 → Aprovado</small><br>
-        <small>Se 3 ≤ MP < 7 → Prova Final</small><br>
-        <small>Caso contrário, o aluno faz a Prova Final (PF)</small><br>
+        <small>Se 3 ≤ MP < 7 → Então o aluno faz a Prova Final (PF)</small><br>
         <small>Se (MP + PF) / 2 ≥ 5 → Aprovado</small><br>
         <small>Se (MP + PF) / 2 < 5 → Reprovado</small>
       </div>

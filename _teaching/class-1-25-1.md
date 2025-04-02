@@ -200,8 +200,7 @@ layout: custom-teaching
         <small>MP = (P1 + P2) / 2</small><br>
         <small>Se MP < 3 → Reprovado</small><br>
         <small>Se MP ≥ 7 → Aprovado</small><br>
-        <small>Se 3 ≤ MP < 7 → Prova Final</small><br>
-        <small>Caso contrário, o aluno faz a Prova Final (PF)</small><br>
+        <small>Se 3 ≤ MP < 7 → Então o aluno faz a Prova Final (PF)</small><br>
         <small>Se (MP + PF) / 2 ≥ 5 → Aprovado</small><br>
         <small>Se (MP + PF) / 2 < 5 → Reprovado</small>
       </div>
