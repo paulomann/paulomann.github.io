@@ -110,6 +110,16 @@ layout: custom-teaching
                 </tr>
                 <tr>
                     <td>Ter 08/04</td>
+                    <td>Capítulos 20.2 e 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Subgrafo Predecessor e Busca em Profundidade</td>
+                    <td>
+                        <ul>
+                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Qui 10/04</td>
                     <td>Capítulo 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Busca em Profundidade e Ordenação Topológica</td>
                     <td>
@@ -118,7 +128,6 @@ layout: custom-teaching
                         </ul>
                     </td>
                 </tr>
-                <tr><td>Qui 10/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 15/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 17/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr>
