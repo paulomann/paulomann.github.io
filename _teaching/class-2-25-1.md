@@ -121,8 +121,18 @@ layout: custom-teaching
                     <td>Aula prática (Lab 2)</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
                 </tr>
-                <tr><td>Ter 15/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 17/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 15/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Tipos de dados, strings, booleano, estrutura condicional</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
+                </tr>
+                <tr>
+                    <td>Qui 17/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Aula prática (Lab 3)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
+                </tr>
                 <tr>
                     <td>Ter 22/04</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: recesso</td>
