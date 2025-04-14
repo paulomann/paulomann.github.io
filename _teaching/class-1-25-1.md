@@ -121,15 +121,29 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 10/04</td>
                     <td>Capítulo 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Busca em Profundidade e Ordenação Topológica</td>
+                    <td>Busca em Profundidade</td>
                     <td>
                         <ul>
                             <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
                     </td>
                 </tr>
-                <tr><td>Ter 15/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 17/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 15/04</td>
+                    <td>Capítulos 20.3 e 20.4 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Aplicações de DFS: Ordenação Topológica</td>
+                    <td>&mdash;</td>
+                </tr>
+                <tr>
+                    <td>Qui 17/04</td>
+                    <td>Capítulo 20.5 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Aplicações de DFS: Componentes Fortemente Conexos</td>
+                    <td>
+                        <ul>
+                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture10-notes.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
                 <tr>
                     <td>Ter 22/04</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: recesso</td>
