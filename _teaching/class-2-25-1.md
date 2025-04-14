@@ -118,27 +118,35 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 10/04</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
-                    <td>Aula prática (Lab 2)</td>
+                    <td>Argumentos, funções compostas, módulos e tipos numéricos</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
                 </tr>
                 <tr>
                     <td>Ter 15/04</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
-                    <td>Tipos de dados, strings, booleano, estrutura condicional</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula</td>
                 </tr>
                 <tr>
                     <td>Qui 17/04</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
-                    <td>Aula prática (Lab 3)</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Aula prática (Lab 2)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
                 </tr>
                 <tr>
                     <td>Ter 22/04</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: recesso</td>
                 </tr>
-                <tr><td>Qui 24/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 29/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 24/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Strings, booleanos, operadores e expressões booleanas, estrutura condicional</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
+                </tr>
+                <tr>
+                    <td>Ter 29/04</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Aula prática (Lab 3)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
+                </tr>
                 <tr>
                     <td>Qui 01/05</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: dia do trabalhador</td>
@@ -147,10 +155,13 @@ layout: custom-teaching
                 <tr><td>Qui 08/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr>
                     <td>Ter 13/05</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>    
+                    <td>&mdash;</td><td>&mdash;</td><td>&mdash;</td>
                 </tr>
                 <tr><td>Qui 15/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 20/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 20/05</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>    
+                </tr>
                 <tr><td>Qui 22/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 27/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 29/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
@@ -165,9 +176,16 @@ layout: custom-teaching
                 </tr>
                 <tr><td>Ter 24/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 26/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 01/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 03/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 08/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 01/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>   
+                </tr>
+                <tr><td>Qui 03/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Prova Substitutiva</td>
+                </tr>
+                <tr><td>Ter 08/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
+                </tr>
                 <tr><td>Qui 10/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 15/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 17/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
