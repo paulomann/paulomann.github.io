@@ -13,7 +13,6 @@ Paulo Mann is an Assistant Professor in Computer Science at the Federal Universi
 <li><strong>AI in mental health</strong></li>
 <li><strong>Computational social science</strong></li>
 <li><strong>AI for social good</strong></li>
-<li><strong>AI in agriculture</strong></li>
 </ul>
 Feel free to explore this website and 
 <a href="mailto:paulomann@ic.ufrj.br?subject=Contact%20from%20Website&body=Hello%20Paulo,%0A%0A[Your%20message%20here]%0A%0ABest%20regards," 
