@@ -75,8 +75,8 @@ layout: custom-teaching
                     <td>Introdução, conceitos básicas de grafos direcionados e não direcionados</td>
                     <td>
                         <ul>
-                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/6afd7e9a85d7d36e204533569f9fccf6_MIT6_006S20_r09.pdf">[Nota de aula do MIT]</a></li>
-                            <li><a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/f471f7b7034fabe8bbba5507df7d307f_MIT6_042JF10_chap05.pdf">[Nota de aula do MIT (Mathematics for Computer Science)]</a></li>
+                            <li><a href="/files/lecture_notes/mit/recitation_graphs_bfs.pdf">[Nota de aula do MIT]</a></li>
+                            <li><a href="/files/lecture_notes/mit/graph_theory_chapter.pdf">[Nota de aula do MIT (Mathematics for Computer Science)]</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -86,7 +86,7 @@ layout: custom-teaching
                     <td>Representação de grafos no computador; algoritmos básicos de inserção, remoção e consulta em grafos direcionados e não direcionados</td>
                     <td>
                         <ul>
-                            <li><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/6afd7e9a85d7d36e204533569f9fccf6_MIT6_006S20_r09.pdf">[Nota de aula do MIT]</a></li>
+                            <li><a href="/files/lecture_notes/mit/recitation_graphs_bfs.pdf">[Nota de aula do MIT]</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -96,7 +96,7 @@ layout: custom-teaching
                     <td>Busca em Largura</td>
                     <td>
                         <ul>
-                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                            <li><a href="/files/lecture_notes/stanford/graphs_dfs_bfs.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -114,7 +114,7 @@ layout: custom-teaching
                     <td>Subgrafo Predecessor e Busca em Profundidade</td>
                     <td>
                         <ul>
-                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                            <li><a href="/files/lecture_notes/stanford/graphs_dfs_bfs.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -124,7 +124,7 @@ layout: custom-teaching
                     <td>Busca em Profundidade</td>
                     <td>
                         <ul>
-                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture9-notes.pdf">[Nota de aula de Stanford]</a></li>
+                            <li><a href="/files/lecture_notes/stanford/graphs_dfs_bfs.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -140,7 +140,7 @@ layout: custom-teaching
                     <td>Aplicações de DFS: Componentes Fortemente Conexos</td>
                     <td>
                         <ul>
-                            <li><a href="https://stanford-cs161.github.io/winter2025/assets/files/lecture10-notes.pdf">[Nota de aula de Stanford]</a></li>
+                            <li><a href="/files/lecture_notes/stanford/sccs.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
                     </td>
                 </tr>
@@ -148,8 +148,27 @@ layout: custom-teaching
                     <td>Ter 22/04</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: recesso</td>
                 </tr>
-                <tr><td>Qui 24/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 29/04</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 24/04</td>
+                    <td>Capítulo 15.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Problemas de otimização, método guloso, o problema da árvore geradora mínima</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/celso_ribeiro/02 Vienna 02 - Complexity v3.pdf">[Slides do Prof. Celso Ribeiro]</a></li>
+                            <li><a href="/files/lecture_notes/celso_ribeiro/03b Vienna 03 - Constructive heuristics.pdf">[Slides do Prof. Celso Ribeiro]</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ter 29/04</td>
+                    <td>Capítulo 21 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Árvore geradora mínima: algoritmos de Kruskal e Prim</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/minimum_spanning_trees.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
                 <tr>
                     <td>Qui 01/05</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: dia do trabalhador</td>
