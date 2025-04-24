@@ -1,4 +1,5 @@
 ---
+layout: landing
 permalink: /
 title: ""
 author_profile: true

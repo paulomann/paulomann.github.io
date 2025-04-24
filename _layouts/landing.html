@@ -14,7 +14,7 @@ layout: default
   {% endunless %}
 {% endif %}
 
-<div id="main" role="main">
+<div id="main" role="main" class="landing">
   {% include sidebar.html %}
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -79,7 +79,6 @@ layout: default
     {% endif %}
   </article>
 
-  {% comment %}<!-- only show related on a post page when not disabled -->{% endcomment %}
   {% if page.id and page.related and site.related_posts.size > 0 %}
     <div class="page__related">
       {% if site.data.ui-text[site.locale].related_label %}
@@ -94,12 +93,11 @@ layout: default
   {% endif %}
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     new Typed('#typed', {
-      strings: ['AI RESEARCHER', 'LECTURER'],
+      strings: ["AI RESEARCHER", "PROFESSOR", "UFRJ"],
       typeSpeed: 100,
       backSpeed: 50,
       loop: true

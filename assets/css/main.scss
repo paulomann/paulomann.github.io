@@ -40,11 +40,23 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 
-// …existing imports and styles…
+// Hide avatar and animation site-wide
+.author__avatar,
+.avatar-animation {
+  display: none !important;
+}
+
+// Show avatar and animation only on the landing layout
+#main.landing .author__avatar,
+#main.landing .avatar-animation {
+  display: flex !important;
+}
+
 
 @media (max-width: 600px) {
-  /* center & enlarge the avatar */
+  /* 1) center & enlarge avatar everywhere */
   .author__avatar {
+    width: 100%;
     display: flex;
     justify-content: center;
     margin: 1.5rem 0;
@@ -56,11 +68,48 @@
     object-fit: cover;
   }
 
-  /* hide the text & social links */
-  .author__content,
-  .author__urls-wrapper {
+  /* 2) hide text & links only on the landing page */
+  #main.landing .author__content,
+  #main.landing .author__urls-wrapper {
     display: none !important;
   }
+}
+
+@media (max-width: 925px) {
+  /* 1) center & enlarge avatar everywhere */
+  .author__avatar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  .author__avatar img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* 2) hide text & links only on the landing page */
+  #main.landing .author__content,
+  #main.landing .author__urls-wrapper {
+    display: none !important;
+  }
+}
+
+@media (min-width: 926px) {
+    /* 2) hide text & links only on the landing page */
+    #main.landing .author__content {
+      display: none !important;
+    }
+  }
+
+// Typed.js animation styling under avatar
+.avatar-animation {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 

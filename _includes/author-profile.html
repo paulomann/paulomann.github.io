@@ -6,11 +6,17 @@
 
 <div itemscope itemtype="http://schema.org/Person">
 
-  <div class="author__avatar">
+  <div class="author__avatar" style="display: flex; flex-direction: column; align-items: center;">
     {% if author.avatar contains "://" %}
     	<img src="{{ author.avatar }}" alt="{{ author.name }}">
+        <div class="avatar-animation">
+            <span id="typed"></span>
+        </div>
     {% else %}
-    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}">
+    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" alt="{{ author.name }}">
+        <div class="avatar-animation">
+            <span id="typed"></span>
+        </div>
     {% endif %}
   </div>
 
@@ -21,7 +27,7 @@
   </div>
 
   <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
+    <button class="btn btn--inverse">Contact me</button>
     <ul class="author__urls social-icons">
       <!-- Font Awesome icons / Biographic information  -->
       {% if author.location %}

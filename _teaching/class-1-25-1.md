@@ -72,7 +72,7 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 20/03</td>
                     <td>Capítulo 20.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Introdução, conceitos básicas de grafos direcionados e não direcionados</td>
+                    <td>Introdução, conceitos básicos de grafos direcionados e não direcionados</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/mit/recitation_graphs_bfs.pdf">[Nota de aula do MIT]</a></li>
