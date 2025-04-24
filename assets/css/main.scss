@@ -39,3 +39,28 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+
+// …existing imports and styles…
+
+@media (max-width: 600px) {
+  /* center & enlarge the avatar */
+  .author__avatar {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  .author__avatar img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* hide the text & social links */
+  .author__content,
+  .author__urls-wrapper {
+    display: none !important;
+  }
+}
+
+
