@@ -161,8 +161,8 @@ layout: custom-teaching
                 </tr>
                 <tr>
                     <td>Ter 29/04</td>
-                    <td>Capítulo 21 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Árvore geradora mínima: algoritmos de Kruskal e Prim</td>
+                    <td>Capítulos 21.0 e 21.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Árvore geradora mínima: algoritmo genérico e prova para identificar arestas seguras</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/minimum_spanning_trees.pdf">[Nota de aula de Stanford]</a></li>
@@ -173,7 +173,16 @@ layout: custom-teaching
                     <td>Qui 01/05</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: dia do trabalhador</td>
                 </tr>
-                <tr><td>Ter 06/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 06/05</td>
+                    <td>Capítulo 21.2 e do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Árvore geradora mínima: algoritmos de Kruskal e Prim</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/minimum_spanning_trees.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
                 <tr><td>Qui 08/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 13/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr>
