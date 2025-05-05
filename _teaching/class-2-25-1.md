@@ -151,8 +151,18 @@ layout: custom-teaching
                     <td>Qui 01/05</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: dia do trabalhador</td>
                 </tr>
-                <tr><td>Ter 06/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 08/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 06/05</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 4</a></td>
+                    <td>Variáveis, atribuição, strings, fatiamento, tuplas</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/Lab_04_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 4</a></td>
+                </tr>
+                <tr>
+                    <td>Qui 08/05</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 4</a></td>
+                    <td>Aula prática (Lab 4)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/Lab_04_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 4</a></td>
+                </tr>
                 <tr>
                     <td>Ter 13/05</td>
                     <td>&mdash;</td><td>&mdash;</td><td>&mdash;</td>
