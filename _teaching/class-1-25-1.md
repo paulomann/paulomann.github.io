@@ -183,13 +183,28 @@ layout: custom-teaching
                         </ul>
                     </td>
                 </tr>
-                <tr><td>Qui 08/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 13/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 08/05</td>
+                    <td>Capítulo 21.2 e do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Complexidade do algoritmo de Prim, comparação de Kruskal e Prim; Lista 1</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/minimum_spanning_trees.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ter 13/05</td>
+                    <td colspan="3" style="text-align: center;">Revisão e Lista 1</td>
+                </tr>
                 <tr>
                     <td>Qui 15/05</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>
                 </tr>
-                <tr><td>Ter 20/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 20/05</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>
+                </tr>
                 <tr><td>Qui 22/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 27/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 29/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
