@@ -165,9 +165,16 @@ layout: custom-teaching
                 </tr>
                 <tr>
                     <td>Ter 13/05</td>
-                    <td>&mdash;</td><td>&mdash;</td><td>&mdash;</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 5</a></td>
+                    <td>Listas e Dicionários</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>
                 </tr>
-                <tr><td>Qui 15/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 15/05</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 5</a></td>
+                    <td>Aula prática (Lab 5)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>
+                </tr>
                 <tr>
                     <td>Ter 20/05</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>    
