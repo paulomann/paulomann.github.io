@@ -175,7 +175,7 @@ layout: custom-teaching
                 </tr>
                 <tr>
                     <td>Ter 06/05</td>
-                    <td>Capítulo 21.2 e do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Capítulo 21.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Árvore geradora mínima: algoritmos de Kruskal e Prim</td>
                     <td>
                         <ul>
@@ -185,7 +185,7 @@ layout: custom-teaching
                 </tr>
                 <tr>
                     <td>Qui 08/05</td>
-                    <td>Capítulo 21.2 e do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Capítulo 21.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Complexidade do algoritmo de Prim, comparação de Kruskal e Prim; Lista 1</td>
                     <td>
                         <ul>
@@ -205,8 +205,26 @@ layout: custom-teaching
                     <td>Ter 20/05</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>
                 </tr>
-                <tr><td>Qui 22/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 27/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 22/05</td>
+                    <td>Capítulo 22.0 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O problema de caminhos mínimos de origem única; intuição de Dijkstra</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dijkstra.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ter 27/05</td>
+                    <td>Capítulo 22.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O algoritmo de Dijkstra</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dijkstra.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
                 <tr><td>Qui 29/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 03/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 05/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
