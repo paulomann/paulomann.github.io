@@ -185,8 +185,18 @@ layout: custom-teaching
                     <td>Manipulação de sequências: strings, listas e dicionários</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>
                 </tr>
-                <tr><td>Ter 27/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 29/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 27/05</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 6</a></td>
+                    <td>Manipulação de sequências: strings, listas e dicionários</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>
+                </tr>
+                <tr>
+                    <td>Qui 29/05</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 6</a></td>
+                    <td>Aula prática (Lab 6)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>    
+                </tr>
                 <tr><td>Ter 03/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 05/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 10/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
