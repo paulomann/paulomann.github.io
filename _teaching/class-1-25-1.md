@@ -225,7 +225,16 @@ layout: custom-teaching
                         </ul>
                     </td>
                 </tr>
-                <tr><td>Qui 29/05</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Qui 29/05</td>
+                    <td>Capítulo 14 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Programação Dinâmica</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dynamic_programming.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>
+                </tr>
                 <tr><td>Ter 03/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 05/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 10/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
