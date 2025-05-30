@@ -244,21 +244,25 @@ layout: custom-teaching
                     <td>Qui 19/06</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: Corpus Christi</td>
                 </tr>
-                <tr><td>Ter 24/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 26/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr>
-                    <td>Ter 01/07</td>
+                <tr><td>Ter 24/06</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
                 </tr>
-                <tr><td>Qui 03/07</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Prova Substitutiva</td>
+                <tr><td>Qui 26/06</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Prova Substitutiva e Vista da P2</td>
                 </tr>
-                <tr><td>Ter 08/07</td>
+                <tr>
+                    <td>Ter 01/07</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
                 </tr>
-                <tr><td>Ter 10/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 15/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 17/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Qui 03/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista da PF</td>
+                </tr>
+                <!-- <tr><td>Ter 08/07</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
+                </tr> -->
+                <!-- <tr><td>Ter 10/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr> -->
+                <!-- <tr><td>Qui 15/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr> -->
+                <!-- <tr><td>Qui 17/07</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr> -->
             </tbody>
         </table>
     </div>
