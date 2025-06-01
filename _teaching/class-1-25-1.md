@@ -235,8 +235,26 @@ layout: custom-teaching
                         </ul>
                     </td>
                 </tr>
-                <tr><td>Ter 03/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 05/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 03/06</td>
+                    <td>Capítulos 22.1 e 22.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Bellman-Ford e distância mínima em DAGs</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dynamic_programming.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>    
+                </tr>
+                <tr>
+                    <td>Qui 05/06</td>
+                    <td>Capítulos 23.0 e 23.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O problema de caminhos mínimos entre todos os pares de vértices; Floyd-Warshall</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/floyd_warshall.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>       
+                </tr>
                 <tr><td>Ter 10/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Qui 12/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
                 <tr><td>Ter 17/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>

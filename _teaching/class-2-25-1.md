@@ -197,11 +197,36 @@ layout: custom-teaching
                     <td>Aula prática (Lab 6)</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>    
                 </tr>
-                <tr><td>Ter 03/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 05/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 10/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 12/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 17/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 03/06</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 7</a></td>
+                    <td>Estrutura de repetição: while</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/lab7_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 7</a></td>  
+                </tr>
+                <tr>
+                    <td>Qui 05/06</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 7</a></td>
+                    <td>Aula prática (Lab 7)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/lab7_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 7</a></td>  
+                </tr>
+                <tr>
+                    <td>Ter 10/06</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 8</a></td>
+                    <td>Estrutura de repetição: for</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/lab8IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 8</a></td>    
+                </tr>
+                <tr>
+                    <td>Qui 12/06</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 8</a></td>
+                    <td>Aula prática (Lab 8)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/lab8IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 8</a></td>      
+                </tr>
+                <tr>
+                    <td>Ter 17/06</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-10/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 10</a></td>
+                    <td>Input e output</td>
+                    <td>&mdash;</td>    
+                </tr>
                 <tr>
                     <td>Qui 19/06</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: Corpus Christi</td>
