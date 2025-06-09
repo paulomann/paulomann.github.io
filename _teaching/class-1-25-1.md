@@ -255,9 +255,36 @@ layout: custom-teaching
                         </ul>
                     </td>       
                 </tr>
-                <tr><td>Ter 10/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Qui 12/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-                <tr><td>Ter 17/06</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr>
+                    <td>Ter 10/06</td>
+                    <td>Capítulos 23.0 e 23.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Floyd-Warshall e exercícios</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/floyd_warshall.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>   
+                </tr>
+                <tr>
+                    <td>Qui 12/06</td>
+                    <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Fluxo máximo e corte mínimo</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>   
+                </tr>
+                <tr>
+                    <td>Ter 17/06</td>
+                    <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Redes residuais, caminhos aumentantes e Edmonds-Karp</td>
+                    <td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>  
+                </tr>
                 <tr>
                     <td>Qui 19/06</td>
                     <td colspan="3" style="text-align: center; font-weight: bold;">Não haverá aula: Corpus Christi</td>
