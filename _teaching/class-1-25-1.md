@@ -268,7 +268,7 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 12/06</td>
                     <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Fluxo máximo e corte mínimo</td>
+                    <td>Fluxo máximo, corte mínimo, redes residuais e caminhos aumentantes</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
@@ -278,7 +278,7 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 17/06</td>
                     <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Redes residuais, caminhos aumentantes e Edmonds-Karp</td>
+                    <td>Ford-Fulkerson, Edmonds-Karp; revisão de Floyd-Warshall</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
