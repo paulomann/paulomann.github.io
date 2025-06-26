@@ -293,14 +293,14 @@ layout: custom-teaching
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
                 </tr>
                 <tr><td>Qui 26/06</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Prova Substitutiva e Vista da P2</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Prova Substitutiva</td>
                 </tr>
                 <tr>
                     <td>Ter 01/07</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF e Vista da P2</td>
                 </tr>
                 <tr><td>Qui 03/07</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista da PF</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista da PF e P2</td>
                 </tr>
                 <!-- <tr><td>Ter 08/07</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
