@@ -33,22 +33,6 @@ author_profile: true
     {% endfor %}
   </div>
 
-  <h2>Previous Courses</h2>
-  
-  <div class="course-list">
-    {% assign previous_courses = site.teaching | where_exp: "course", "course.semester != current_semester" | sort: "semester" | reverse %}
-    {% for course in previous_courses %}
-      <div class="course-item">
-        <a href="{{ course.url }}" class="course-title">
-          {{ course.title }}
-          <span class="course-semester">{{ course.semester }}</span>
-        </a>
-        <div class="course-details">
-          {{ course.program }} • {{ course.location }}
-        </div>
-      </div>
-    {% endfor %}
-  </div>
 </div>
 
 <style>

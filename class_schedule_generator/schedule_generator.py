@@ -47,10 +47,10 @@ def generate_schedule(start_date_str, end_date_str, class_days):
         html += f"""
                 <tr>
                     <td>{date.strftime('%a %d/%m').title()}</td>
-                    <td>Leitura {i}</td>
-                    <td>Tópico {i}</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
                     <td>
-                        <a href="#" class="material-link">Slides {i}</a>
+                        &mdash;
                     </td>
                 </tr>
         """
@@ -65,9 +65,9 @@ def generate_schedule(start_date_str, end_date_str, class_days):
 
 # Example usage
 html_output = generate_schedule(
-    start_date_str="17/03/2025",
-    end_date_str="19/07/2025",
-    class_days=[0, 2],  # Terça (1) e Quinta (3)
+    start_date_str="04/08/2025",
+    end_date_str="20/12/2025",
+    class_days=[1, 3],  # Terça (1) e Quinta (3)
 )
 
 print(html_output)
