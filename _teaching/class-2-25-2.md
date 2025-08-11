@@ -6,9 +6,9 @@ professor: "Paulo Mann"
 class_code: "ICP121"
 program: ""
 discussion_group: "Discord"
-teaching_assistants: "Não possui"
+teaching_assistants: "Júlio Pires"
 time: "Terça e Quinta, 08:00-10:00"
-location: "Terça: LEP 2 (CCMN), Quinta: B-110 (CT-B)"
+location: "Terça: LEP 2 (CCMN), Quinta: F2-34 (CCMN)"
 layout: custom-teaching
 ---
 
@@ -42,7 +42,9 @@ layout: custom-teaching
         <li><strong>Atendimento:</strong> sob demanda, pessoalmente ou via email. </li>
         <li><strong>Horário:</strong> {{ page.time }}</li>
         <li><strong>Local:</strong> {{ page.location }}</li>
-        <li><strong>Monitor(a):</strong> {{ page.teaching_assistants }}</li>
+        <li><strong>Monitor(a):</strong> <a href="mailto:julio.pires@matematica.ufrj.br?subject=Monitoria%20Turma%20Comp1%20(15512)&body=Oi%20Julio,%0A%0A[Sua%20mensagem%20aqui]%0A%0AAbs," 
+   style="color: #2a6496; text-decoration: underline;">
+   {{ page.teaching_assistants }}</a></li>
       </ul>
     </div>
   </section>

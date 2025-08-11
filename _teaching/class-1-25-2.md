@@ -8,7 +8,7 @@ program: "Ciência da Computação"
 discussion_group: "Discord"
 teaching_assistants: "Lucas Tsai"
 time: "Terça e Quinta, 10:00-12:00"
-location: "F2-007 (CCMN)"
+location: "F3-007 (CCMN)"
 layout: custom-teaching
 ---
 
@@ -42,7 +42,9 @@ layout: custom-teaching
         <li><strong>Atendimento:</strong> sob demanda, pessoalmente ou via email. </li>
         <li><strong>Horário:</strong> {{ page.time }}</li>
         <li><strong>Local:</strong> {{ page.location }}</li>
-        <li><strong>Monitor(a):</strong> {{ page.teaching_assistants }}</li>
+        <li><strong>Monitor(a):</strong> <a href="mailto:lucastts@dcc.ufrj.br?subject=Monitoria%20Turma%20Alggraf%20(12886)&body=Oi%20Lucas,%0A%0A[Sua%20mensagem%20aqui]%0A%0AAbs," 
+   style="color: #2a6496; text-decoration: underline;">
+   {{ page.teaching_assistants }}</a></li>
       </ul>
     </div>
   </section>
