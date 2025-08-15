@@ -6,7 +6,7 @@ professor: "Paulo Mann"
 class_code: "ICP368"
 program: "Ciência da Computação"
 discussion_group: "Discord"
-teaching_assistants: "Lucas Tsai"
+teaching_assistants: "Lucas Tsai e Yasmim Lima"
 time: "Terça e Quinta, 10:00-12:00"
 location: "F3-007 (CCMN)"
 layout: custom-teaching
@@ -42,9 +42,11 @@ layout: custom-teaching
         <li><strong>Atendimento:</strong> sob demanda, pessoalmente ou via email. </li>
         <li><strong>Horário:</strong> {{ page.time }}</li>
         <li><strong>Local:</strong> {{ page.location }}</li>
-        <li><strong>Monitor(a):</strong> <a href="mailto:lucastts@dcc.ufrj.br?subject=Monitoria%20Turma%20Alggraf%20(12886)&body=Oi%20Lucas,%0A%0A[Sua%20mensagem%20aqui]%0A%0AAbs," 
+        <li><strong>Monitores:</strong> <a href="mailto:lucastts@dcc.ufrj.br?subject=Monitoria%20Turma%20Alggraf%20(12886)&body=Oi%20Lucas,%0A%0A[Sua%20mensagem%20aqui]%0A%0AAbs," 
    style="color: #2a6496; text-decoration: underline;">
-   {{ page.teaching_assistants }}</a></li>
+   Lucas Tsai</a> e <a href="mailto:yasmimmpl@dcc.ufrj.br?subject=Monitoria%20Turma%20Alggraf%20(12886)&body=Oi%20Yasmim,%0A%0A[Sua%20mensagem%20aqui]%0A%0AAbs," 
+   style="color: #2a6496; text-decoration: underline;">
+   Yasmim Lima</a></li>
       </ul>
     </div>
   </section>

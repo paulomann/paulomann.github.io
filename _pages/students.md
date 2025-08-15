@@ -12,15 +12,44 @@ redirect_from:
 <!-- Add your current students here following the same pattern as below -->
 
 <details>
-  <summary>Gleyson Mayato Antunes</summary>
+  <summary>Carlos Henrique Luiz Correa Filho & Pedro Gabriel Morsch de Freitas</summary>
   <div class="student-details">
-    <strong>Degree</strong>: Bachelor of Mathematics<br>
-    <strong>University</strong>: UERJ<br>
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Daniel Machado da Conceição</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Guilherme de Luna Ferreira & Matheus Barroso de Santana</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
     <strong>Supervisors</strong>: Paulo Mann
   </div>
 </details>
 
 ## Former Students
+
+<details>
+  <summary>Pedro Jorge Oliveira Câmara</summary>
+  <div class="student-details">
+    <strong>Title</strong>: Neural Network Hyperparameter Optimization Using Evolutionary Algorithms<br>
+    <strong>Year</strong>: 2025<br>
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Carolina Marcelino & Paulo Mann
+  </div>
+</details>
 
 <details>
   <summary>Viviane Rangel da Costa Romero</summary>
