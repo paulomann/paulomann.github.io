@@ -132,37 +132,42 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 26/08</td>
+                    <td>Capítulos 20.3 e 20.4 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Aplicações de DFS: Classificação de arestas e Ordenação Topológica</td>
                     <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
                 </tr>
         
                 <tr>
                     <td>Qui 28/08</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 20.5 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Aplicações de DFS: Componentes Fortemente Conexos</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/sccs.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Ter 02/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 15.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Problemas de otimização, método guloso, o problema da árvore geradora mínima</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/celso_ribeiro/02 Vienna 02 - Complexity v3.pdf">[Slides do Prof. Celso Ribeiro]</a></li>
+                            <li><a href="/files/lecture_notes/celso_ribeiro/03b Vienna 03 - Constructive heuristics.pdf">[Slides do Prof. Celso Ribeiro]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 04/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 21.0 e 21.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Árvore geradora mínima: algoritmo genérico e prova para identificar arestas seguras</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/minimum_spanning_trees.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
@@ -214,11 +219,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 30/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
                 </tr>
         
                 <tr>

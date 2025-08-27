@@ -120,45 +120,37 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 26/08</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 1</a></td>
+                    <td>Aula prática (Lab 1)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/lab1.pdf" style="color: #2a6496; text-decoration: underline;">Lab 1</a></td>
+                </tr>
+        
+                <tr>
+                    <td>Qui 28/08</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Módulos, erros comuns e mais exemplos de funções</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 02/09</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
                     <td>Aula prática (Lab 2)</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
                 </tr>
         
                 <tr>
-                    <td>Qui 28/08</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 02/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
                     <td>Qui 04/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Strings, booleanos, operadores e expressões booleanas, estrutura condicional</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 09/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Aula prática (Lab 3)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
@@ -227,20 +219,12 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 09/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
                 </tr>
         
                 <tr>
                     <td>Ter 14/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>  
                 </tr>
         
                 <tr>
