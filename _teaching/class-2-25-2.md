@@ -142,42 +142,36 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 04/09</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
-                    <td>Strings, booleanos, operadores e expressões booleanas, estrutura condicional</td>
+                    <td>Strings, booleanos</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 09/09</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
-                    <td>Aula prática (Lab 3)</td>
+                    <td>Booleanos e operadores e expressões booleanas</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
                     <td>Qui 11/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Estrutura condicional</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 16/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Aula prática (Lab 3)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
                     <td>Qui 18/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 4</a></td>
+                    <td>Variáveis, atribuição, strings, fatiamento, tuplas</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/Lab_04_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 4</a></td>
                 </tr>
         
                 <tr>
@@ -192,29 +186,23 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 30/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 4</a></td>
+                    <td>Aula prática (Lab 4)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/Lab_04_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 4</a></td>
                 </tr>
         
                 <tr>
                     <td>Qui 02/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 5</a></td>
+                    <td>Listas e Dicionários</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 07/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 5</a></td>
+                    <td>Aula prática (Lab 5)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>
                 </tr>
         
                 <tr>
