@@ -12,6 +12,15 @@ redirect_from:
 <!-- Add your current students here following the same pattern as below -->
 
 <details>
+  <summary>Henrique Fernandes Rodrigues</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Master of Informatics<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Giseli Rabello Lopes & Paulo Mann
+  </div>
+</details>
+
+<details>
   <summary>Carlos Henrique Luiz Correa Filho & Pedro Gabriel Morsch de Freitas</summary>
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>

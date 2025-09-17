@@ -191,19 +191,23 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 16/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 21.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Árvore geradora mínima: algoritmos de Kruskal e Prim</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/minimum_spanning_trees.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 18/09</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 21.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Complexidade do algoritmo de Prim, comparação de Kruskal e Prim; Lista 1</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/minimum_spanning_trees.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
