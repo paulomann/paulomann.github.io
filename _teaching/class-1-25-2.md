@@ -223,16 +223,12 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 30/09</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
+                    <td colspan="3" style="text-align: center;">Plantão de Dúvidas</td>  
                 </tr>
         
                 <tr>
                     <td>Qui 02/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>
                 </tr>
         
                 <tr>
