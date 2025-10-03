@@ -228,16 +228,16 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 02/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 07/10</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
                     <td>
                         &mdash;
                     </td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 07/10</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>
                 </tr>
         
                 <tr>

@@ -193,35 +193,31 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 02/10</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">&mdash;</td> 
+                </tr>
+        
+                <tr>
+                    <td>Ter 07/10</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-05/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 5</a></td>
                     <td>Listas e Dicionários</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>
                 </tr>
         
                 <tr>
-                    <td>Ter 07/10</td>
+                    <td>Qui 09/10</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-05/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 5</a></td>
                     <td>Aula prática (Lab 5)</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 09/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>  
                 </tr>
         
                 <tr>
                     <td>Ter 14/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>  
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
                 </tr>
         
                 <tr>
                     <td>Qui 16/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>
                 </tr>
         
                 <tr>
