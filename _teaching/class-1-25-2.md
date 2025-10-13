@@ -228,11 +228,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 02/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center;">&mdash;</td>  
                 </tr>
         
                 <tr>
@@ -242,52 +238,56 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 09/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Resolução da P1</td>
                 </tr>
         
                 <tr>
                     <td>Ter 14/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 22.0 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O problema de caminhos mínimos de origem única</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dijkstra.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 16/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 22.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O algoritmo de Dijkstra</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dijkstra.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Ter 21/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 14 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Programação Dinâmica</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dynamic_programming.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 23/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 22.1 e 22.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Bellman-Ford e distância mínima em DAGs</td>
                     <td>
-                        &mdash;
-                    </td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dynamic_programming.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>    
                 </tr>
         
                 <tr>
                     <td>Ter 28/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: dia do funcionário público</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentação de Propostas do Trabalho</td>
                 </tr>
         
                 <tr>
@@ -351,11 +351,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 25/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
                 </tr>
         
                 <tr>
