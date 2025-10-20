@@ -217,16 +217,13 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 16/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">&mdash;</td>
                 </tr>
         
                 <tr>
                     <td>Ter 21/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>
+
                 </tr>
         
                 <tr>
@@ -240,7 +237,11 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 28/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: dia do funcionário público</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
                 </tr>
         
                 <tr>
@@ -347,7 +348,7 @@ layout: custom-teaching
                     </td>
                 </tr>
         
-                <tr>
+                <!-- <tr>
                     <td>Qui 11/12</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
@@ -372,7 +373,7 @@ layout: custom-teaching
                     <td>
                         &mdash;
                     </td>
-                </tr>
+                </tr> -->
         
             </tbody>
         </table>

@@ -254,6 +254,11 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 16/10</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">&mdash;</td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 21/10</td>
                     <td>Capítulo 22.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>O algoritmo de Dijkstra</td>
                     <td>
@@ -264,7 +269,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 21/10</td>
+                    <td>Qui 23/10</td> 
                     <td>Capítulo 14 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Programação Dinâmica</td>
                     <td>
@@ -275,19 +280,14 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 23/10</td>
+                    <td>Ter 28/10</td>
                     <td>Capítulos 22.1 e 22.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Bellman-Ford e distância mínima em DAGs</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/dynamic_programming.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
-                    </td>    
-                </tr>
-        
-                <tr>
-                    <td>Ter 28/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentação de Propostas do Trabalho</td>
+                    </td>   
                 </tr>
         
                 <tr>
@@ -390,7 +390,7 @@ layout: custom-teaching
                     </td>
                 </tr>
         
-                <tr>
+                <!-- <tr>
                     <td>Qui 11/12</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
@@ -415,7 +415,7 @@ layout: custom-teaching
                     <td>
                         &mdash;
                     </td>
-                </tr>
+                </tr> -->
         
             </tbody>
         </table>
