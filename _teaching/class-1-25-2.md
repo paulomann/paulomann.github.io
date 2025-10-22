@@ -281,6 +281,11 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 28/10</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações</td>
+                </tr>
+        
+                <tr>
+                    <td>Qui 30/10</td>
                     <td>Capítulos 22.1 e 22.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Bellman-Ford e distância mínima em DAGs</td>
                     <td>
@@ -291,57 +296,47 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 30/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
                     <td>Ter 04/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 23.0 e 23.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O problema de caminhos mínimos entre todos os pares de vértices; Floyd-Warshall</td>
                     <td>
-                        &mdash;
-                    </td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/floyd_warshall.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>    
                 </tr>
         
                 <tr>
                     <td>Qui 06/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações</td>
+
                 </tr>
         
                 <tr>
                     <td>Ter 11/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Fluxo máximo, corte mínimo, redes residuais e caminhos aumentantes</td>
                     <td>
-                        &mdash;
-                    </td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>   
                 </tr>
         
                 <tr>
                     <td>Qui 13/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Ford-Fulkerson, Edmonds-Karp; revisão de Floyd-Warshall</td>
                     <td>
-                        &mdash;
-                    </td>
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
+                    </td>  
                 </tr>
         
                 <tr>
                     <td>Ter 18/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações</td>
                 </tr>
         
                 <tr>
@@ -351,64 +346,40 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 25/11</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>
                 </tr>
         
                 <tr>
                     <td>Qui 27/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista da PR</td>
                 </tr>
         
                 <tr>
                     <td>Ter 02/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações</td>
                 </tr>
         
                 <tr>
                     <td>Qui 04/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações</td>
                 </tr>
         
                 <tr>
                     <td>Ter 09/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações</td>
                 </tr>
         
-                <!-- <tr>
+                <tr>
                     <td>Qui 11/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
                 </tr>
         
                 <tr>
                     <td>Ter 16/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista da PF</td>
                 </tr>
         
-                <tr>
+                <!-- <tr>
                     <td>Qui 18/12</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
@@ -444,7 +415,8 @@ layout: custom-teaching
     <h2 class="section-title">Avaliação</h2>
     <div class="section-content">
       <ul class="evaluation">
-        <li>✅ 2 Provas (P1/P2)</li>
+        <li>✅ 1 Prova (P1)</li>
+        <li>✅ 1 Trabalho (P2)</li>
         <li>✅ 1 Prova Final (PF)</li>
         <li>✅ 1 Prova de Reposição (PR) - apenas com comprovante de acordo com o regulamento da universidade</li>
       </ul>
