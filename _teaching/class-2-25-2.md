@@ -222,80 +222,62 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 21/10</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista de Prova</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Vista de Prova</td>
 
                 </tr>
         
                 <tr>
                     <td>Qui 23/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 6</a></td>
+                    <td>Manipulação de sequências: strings, listas e dicionários</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 28/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: dia do servidor público</td>
                 </tr>
         
                 <tr>
                     <td>Qui 30/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 6</a></td>
+                    <td>Manipulação de sequências: strings, listas e dicionários</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 04/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 6</a></td>
+                    <td>Aula prática (Lab 6)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>  
                 </tr>
         
                 <tr>
                     <td>Qui 06/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 7</a></td>
+                    <td>Estrutura de repetição: while</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/lab7_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 7</a></td>  
                 </tr>
         
                 <tr>
                     <td>Ter 11/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 7</a></td>
+                    <td>Aula prática (Lab 7)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/lab7_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 7</a></td>  
                 </tr>
         
                 <tr>
                     <td>Qui 13/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 8</a></td>
+                    <td>Estrutura de repetição: for</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/lab8IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 8</a></td>    
                 </tr>
         
                 <tr>
                     <td>Ter 18/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 8</a></td>
+                    <td>Aula prática (Lab 8)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/lab8IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 8</a></td>   
                 </tr>
         
                 <tr>
@@ -305,11 +287,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 25/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>  
                 </tr>
         
                 <tr>
@@ -323,11 +301,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 02/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>  
                 </tr>
         
                 <tr>
@@ -341,11 +315,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 09/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>  
                 </tr>
         
                 <!-- <tr>
