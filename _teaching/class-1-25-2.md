@@ -315,7 +315,7 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 11/11</td>
                     <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Fluxo máximo, corte mínimo, redes residuais e caminhos aumentantes</td>
+                    <td>Fluxo máximo, corte mínimo, redes residuais e caminhos aumentantes. Ford-fulkerson e Edmonds-Karp.</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
@@ -325,13 +325,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 13/11</td>
-                    <td>Capítulos 24.0, 24.1, e 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Ford-Fulkerson, Edmonds-Karp; revisão de Floyd-Warshall</td>
-                    <td>
-                        <ul>
-                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
-                        </ul>
-                    </td>  
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Vista da P1</td>
                 </tr>
         
                 <tr>
@@ -351,7 +345,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 27/11</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista da PR</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Vista da PR</td>
                 </tr>
         
                 <tr>
@@ -376,7 +370,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 16/12</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Vista da PF</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Vista da PF</td>
                 </tr>
         
                 <!-- <tr>
