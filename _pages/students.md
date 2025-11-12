@@ -7,9 +7,17 @@ redirect_from:
   - /students.html
 ---
 
-## Current Undergraduate Students
+## Current Graduate Students
 
-<!-- Add your current students here following the same pattern as below -->
+
+<details>
+  <summary>Theo Wong</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Doctorate in Informatics<br>
+    <strong>University</strong>: University of Leicester<br>
+    <strong>Supervisors</strong>: Fabrício Góes & Marco Volpe & Paulo Mann
+  </div>
+</details>
 
 <details>
   <summary>Henrique Fernandes Rodrigues</summary>
@@ -20,12 +28,25 @@ redirect_from:
   </div>
 </details>
 
+## Current Undergraduate Students
+
+<!-- Add your current students here following the same pattern as below -->
+
+<details>
+  <summary>Joao Pedro Batista da Silva</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
 <details>
   <summary>Carlos Henrique Luiz Correa Filho & Pedro Gabriel Morsch de Freitas</summary>
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFRJ<br>
-    <strong>Supervisors</strong>: Paulo Mann
+    <strong>Supervisors</strong>: Giseli Rabello Lopes & Paulo Mann
   </div>
 </details>
 
@@ -43,7 +64,7 @@ redirect_from:
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFRJ<br>
-    <strong>Supervisors</strong>: Paulo Mann
+    <strong>Supervisors</strong>: Paulo Mann & Mateus Monteiro
   </div>
 </details>
 
