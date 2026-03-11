@@ -65,8 +65,8 @@ def generate_schedule(start_date_str, end_date_str, class_days):
 
 # Example usage
 html_output = generate_schedule(
-    start_date_str="04/08/2025",
-    end_date_str="20/12/2025",
+    start_date_str="09/03/2026",
+    end_date_str="18/07/2026",
     class_days=[1, 3],  # Terça (1) e Quinta (3)
 )
 
