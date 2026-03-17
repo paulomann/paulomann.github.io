@@ -88,18 +88,14 @@ layout: custom-teaching
         
                 <tr>
                     <td>Seg 23/03</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 1</a></td>
-                    <td>Funções e Aula prática (Lab 1)</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/lab1.pdf" style="color: #2a6496; text-decoration: underline;">Lab 1</a></td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: semana da computação</td>
                 </tr>
         
                 <tr>
                     <td>Seg 30/03</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 1</a></td>
+                    <td>Funções e Aula prática (Lab 1)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-01/lab1.pdf" style="color: #2a6496; text-decoration: underline;">Lab 1</a></td>
                 </tr>
         
                 <tr>
@@ -122,11 +118,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Seg 20/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: recesso</td>
                 </tr>
         
                 <tr>

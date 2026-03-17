@@ -86,44 +86,32 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 12/03</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/01_ml_basics/" style="color: #2a6496; text-decoration: underline;">Capítulo 1</a></td>
-                    <td>Introdução, Dados e Tarefas</td>
+                    <td>Introdução, Dados</td>
                     <td>&mdash;</td>
                 </tr>
         
                 <tr>
                     <td>Ter 17/03</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/01_ml_basics/" style="color: #2a6496; text-decoration: underline;">Capítulo 1</a></td>
+                    <td>Tarefas, Modelos e Parâmetros, Aprendizagem</td>
                     <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
                 </tr>
         
                 <tr>
                     <td>Qui 19/03</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/01_ml_basics/" style="color: #2a6496; text-decoration: underline;">Capítulo 1</a></td>
+                    <td>Funções de Perda, Otimização, Componentes de Aprendizagem</td>
                     <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
                 </tr>
         
                 <tr>
                     <td>Ter 24/03</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: semana da computação</td>
                 </tr>
         
                 <tr>
                     <td>Qui 26/03</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: semana da computação</td>
                 </tr>
         
                 <tr>
@@ -182,20 +170,12 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 21/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: dia de tiradentes</td>
                 </tr>
         
                 <tr>
                     <td>Qui 23/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: dia de são jorge</td>
                 </tr>
         
                 <tr>
@@ -299,11 +279,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 04/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: corpus christi</td>
                 </tr>
         
                 <tr>
