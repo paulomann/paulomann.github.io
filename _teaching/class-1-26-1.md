@@ -116,11 +116,9 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 31/03</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/02_supervised_regression/" style="color: #2a6496; text-decoration: underline;">Capítulo 2</a></td>
+                    <td>Modelos Lineares, Função de perda L2, o Método dos Mínimos Quadrados</td>
+                    <td><a href="{{ '/files/machine_learning/01_intro_linear_regression.ipynb' | relative_url }}">[Notebook (.ipynb)]</a></td>
                 </tr>
         
                 <tr>
