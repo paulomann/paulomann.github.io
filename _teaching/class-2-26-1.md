@@ -100,20 +100,16 @@ layout: custom-teaching
         
                 <tr>
                     <td>Seg 06/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Módulos, erros comuns e mais exemplos de funções</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
                 </tr>
         
                 <tr>
                     <td>Seg 13/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 2</a></td>
+                    <td>Módulos, erros comuns e mais exemplos de funções</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
                 </tr>
         
                 <tr>
@@ -123,103 +119,74 @@ layout: custom-teaching
         
                 <tr>
                     <td>Seg 27/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Aula prática (Lab 2) e início do Módulo 3</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
                 </tr>
         
                 <tr>
                     <td>Seg 04/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
+                    <td>Aula prática (Lab 3) e continuação do Módulo 3</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
                     <td>Seg 11/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 4</a></td>
+                    <td>Variáveis, atribuição, strings, fatiamento, tuplas</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-04/Lab_04_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 4</a></td>
                 </tr>
         
                 <tr>
                     <td>Seg 18/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
                 </tr>
         
                 <tr>
                     <td>Seg 25/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 5</a></td>
+                    <td>Listas e Dicionários</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-05/lab5IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 5</a></td>  
                 </tr>
         
                 <tr>
                     <td>Seg 01/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 6</a></td>
+                    <td>Manipulação de sequências: strings, listas e dicionários</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-06/lab6IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 6</a></td>
                 </tr>
         
                 <tr>
                     <td>Seg 08/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 7</a></td>
+                    <td>Estrutura de repetição: while</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-07/lab7_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 7</a></td>  
                 </tr>
         
                 <tr>
                     <td>Seg 15/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 8</a></td>
+                    <td>Estrutura de repetição: for</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-08/lab8IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 8</a></td>   
                 </tr>
         
                 <tr>
                     <td>Seg 22/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>  
                 </tr>
         
                 <tr>
                     <td>Seg 29/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>  
                 </tr>
         
-                <!-- <tr>
+                <tr>
                     <td>Seg 06/07</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>  
                 </tr>
-        
+
+                <!-- <tr>
                 <tr>
                     <td>Seg 13/07</td>
                     <td>&mdash;</td>
