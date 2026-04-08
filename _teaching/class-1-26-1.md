@@ -118,7 +118,7 @@ layout: custom-teaching
                     <td>Ter 31/03</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/02_supervised_regression/" style="color: #2a6496; text-decoration: underline;">Capítulo 2</a></td>
                     <td>Modelos Lineares, Função de perda L2, o Método dos Mínimos Quadrados</td>
-                    <td><a href="{{ '/files/machine_learning/01_intro_linear_regression.ipynb' | relative_url }}">[Notebook (.ipynb)]</a></td>
+                    <td><a href="{{ '/files/machine_learning/01_intro_linear_regression.ipynb' | relative_url }}">[Notebook 1]</a></td>
                 </tr>
         
                 <tr>
@@ -133,17 +133,15 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 07/04</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/02_supervised_regression/" style="color: #2a6496; text-decoration: underline;">Capítulo 2</a></td>
-                    <td>Modelos de regressão polinomial, Função de perda L1</td>
-                    <td><a href="{{ '/files/machine_learning/01_intro_linear_regression.ipynb' | relative_url }}">[Notebook (.ipynb)]</a></td>
+                    <td>Numpy, Pandas, Matplotlib, Scikit-learn</td>
+                    <td><a href="{{ '/files/machine_learning/01_intro_linear_regression.ipynb' | relative_url }}">[Notebook 1]</a></td>
                 </tr>
         
                 <tr>
                     <td>Qui 09/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/02_supervised_regression/" style="color: #2a6496; text-decoration: underline;">Capítulo 2</a></td>
+                    <td>Modelos de regressão polinomial, Função de perda L1</td>
+                    <td><a href="{{ '/files/machine_learning/02_gradient_descent.ipynb' | relative_url }}">[Notebook 2]</a></td>
                 </tr>
         
                 <tr>
