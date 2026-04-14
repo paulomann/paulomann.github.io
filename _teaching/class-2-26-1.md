@@ -120,14 +120,14 @@ layout: custom-teaching
                 <tr>
                     <td>Seg 27/04</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
-                    <td>Aula prática (Lab 2) e início do Módulo 3</td>
-                    <td><a href="https://python.ic.ufrj.br/aulas/aula-02/lab2_IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 2</a></td>
+                    <td>Aula prática (Lab 3)</td>
+                    <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         
                 <tr>
                     <td>Seg 04/05</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-03/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 3</a></td>
-                    <td>Aula prática (Lab 3) e continuação do Módulo 3</td>
+                    <td>Aula prática (Lab 3) e Módulo 3</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-03/lab3_IDLE_v2.pdf" style="color: #2a6496; text-decoration: underline;">Lab 3</a></td>
                 </tr>
         

@@ -146,8 +146,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 14/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
+                    <td>A tarefa de classificação, Definções Básicas, Classificadores Lineares</td>
                     <td>
                         &mdash;
                     </td>
@@ -155,8 +155,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 16/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
+                    <td>Regressão Logística, Análise Discriminante</td>
                     <td>
                         &mdash;
                     </td>
