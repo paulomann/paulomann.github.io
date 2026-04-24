@@ -147,7 +147,7 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 14/04</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
-                    <td>A tarefa de classificação, Definções Básicas, Classificadores Lineares</td>
+                    <td>A tarefa de classificação, Definições Básicas</td>
                     <td>
                         &mdash;
                     </td>
@@ -156,7 +156,7 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 16/04</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
-                    <td>Regressão Logística, Análise Discriminante</td>
+                    <td>Classificadores Lineares, Regressão Logística</td>
                     <td>
                         &mdash;
                     </td>
@@ -174,26 +174,18 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 28/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: professor em evento acadêmico</td>
                 </tr>
         
                 <tr>
                     <td>Qui 30/04</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: professor em evento acadêmico</td>
                 </tr>
         
                 <tr>
                     <td>Ter 05/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
+                    <td>Regressão Logística, Análise Discriminante</td>
                     <td>
                         &mdash;
                     </td>
@@ -201,8 +193,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 07/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
+                    <td>Análise Discriminante, Naive Bayes</td>
                     <td>
                         &mdash;
                     </td>
