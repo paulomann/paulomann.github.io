@@ -185,7 +185,7 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 05/05</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
-                    <td>Regressão Logística, Análise Discriminante</td>
+                    <td>Exercício em sala</td>
                     <td>
                         &mdash;
                     </td>
@@ -194,16 +194,14 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 07/05</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
-                    <td>Análise Discriminante, Naive Bayes</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td>Regressão Logística</td>
+                    <td><a href="{{ '/files/machine_learning/03_logistic_regression.ipynb' | relative_url }}">[Notebook 3]</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 12/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
+                    <td>LDA, QDA</td>
                     <td>
                         &mdash;
                     </td>
@@ -211,8 +209,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 14/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
+                    <td>Naive Bayes</td>
                     <td>
                         &mdash;
                     </td>
@@ -256,11 +254,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 02/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações 1</td>  
                 </tr>
         
                 <tr>
@@ -315,11 +309,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 25/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações 2</td>  
                 </tr>
         
                 <tr>
@@ -333,20 +323,12 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 02/07</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
                 </tr>
         
                 <tr>
                     <td>Ter 07/07</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>  
                 </tr>
         
                 <tr>
@@ -355,16 +337,12 @@ layout: custom-teaching
                     <td>&mdash;</td>
                     <td>
                         &mdash;
-                    </td>
+                    </td> 
                 </tr>
         
                 <tr>
                     <td>Ter 14/07</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td> 
                 </tr>
         
                 <tr>
