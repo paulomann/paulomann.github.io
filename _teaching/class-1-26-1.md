@@ -202,9 +202,7 @@ layout: custom-teaching
                     <td>Ter 12/05</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
                     <td>LDA, QDA</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="{{ '/files/machine_learning/04_discriminant_analysis.ipynb' | relative_url }}">[Notebook 4]</a></td>
                 </tr>
         
                 <tr>
