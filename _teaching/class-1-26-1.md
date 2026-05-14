@@ -209,18 +209,12 @@ layout: custom-teaching
                     <td>Qui 14/05</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
                     <td>Naive Bayes</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="{{ '/files/machine_learning/05_naive_bayes.ipynb' | relative_url }}">[Notebook 5]</a></td>
                 </tr>
         
                 <tr>
                     <td>Ter 19/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center;">&mdash;</td>  
                 </tr>
         
                 <tr>
