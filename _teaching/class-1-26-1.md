@@ -228,11 +228,9 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 26/05</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td><a href="{{ '/files/slides_bias_variance_resampling_metrics.pdf' | relative_url }}" style="color: #2a6496; text-decoration: underline;">Capítulo 4</a></td>
+                    <td>Bias-Variance, Reamostragem e Métricas</td>
+                    <td><a href="{{ '/files/machine_learning/06_avaliacao_kfold.ipynb' | relative_url }}">[Notebook 5]</a></td>
                 </tr>
         
                 <tr>
