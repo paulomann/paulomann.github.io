@@ -254,11 +254,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 09/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações 1</td>  
                 </tr>
         
                 <tr>
@@ -290,11 +286,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 23/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações 2</td>  
                 </tr>
         
                 <tr>
