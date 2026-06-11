@@ -259,11 +259,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 11/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações 1</td>  
                 </tr>
         
                 <tr>
@@ -296,6 +292,11 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 30/06</td>
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">Apresentações 2</td>  
+                </tr>
+        
+                <tr>
+                    <td>Qui 02/07</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
                     <td>
@@ -304,22 +305,13 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 02/07</td>
+                    <td>Ter 07/07</td>
                  <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P1</td>  
                 </tr>
         
                 <tr>
-                    <td>Ter 07/07</td>
-                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>  
-                </tr>
-        
-                <tr>
                     <td>Qui 09/07</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td> 
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td> 
                 </tr>
         
                 <tr>
