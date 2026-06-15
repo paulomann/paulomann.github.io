@@ -264,8 +264,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 16/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/08_neural_networks/" style="color: #2a6496; text-decoration: underline;">Capítulo 8</a></td>
+                    <td>Redes Neurais</td>
                     <td>
                         &mdash;
                     </td>
@@ -273,8 +273,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 18/06</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/08_neural_networks/" style="color: #2a6496; text-decoration: underline;">Capítulo 8</a></td>
+                    <td>Redes Neurais</td>
                     <td>
                         &mdash;
                     </td>
