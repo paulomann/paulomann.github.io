@@ -166,19 +166,23 @@ layout: custom-teaching
         
                 <tr>
                     <td>Seg 15/06</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Seg 22/06</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-08/index.html" style="color: #2a6496; text-decoration: underline;">Módulo 8</a></td>
                     <td>Estrutura de repetição: for</td>
                     <td><a href="https://python.ic.ufrj.br/aulas/aula-08/lab8IDLE.pdf" style="color: #2a6496; text-decoration: underline;">Lab 8</a></td>   
                 </tr>
         
                 <tr>
-                    <td>Seg 22/06</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>  
-                </tr>
-        
-                <tr>
                     <td>Seg 29/06</td>
-                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>  
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2 (manhã) e PR (tarde)</td>  
                 </tr>
         
                 <tr>
