@@ -182,23 +182,18 @@ layout: custom-teaching
         
                 <tr>
                     <td>Seg 29/06</td>
-                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2 (manhã) e PR (tarde)</td>  
+                    <td colspan="3" style="text-align: center; font-weight: bold;">Sem aula: jogo do Brasil</td>
                 </tr>
         
                 <tr>
                     <td>Seg 06/07</td>
-                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>  
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>  
                 </tr>
 
-                <!-- <tr>
                 <tr>
                     <td>Seg 13/07</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr> -->
+                 <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR e PF</td>  
+                </tr>
         
             </tbody>
         </table>
