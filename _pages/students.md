@@ -28,25 +28,34 @@ redirect_from:
   </div>
 </details>
 
+<details>
+  <summary>Pedro Jorge Oliveira Câmara</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Master of Informatics<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Carolina Marcelino & Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Vinicius dos Santos Silva</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Doctorate in Informatics<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Carla Delgado & Paulo Mann
+  </div>
+</details>
+
 ## Current Undergraduate Students
 
 <!-- Add your current students here following the same pattern as below -->
 
 <details>
-  <summary>Joao Pedro Batista da Silva</summary>
+  <summary>João Pedro Batista da Silva</summary>
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFRJ<br>
     <strong>Supervisors</strong>: Paulo Mann
-  </div>
-</details>
-
-<details>
-  <summary>Carlos Henrique Luiz Correa Filho & Pedro Gabriel Morsch de Freitas</summary>
-  <div class="student-details">
-    <strong>Degree</strong>: Bachelor of Computer Science<br>
-    <strong>University</strong>: UFRJ<br>
-    <strong>Supervisors</strong>: Giseli Rabello Lopes & Paulo Mann
   </div>
 </details>
 
@@ -55,20 +64,87 @@ redirect_from:
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Juliana Arriel & Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Giovanna Magalhães Lavouras</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Silas Lima Filho & Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Luiz Claudio Vieira Filho</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
     <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Bernardo Iwamoto</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Joris Guerin & Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Francisco Florencio & Matheus Magalhães</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Matheus Ávila & Gabriel Martins & Paulo Moreira</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Arthur Pinheiro</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+## Former Students
+
+<details>
+  <summary>Carlos Henrique Luiz Correa Filho & Pedro Gabriel Morsch de Freitas</summary>
+  <div class="student-details">
+    <strong>Title</strong>: AI Assistance Paradigms in Software Development<br>
+    <strong>Year</strong>: 2026<br>
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Giseli Rabello Lopes & Paulo Mann
   </div>
 </details>
 
 <details>
   <summary>Guilherme de Luna Ferreira & Matheus Barroso de Santana</summary>
   <div class="student-details">
+    <strong>Title</strong>: Reditum Vox: An Interactive System for Analyzing and Exploring Topics in Reddit Communities<br>
+    <strong>Year</strong>: 2026<br>
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFRJ<br>
     <strong>Supervisors</strong>: Paulo Mann & Mateus Monteiro
   </div>
 </details>
-
-## Former Students
 
 <details>
   <summary>Pedro Jorge Oliveira Câmara</summary>
