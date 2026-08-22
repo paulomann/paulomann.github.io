@@ -7,6 +7,7 @@ excerpt: 'A comparative study of machine learning, deep learning and text-based 
 date: 2026-04-12
 venue: '19th International Conference on Cooperative and Human Aspects of Software Engineering (CHASE)'
 paperurl: 'https://doi.org/10.1145/3794860.3794910'
+image: 'paper14.png'
 ---
 <div style="text-align: justify;">
 A comparative study of machine learning, deep learning, and text-based large language model approaches for emotion recognition in agile software meetings, presented at the 19th International Conference on Cooperative and Human Aspects of Software Engineering (CHASE 2026).
