@@ -6,7 +6,7 @@ professor: "Paulo Mann"
 class_code: "ICP363"
 program: "Ciência da Computação"
 discussion_group: "Discord"
-teaching_assistants: "a definir"
+teaching_assistants: "Giovanna Magalhães"
 time: "Terça e Quinta, 13:00-15:00"
 location: "Ter: LEP1, Qui: F2-06"
 layout: custom-teaching
@@ -42,7 +42,10 @@ layout: custom-teaching
         <li><strong>Atendimento:</strong> sob demanda. </li>
         <li><strong>Horário:</strong> {{ page.time }}</li>
         <li><strong>Local:</strong> {{ page.location }}</li>
-        <li><strong>Monitor(a):</strong> {{ page.teaching_assistants }}</li>
+        <li><strong>Monitor(a):</strong> <a href="mailto:giovannaml@ic.ufrj.br?subject=Monitoria%20Turma%20IAM%20(ICP363)&body=Oi%20Giovanna,%0A%0A[Sua%20mensagem%20aqui]%0A%0AAbs," 
+   style="color: #2a6496; text-decoration: underline;">
+          {{ page.teaching_assistants }}
+        </a></li>
       </ul>
     </div>
   </section>
