@@ -8,7 +8,7 @@ program: "Ciência da Computação"
 discussion_group: "Discord"
 teaching_assistants: "Giovanna Magalhães"
 time: "Terça e Quinta, 13:00-15:00"
-location: "Ter: LEP1, Qui: F2-06"
+location: "Ter: LEP1, Qui: F2-010"
 layout: custom-teaching
 ---
 
