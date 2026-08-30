@@ -118,7 +118,7 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 25/08</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/01_ml_basics/" style="color: #2a6496; text-decoration: underline;">Capítulo 1</a></td>
-                    <td>Funções de Perda, Otimização, Componentes de Aprendizagem</td>
+                    <td>Tarefas, Modelos e Parâmetros, Aprendizagem</td>
                     <td>
                         &mdash;
                     </td>
@@ -126,6 +126,15 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 27/08</td>
+                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/01_ml_basics/" style="color: #2a6496; text-decoration: underline;">Capítulo 1</a></td>
+                    <td>Funções de Perda, Otimização, Componentes de Aprendizagem</td>
+                    <td>
+                        &mdash;
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 01/09</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/02_supervised_regression/" style="color: #2a6496; text-decoration: underline;">Capítulo 2</a></td>
                     <td>Modelos Lineares, Função de perda L2, o Método dos Mínimos Quadrados</td>
                     <td>
@@ -134,7 +143,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 01/09</td>
+                    <td>Qui 03/09</td>
                     <td>&mdash;</td>
                     <td>Atividade de Regressão Linear</td>
                     <td>
@@ -143,7 +152,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 03/09</td>
+                    <td>Ter 08/09</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/02_supervised_regression/" style="color: #2a6496; text-decoration: underline;">Capítulo 2</a></td>
                     <td>Modelos de regressão polinomial, Função de perda L1</td>
                     <td>
@@ -152,18 +161,9 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 08/09</td>
-                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
-                    <td>A tarefa de classificação, Definições Básicas</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
                     <td>Qui 10/09</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a></td>
-                    <td>Classificadores Lineares, Regressão Logística</td>
+                    <td>A tarefa de classificação, Definições Básicas, Classificadores Lineares, Regressão Logística</td>
                     <td>
                         &mdash;
                     </td>
