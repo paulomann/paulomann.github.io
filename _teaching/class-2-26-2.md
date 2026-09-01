@@ -147,8 +147,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 03/09</td>
-                    <td>Capítulo 20.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Busca em Profundidade</td>
+                    <td>Capítulos 20.3 e 20.4 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Busca em Profundidade, Classificação de arestas e Ordenação Topológica</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/graphs_dfs_bfs.pdf">[Nota de aula de Stanford]</a></li>
@@ -158,21 +158,21 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 08/09</td>
-                    <td>Capítulos 20.3 e 20.4 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Aplicações de DFS: Classificação de arestas e Ordenação Topológica</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 10/09</td>
                     <td>Capítulo 20.5 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Aplicações de DFS: Componentes Fortemente Conexos</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/sccs.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Qui 10/09</td>
+                    <td>&mdash;</td>
+                    <td>Atividade de Busca em Profundidade</td>
+                    <td>
+                        &mdash;
                     </td>
                 </tr>
         
