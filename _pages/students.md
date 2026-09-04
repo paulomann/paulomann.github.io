@@ -136,7 +136,7 @@ redirect_from:
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFRJ<br>
-    <strong>Supervisors</strong>: Maria Luiza Campos & Paulo Mann
+    <strong>Supervisors</strong>: Paulo Mann
   </div>
 </details>
 
