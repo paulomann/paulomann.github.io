@@ -122,6 +122,15 @@ redirect_from:
   </div>
 </details>
 
+<details>
+  <summary>Arlene Pelenda Julienne</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Juliana Alves Pereira & Paulo Mann
+  </div>
+</details>
+
 ## Former Students
 
 <details>
