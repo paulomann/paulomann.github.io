@@ -131,6 +131,15 @@ redirect_from:
   </div>
 </details>
 
+<details>
+  <summary>Julia Lopes da Rocha</summary>
+  <div class="student-details">
+    <strong>Degree</strong>: Bachelor of Computer Science<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Maria Luiza Campos & Paulo Mann
+  </div>
+</details>
+
 ## Former Students
 
 <details>
