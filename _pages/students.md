@@ -127,7 +127,7 @@ redirect_from:
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>
     <strong>University</strong>: UFRJ<br>
-    <strong>Supervisors</strong>: Juliana Alves Pereira & Paulo Mann
+    <strong>Supervisors</strong>: Juliana Alves Pereira & Juliana França & Paulo Mann
   </div>
 </details>
 
