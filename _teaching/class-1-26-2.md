@@ -198,6 +198,15 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 24/09</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 29/09</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/03_supervised_classification/" style="color: #2a6496; text-decoration: underline;">Capítulo 3</a>, <a href="https://slds-lmu.github.io/i2ml/chapters/04_evaluation/" style="color: #2a6496; text-decoration: underline;">Capítulo 4</a>, <a href="{{ '/files/slides_bias_variance_resampling_metrics.pdf' | relative_url }}" style="color: #2a6496; text-decoration: underline;">Slides de Bias-Variance</a></td>
                     <td>Naive Bayes e Bias-Variance</td>
                     <td>
@@ -206,20 +215,11 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 29/09</td>
+                    <td>Qui 01/10</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/04_evaluation/" style="color: #2a6496; text-decoration: underline;">Capítulo 4</a>, <a href="{{ '/files/slides_bias_variance_resampling_metrics.pdf' | relative_url }}" style="color: #2a6496; text-decoration: underline;">Slides de Bias-Variance</a></td>
                     <td>Métricas de avaliação e Reamostragem (holdout, validação cruzada, bootstrap)</td>
                     <td>
                         <a href="{{ '/files/machine_learning/06_avaliacao_kfold.ipynb' | relative_url }}">[Notebook 6]</a>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 01/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
                     </td>
                 </tr>
         
