@@ -1,0 +1,284 @@
+/* BRPOL 2026 — painel. Cores por papel; o tema escuro tem passos próprios, validados contra a superfície escura. */
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --surface-2: #f1f0ec;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #7a7973;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.10);
+  --shadow: 0 4px 16px rgba(11, 11, 11, 0.08);
+  --on-strong: #ffffff;
+  /* campos: vermelho, azul e amarelo passam em todos os pares; cinza é o bloco sem candidatura presidencial */
+  --c-lula: #e34948;
+  --c-pl: #2a78d6;
+  --c-outra: #eda100;
+  --c-sem: #9a9993;
+  --c-outros: #52514e;   /* partidos, veículos, sem casamento */
+  --c-dado: #4a3aa7;     /* série única, sem identidade de campo */
+  --band-sem: rgba(11, 11, 11, 0.045);
+  --band-prov: rgba(74, 58, 167, 0.07);
+  --good: #006300;
+  --warn-bg: #fff6e0;
+  --warn-ink: #6b4a00;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-2: #242422;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #8f8e88;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.10);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --on-strong: #0b0b0b;
+    --c-lula: #e34948;
+    --c-pl: #3987e5;
+    --c-outra: #c98500;
+    --c-sem: #7a7973;
+    --c-outros: #c3c2b7;
+    --c-dado: #9085e9;
+    --band-sem: rgba(255, 255, 255, 0.05);
+    --band-prov: rgba(144, 133, 233, 0.10);
+    --good: #0ca30c;
+    --warn-bg: #2b2310;
+    --warn-ink: #f0d08a;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --surface-2: #242422;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --muted: #8f8e88;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255, 255, 255, 0.10);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --on-strong: #0b0b0b;
+  --c-lula: #e34948;
+  --c-pl: #3987e5;
+  --c-outra: #c98500;
+  --c-sem: #7a7973;
+  --c-outros: #c3c2b7;
+  --c-dado: #9085e9;
+  --band-sem: rgba(255, 255, 255, 0.05);
+  --band-prov: rgba(144, 133, 233, 0.10);
+  --good: #0ca30c;
+  --warn-bg: #2b2310;
+  --warn-ink: #f0d08a;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--page);
+  color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- bloqueio ---------- */
+.bloqueio {
+  min-height: 100vh; display: grid; place-items: center; padding: 16px;
+}
+.bloqueio form {
+  width: min(420px, 100%); background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px; box-shadow: var(--shadow);
+}
+.bloqueio h1 { font-size: 20px; margin: 0 0 4px; }
+.bloqueio p { color: var(--ink-2); margin: 0 0 18px; font-size: 14px; }
+.bloqueio label.campo { display: block; font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
+.bloqueio input[type="password"] {
+  width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--axis);
+  background: var(--page);
+}
+.bloqueio input[type="password"]:focus-visible { outline: 2px solid var(--c-pl); outline-offset: 1px; }
+.bloqueio .linha { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.bloqueio .lembrar { font-size: 13px; color: var(--ink-2); display: flex; gap: 6px; align-items: center; }
+.botao {
+  border: 0; border-radius: 8px; padding: 9px 16px; background: var(--ink); color: var(--page);
+  font-weight: 600; cursor: pointer;
+}
+.botao:disabled { opacity: .6; cursor: progress; }
+.erro { color: #d03b3b; font-size: 13px; min-height: 20px; margin-top: 10px; }
+.aviso-embargo { font-size: 12px; color: var(--muted); margin-top: 18px; border-top: 1px solid var(--grid); padding-top: 12px; }
+
+/* ---------- moldura ---------- */
+.topo { background: var(--surface); border-bottom: 1px solid var(--border); }
+.topo .dentro, main { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.cabeca { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding-top: 20px; }
+.cabeca h1 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+.cabeca .sub { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+.acoes { display: flex; gap: 6px; flex-shrink: 0; }
+.acoes button {
+  background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 5px 10px;
+  font-size: 13px; color: var(--ink-2); cursor: pointer;
+}
+.acoes button:hover { background: var(--surface-2); }
+nav.abas { display: flex; gap: 2px; overflow-x: auto; margin-top: 14px; scrollbar-width: none; }
+nav.abas::-webkit-scrollbar { display: none; }
+nav.abas button {
+  background: none; border: 0; padding: 10px 12px; font-size: 14px; color: var(--ink-2); cursor: pointer;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+}
+nav.abas button:hover { color: var(--ink); }
+nav.abas button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); font-weight: 600; }
+main { padding-top: 20px; padding-bottom: 48px; }
+footer { max-width: 1180px; margin: 0 auto; padding: 0 24px 32px; color: var(--muted); font-size: 12px; }
+
+/* ---------- blocos ---------- */
+.filtros { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: end; margin-bottom: 16px; }
+.filtros label { display: flex; flex-direction: column; font-size: 12px; color: var(--ink-2); gap: 3px; }
+.filtros select, .filtros input {
+  padding: 6px 10px; border-radius: 8px; border: 1px solid var(--axis); background: var(--surface); min-width: 140px;
+}
+.filtros input[type="search"] { min-width: 220px; }
+.grade { display: grid; gap: 16px; }
+@media (min-width: 900px) {
+  .grade.duas { grid-template-columns: 1fr 1fr; }
+  .grade.tres { grid-template-columns: repeat(3, 1fr); }
+}
+.cartao {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  min-width: 0;
+}
+.cartao > h2 { font-size: 15px; margin: 0; font-weight: 600; }
+.cartao > .legenda-fig { color: var(--ink-2); font-size: 13px; margin: 2px 0 12px; }
+.cartao .rodape-fig { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; align-items: center; }
+.cartao .nota { color: var(--muted); font-size: 12px; }
+.ver-tabela {
+  background: none; border: 0; padding: 0; color: var(--ink-2); font-size: 12px; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 2px; flex-shrink: 0;
+}
+.aviso {
+  background: var(--warn-bg); color: var(--warn-ink); border-radius: 10px; padding: 10px 14px;
+  font-size: 13px; margin-bottom: 16px;
+}
+.aviso strong { font-weight: 600; }
+.secao-titulo { font-size: 13px; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .04em; margin: 28px 0 10px; }
+
+/* ---------- números ---------- */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.kpi .rot { font-size: 13px; color: var(--ink-2); }
+.kpi .val { font-size: 26px; font-weight: 600; line-height: 1.2; margin-top: 4px; letter-spacing: -0.01em; }
+.kpi .det { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ---------- gráficos ---------- */
+.fig { position: relative; width: 100%; }
+.fig svg { display: block; overflow: visible; }
+.fig text { fill: var(--muted); font-size: 11px; }
+.fig .rot-fim { fill: var(--ink-2); font-size: 12px; }
+.fig .rot-banda { fill: var(--muted); font-size: 11px; }
+.fig .grade-linha { stroke: var(--grid); stroke-width: 1; }
+.fig .eixo { stroke: var(--axis); stroke-width: 1; }
+.fig .marco { stroke: var(--axis); stroke-width: 1; }
+.fig .cruz { stroke: var(--ink-2); stroke-width: 1; }
+.fig .alvo { fill: transparent; cursor: crosshair; }
+.fig .alvo:focus-visible { outline: 2px solid var(--c-pl); }
+.legenda { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 8px; font-size: 12px; color: var(--ink-2); }
+.legenda span { display: inline-flex; align-items: center; gap: 6px; }
+.chave-linha { width: 14px; height: 2px; border-radius: 1px; display: inline-block; }
+.chave-ponto { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.chave-barra { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+.dica {
+  position: fixed; z-index: 50; pointer-events: none; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow); padding: 8px 10px;
+  font-size: 12px; min-width: 140px; max-width: 280px;
+}
+.dica .tit { color: var(--ink-2); margin-bottom: 4px; }
+.dica .lin { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.dica .lin .esq { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); }
+.dica .lin strong { font-variant-numeric: tabular-nums; }
+.dica .extra { color: var(--muted); margin-top: 4px; }
+
+/* barras horizontais em HTML */
+.barras { display: grid; grid-template-columns: minmax(90px, max-content) 1fr; column-gap: 12px; row-gap: 6px; align-items: center; }
+.barras .grupo { grid-column: 1 / -1; font-size: 12px; font-weight: 600; color: var(--ink-2); margin-top: 8px; }
+.barras .grupo:first-child { margin-top: 0; }
+.barras .rot { font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 6px; min-width: 0; }
+.barras .rot .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barras .rot small { color: var(--muted); }
+.barras .trilho { position: relative; height: 18px; min-width: 0; }
+.barras .area { position: relative; height: 18px; }
+.barras .barra { position: absolute; left: 0; top: 2px; height: 14px; border-radius: 0 4px 4px 0; min-width: 1px; }
+.barras .faixa { position: absolute; top: 2px; height: 14px; border-radius: 0 4px 4px 0; opacity: .35; }
+.barras .val { position: absolute; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.barras .iqr { position: absolute; height: 1px; background: var(--ink-2); top: 50%; }
+.barras .iqr::before, .barras .iqr::after { content: ""; position: absolute; width: 1px; height: 7px; top: -3px; background: var(--ink-2); }
+.barras .iqr::before { left: 0; } .barras .iqr::after { right: 0; }
+.barras .ref { position: absolute; width: 2px; height: 18px; background: var(--ink); border-radius: 1px; top: 0; }
+.barras .linha-alvo { display: contents; }
+.barras .linha-alvo:hover .barra { filter: brightness(1.08); }
+
+/* mapa de calor */
+.calor { width: 100%; border-collapse: separate; border-spacing: 2px; font-size: 12px; }
+.calor th { font-weight: 500; color: var(--ink-2); text-align: left; padding: 4px 6px; }
+.calor thead th { text-align: center; font-size: 12px; vertical-align: bottom; }
+.calor td { text-align: center; padding: 7px 4px; border-radius: 4px; font-variant-numeric: tabular-nums; color: var(--ink); }
+.calor td.forte { color: var(--on-strong); }
+.escala { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); margin-top: 8px; }
+.escala .rampa { width: 120px; height: 8px; border-radius: 4px; }
+
+/* tabelas */
+.tabela-envolve { overflow-x: auto; }
+table.dados { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.dados th, table.dados td { padding: 7px 8px; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: middle; }
+table.dados th { font-weight: 600; color: var(--ink-2); font-size: 12px; position: sticky; top: 0; background: var(--surface); white-space: nowrap; }
+table.dados th.ord { cursor: pointer; }
+table.dados th.ord:hover { color: var(--ink); }
+table.dados td.n, table.dados th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.dados tbody tr.clicavel { cursor: pointer; }
+table.dados tbody tr.clicavel:hover { background: var(--surface-2); }
+table.dados tbody tr.ativo { background: var(--surface-2); }
+.conta-nome { font-weight: 500; }
+.conta-user { color: var(--muted); font-size: 12px; }
+.tabela-fig { margin-top: 10px; max-height: 320px; overflow: auto; }
+.mais { margin-top: 12px; display: flex; gap: 12px; align-items: center; color: var(--muted); font-size: 12px; }
+.mais button { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 13px; }
+
+/* ficha de perfil */
+.ficha-cab { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.ficha-cab h2 { font-size: 18px; margin: 0; }
+.ficha-cab .meta { color: var(--ink-2); font-size: 13px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.ficha .kpis { margin: 14px 0 6px; }
+.ficha .kpi { background: var(--surface-2); border: 0; }
+.fechar { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; cursor: pointer; color: var(--ink-2); font-size: 13px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--surface-2); border-radius: 999px; padding: 3px 10px; font-size: 12px; color: var(--ink-2); }
+.subtitulo { font-size: 13px; font-weight: 600; margin: 16px 0 8px; }
+
+.texto { max-width: 760px; }
+.texto h3 { font-size: 15px; margin: 22px 0 6px; }
+.texto p, .texto li { color: var(--ink-2); font-size: 14px; }
+.texto ul { padding-left: 20px; }
+
+@media (max-width: 640px) {
+  .topo .dentro, main, footer { padding-left: 16px; padding-right: 16px; }
+  .cabeca { flex-direction: column; gap: 10px; padding-top: 16px; }
+  .cabeca h1 { font-size: 19px; }
+  .kpis { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kpi { padding: 12px; }
+  .cartao { padding: 14px; }
+  .filtros select, .filtros input, .filtros input[type="search"] { min-width: 0; width: 100%; }
+  .filtros label { flex: 1 1 140px; }
+  .kpi .val { font-size: 22px; }
+}
+@media print {
+  .acoes, nav.abas, .filtros, .ver-tabela { display: none !important; }
+}
