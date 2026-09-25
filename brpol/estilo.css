@@ -100,6 +100,12 @@ button, input, select { font: inherit; color: inherit; }
   border-radius: 12px; padding: 28px; box-shadow: var(--shadow);
 }
 .bloqueio h1 { font-size: 20px; margin: 0 0 4px; }
+.bloqueio-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.lingua {
+  background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 3px 9px;
+  font-size: 12px; color: var(--ink-2); cursor: pointer;
+}
+.lingua:hover { background: var(--surface-2); }
 .bloqueio p { color: var(--ink-2); margin: 0 0 18px; font-size: 14px; }
 .bloqueio label.campo { display: block; font-size: 13px; color: var(--ink-2); margin-bottom: 6px; }
 .bloqueio input[type="password"] {
