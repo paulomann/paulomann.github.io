@@ -17,7 +17,8 @@
   --c-pl: #2a78d6;
   --c-outra: #eda100;
   --c-sem: #9a9993;
-  --c-outros: #52514e;   /* partidos, veículos, sem casamento */
+  --c-outros: #52514e;   /* partidos, veículos, sem casamento, governo */
+  --c-claro: #c9c8c1;    /* outros anunciantes; itens fora da seleção */
   --c-dado: #4a3aa7;     /* série única, sem identidade de campo */
   --band-sem: rgba(11, 11, 11, 0.045);
   --band-prov: rgba(74, 58, 167, 0.07);
@@ -44,6 +45,7 @@
     --c-outra: #c98500;
     --c-sem: #7a7973;
     --c-outros: #c3c2b7;
+    --c-claro: #5e5d59;
     --c-dado: #9085e9;
     --band-sem: rgba(255, 255, 255, 0.05);
     --band-prov: rgba(144, 133, 233, 0.10);
@@ -70,6 +72,7 @@
   --c-outra: #c98500;
   --c-sem: #7a7973;
   --c-outros: #c3c2b7;
+  --c-claro: #5e5d59;
   --c-dado: #9085e9;
   --band-sem: rgba(255, 255, 255, 0.05);
   --band-prov: rgba(144, 133, 233, 0.10);
@@ -162,7 +165,20 @@ footer { max-width: 1180px; margin: 0 auto; padding: 0 24px 32px; color: var(--m
   background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
   min-width: 0;
 }
-.cartao > h2 { font-size: 15px; margin: 0; font-weight: 600; }
+.cab-cartao { display: flex; align-items: center; gap: 8px; }
+.cab-cartao h2 { font-size: 15px; margin: 0; font-weight: 600; }
+.ajuda {
+  flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--axis); background: transparent;
+  color: var(--ink-2); font-size: 11px; font-weight: 600; line-height: 1; padding: 0; cursor: help;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.ajuda:hover, .ajuda:focus-visible { background: var(--surface-2); color: var(--ink); outline: none; border-color: var(--ink-2); }
+.pop-ajuda {
+  position: fixed; z-index: 60; max-width: min(380px, calc(100vw - 16px)); background: var(--surface); color: var(--ink-2);
+  border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); padding: 12px 14px; font-size: 13px; line-height: 1.5;
+}
+.pop-ajuda p { margin: 0 0 8px; }
+.pop-ajuda p:last-child { margin-bottom: 0; }
 .cartao > .legenda-fig { color: var(--ink-2); font-size: 13px; margin: 2px 0 12px; }
 .cartao .rodape-fig { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; align-items: center; }
 .cartao .nota { color: var(--muted); font-size: 12px; }
@@ -175,7 +191,31 @@ footer { max-width: 1180px; margin: 0 auto; padding: 0 24px 32px; color: var(--m
   font-size: 13px; margin-bottom: 16px;
 }
 .aviso strong { font-weight: 600; }
-.secao-titulo { font-size: 13px; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .04em; margin: 28px 0 10px; }
+.secao-titulo { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .04em; margin: 8px 0 12px; }
+
+/* seleção de semanas */
+.grupo-chips { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ink-2); }
+.chips-sel { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-sel {
+  border: 1px solid var(--axis); background: var(--surface); color: var(--ink-2); border-radius: 999px; padding: 5px 11px;
+  font-size: 13px; cursor: pointer;
+}
+.chip-sel:hover { background: var(--surface-2); }
+.chip-sel[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+
+/* pequenos múltiplos */
+.multiplos { display: grid; gap: 14px 20px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.mult-tit { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; margin-bottom: 2px; }
+.mult-tit span { color: var(--muted); font-size: 12px; }
+
+/* barras em pares */
+.trilho-par { min-width: 0; }
+.par { display: flex; align-items: center; height: 11px; margin: 1px 0; }
+.barra-par { height: 8px; border-radius: 0 3px 3px 0; min-width: 1px; }
+.val-par { font-size: 11px; color: var(--ink-2); margin-left: 6px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.destaques { margin: 4px 0 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); }
+.destaques li { margin-bottom: 6px; }
 
 /* ---------- números ---------- */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
@@ -214,7 +254,7 @@ footer { max-width: 1180px; margin: 0 auto; padding: 0 24px 32px; color: var(--m
 .dica .extra { color: var(--muted); margin-top: 4px; }
 
 /* barras horizontais em HTML */
-.barras { display: grid; grid-template-columns: minmax(90px, max-content) 1fr; column-gap: 12px; row-gap: 6px; align-items: center; }
+.barras { display: grid; grid-template-columns: fit-content(45%) 1fr; column-gap: 12px; row-gap: 6px; align-items: center; }
 .barras .grupo { grid-column: 1 / -1; font-size: 12px; font-weight: 600; color: var(--ink-2); margin-top: 8px; }
 .barras .grupo:first-child { margin-top: 0; }
 .barras .rot { font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 6px; min-width: 0; }

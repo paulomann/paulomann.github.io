@@ -102,6 +102,7 @@ function dataHora(txt) {  // '2026-09-24 21:46'
 const CORES = {
   lula: 'var(--c-lula)', pl: 'var(--c-pl)', outra_presidencial: 'var(--c-outra)', sem_presidencial: 'var(--c-sem)',
   partido: 'var(--c-outros)', veiculo: 'var(--c-outros)', sem_casamento: 'var(--c-outros)', sem_campo: 'var(--c-outros)',
+  governo: 'var(--c-outros)', outros: 'var(--c-claro)', candidatos: 'var(--c-outros)',
 };
 const segRot = sg => t(`seg.${sg}`);
 const segCurto = sg => t(`seg.${sg}.curto`);
@@ -254,12 +255,47 @@ function observar(el, fn) { desenhos.set(el, { fn, w: 0 }); observador.observe(e
 function largarTodos() { for (const el of observados) observador.unobserve(el); observados.clear(); }
 
 // ---------------------------------------------------------------- blocos
-function cartao(pai, { titulo, legenda } = {}) {
+// botão "?": explicação detalhada do gráfico, ao passar o mouse, focar ou tocar
+const popAjuda = h('div', { class: 'pop-ajuda', role: 'tooltip', hidden: true });
+document.body.append(popAjuda);
+let ajudaFixa = null;
+function fecharAjuda() { popAjuda.hidden = true; ajudaFixa = null; }
+function botaoAjuda(chave) {
+  const b = h('button', { class: 'ajuda', type: 'button', 'aria-label': t('ajuda.botao'), text: '?' });
+  const abrir = () => {
+    popAjuda.replaceChildren(...t(`ajuda.${chave}`).split('\n\n').map(par => h('p', { text: par })));
+    popAjuda.hidden = false;
+    const r = b.getBoundingClientRect(), pr = popAjuda.getBoundingClientRect();
+    let x = r.left - 12, y = r.bottom + 8;
+    if (x + pr.width > innerWidth - 8) x = innerWidth - pr.width - 8;
+    if (y + pr.height > innerHeight - 8) y = Math.max(8, r.top - pr.height - 8);
+    popAjuda.style.left = `${Math.max(8, x)}px`;
+    popAjuda.style.top = `${y}px`;
+  };
+  b.addEventListener('pointerenter', abrir);
+  b.addEventListener('pointerleave', () => { if (ajudaFixa !== b) popAjuda.hidden = true; });
+  b.addEventListener('focus', abrir);
+  b.addEventListener('blur', fecharAjuda);
+  b.addEventListener('click', ev => {
+    ev.stopPropagation();
+    if (ajudaFixa === b) { fecharAjuda(); return; }
+    ajudaFixa = b; abrir();
+  });
+  return b;
+}
+document.addEventListener('click', fecharAjuda);
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') fecharAjuda(); });
+addEventListener('scroll', () => { if (!popAjuda.hidden) fecharAjuda(); }, { passive: true });
+
+function cartao(pai, { titulo, legenda, ajuda } = {}) {
   const c = h('section', { class: 'cartao' });
-  if (titulo) c.append(h('h2', { text: titulo }));
+  if (titulo || ajuda) c.append(h('div', { class: 'cab-cartao' }, titulo ? h('h2', { text: titulo }) : null, ajuda ? botaoAjuda(ajuda) : null));
   if (legenda) c.append(h('p', { class: 'legenda-fig', text: legenda }));
   pai.append(c);
   return c;
+}
+function secaoTitulo(pai, texto, ajuda) {
+  pai.append(h('div', { class: 'secao-titulo' }, h('span', { text: texto }), ajuda ? botaoAjuda(ajuda) : null));
 }
 function legendaEl(itens, tipo = 'linha') {
   return h('div', { class: 'legenda' }, itens.map(i =>
@@ -270,27 +306,30 @@ function tabelaEl(cols, linhas) {
     h('thead', {}, h('tr', {}, cols.map(c => h('th', { class: c.n ? 'n' : null, text: c.rot })))),
     h('tbody', {}, linhas.map(l => h('tr', {}, l.map((v, i) => h('td', { class: cols[i].n ? 'n' : null, text: v })))))));
 }
-/** Cartão com gráfico, legenda opcional, nota e botão de tabela (a versão acessível de todo gráfico). */
-function grafico(pai, { titulo, legenda, itens, tipoLegenda, nota, desenhar, tabela }) {
-  const c = cartao(pai, { titulo, legenda });
+/** Rodapé do cartão: nota e botão "ver tabela" (a versão acessível de todo gráfico). */
+function rodape(c, nota, tabela) {
+  if (!nota && !tabela) return;
+  const rod = h('div', { class: 'rodape-fig' }, h('span', { class: 'nota', text: nota || '' }));
+  if (tabela) {
+    let aberta = null;
+    const b = h('button', { class: 'ver-tabela', type: 'button', text: t('ver_tabela') });
+    b.addEventListener('click', () => {
+      if (aberta) { aberta.remove(); aberta = null; b.textContent = t('ver_tabela'); return; }
+      const tb = tabela();
+      aberta = h('div', { class: 'tabela-fig' }, tabelaEl(tb.cols, tb.linhas));
+      c.append(aberta); b.textContent = t('ocultar_tabela');
+    });
+    rod.append(b);
+  }
+  c.append(rod);
+}
+/** Cartão com gráfico, legenda opcional, botão de ajuda, nota e tabela. */
+function grafico(pai, { titulo, legenda, ajuda, itens, tipoLegenda, nota, desenhar, tabela }) {
+  const c = cartao(pai, { titulo, legenda, ajuda });
   if (itens && itens.length > 1) c.append(legendaEl(itens, tipoLegenda));
   const fig = h('div', { class: 'fig' });
   c.append(fig);
-  if (nota || tabela) {
-    const rod = h('div', { class: 'rodape-fig' }, h('span', { class: 'nota', text: nota || '' }));
-    if (tabela) {
-      let aberta = null;
-      const b = h('button', { class: 'ver-tabela', type: 'button', text: t('ver_tabela') });
-      b.addEventListener('click', () => {
-        if (aberta) { aberta.remove(); aberta = null; b.textContent = t('ver_tabela'); return; }
-        const tb = tabela();
-        aberta = h('div', { class: 'tabela-fig' }, tabelaEl(tb.cols, tb.linhas));
-        c.append(aberta); b.textContent = t('ocultar_tabela');
-      });
-      rod.append(b);
-    }
-    c.append(rod);
-  }
+  rodape(c, nota, tabela);
   observar(fig, desenhar);
   return c;
 }
@@ -327,7 +366,7 @@ function linhas(el, w, o) {
   const iw = Math.max(40, w - m.l - m.r), ih = H - m.t - m.b;
   let max = 0;
   for (const se of o.series) for (const v of se.v) if (v != null && v > max) max = v;
-  const tk = marcas(max), ymax = tk[tk.length - 1];
+  const tk = marcas(o.ymax ?? max), ymax = tk[tk.length - 1];
   const X = i => m.l + (n === 1 ? iw / 2 : i * iw / (n - 1));
   const Y = v => m.t + ih - (v / ymax) * ih;
   const passo = n > 1 ? iw / (n - 1) : iw;
@@ -533,6 +572,26 @@ function mini(valores) {
   return svg;
 }
 
+/** Duas barras por linha (a em cima, b embaixo), na mesma escala. o: {linhas:[{rot, a, b}], rotA, rotB, corA, corB, fmt} */
+function barrasPares(el, w, o) {
+  const f = o.fmt || fmt.pct;
+  const max = Math.max(1e-9, ...o.linhas.flatMap(r => [r.a || 0, r.b || 0]));
+  const pct = v => Math.max(0, Math.min(100, (v || 0) / max * 100));
+  const par = (v, cor) => h('div', { class: 'par' }, h('div', { class: 'barra-par', style: `width:${pct(v)}%;background:${cor}` }), h('span', { class: 'val-par', text: f(v) }));
+  const g = h('div', { class: 'barras' });
+  for (const r of o.linhas) {
+    const linha = h('div', { class: 'linha-alvo' },
+      h('div', { class: 'rot' }, h('span', { class: 't', text: r.rot, title: r.rot })),
+      h('div', { class: 'trilho-par' }, h('div', { style: 'width:calc(100% - 56px)' }, par(r.a, o.corA), par(r.b, o.corB))));
+    comDica(linha, () => ({ titulo: r.rot, linhas: [{ cor: o.corA, rot: o.rotA, val: f(r.a) }, { cor: o.corB, rot: o.rotB, val: f(r.b) }] }));
+    g.append(linha);
+  }
+  el.append(g);
+}
+const LIGACOES = new Set(['de', 'da', 'do', 'dos', 'das', 'e']);
+/** 'ELMANO DE FREITAS' -> 'Elmano de Freitas' */
+const nomeProprio = s => (s || '').toLowerCase().split(/\s+/).map((p, i) => i && LIGACOES.has(p) ? p : p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
+
 // ================================================================ ABAS
 const ABAS = [
   ['geral', abaGeral], ['perfis', abaPerfis], ['engajamento', abaEngajamento], ['temas', abaTemas],
@@ -597,19 +656,13 @@ function abaGeral(p) {
     { rot: t('geral.k_semanas'), val: fmt.int(M.semanas.length), det: M.semanas.map(sm => rotSemana(sm.inicio, sm.fim)).join(' · ') },
   ]);
   const semColeta = faixas(S.dias.map(d => S.sem_coleta.includes(d)));
-  const prov = faixas(S.provisorio);
-  if (semColeta.length || prov.length) {
-    const partes = [];
-    if (semColeta.length) partes.push(t('geral.aviso_sem', { faixas: semColeta.map(f => faixaDatas(S.dias[f.i0], S.dias[f.i1])).join(t('e')) }));
-    if (prov.length) partes.push(t('geral.aviso_prov', { d: dm(S.dias[prov[0].i0]) }));
-    aviso(p, partes.join(' '));
-  }
-  const bandas = [...semColeta.map(f => ({ ...f, tipo: 'sem', rot: t('banda.sem') })), ...prov.map(f => ({ ...f, tipo: 'prov', rot: t('banda.prov') }))];
+  if (semColeta.length) aviso(p, t('geral.aviso_sem', { faixas: semColeta.map(f => faixaDatas(S.dias[f.i0], S.dias[f.i1])).join(t('e')) }));
+  const bandas = semColeta.map(f => ({ ...f, tipo: 'sem', rot: t('banda.sem') }));
   const marcos = [['2026-08-16', 'propaganda'], ['2026-08-28', 'hgpe'], ['2026-10-04', 'turno1'], ['2026-10-25', 'turno2']]
     .map(([d, k]) => ({ i: idx(d), rot: t(`marco.${k}`) }));
   const series = CAMPOS.map(c => ({ rot: segRot(c), curto: segCurto(c), cor: CORES[c], v: S.segmentos[c] }));
   grafico(p, {
-    titulo: t('geral.g1'), legenda: t('geral.g1_leg'), itens: series, nota: t('geral.g1_nota'),
+    titulo: t('geral.g1'), legenda: t('geral.g1_leg'), ajuda: 'geral_posts', itens: series,
     desenhar: (el, w) => linhas(el, w, { x: S.dias, xFmt: dm, series, bandas, marcos, altura: 280 }),
     tabela: () => ({ cols: [{ rot: t('dia') }, ...series.map(se => ({ rot: se.curto, n: true }))], linhas: S.dias.map((d, i) => [dm(d), ...series.map(se => fmt.int(se.v[i]))]) }),
   });
@@ -617,19 +670,19 @@ function abaGeral(p) {
   p.append(duas);
   const veic = S.segmentos.veiculo;
   grafico(duas, {
-    titulo: t('geral.g2'), legenda: t('geral.g2_leg'),
+    titulo: t('geral.g2'), legenda: t('geral.g2_leg'), ajuda: 'geral_veiculos',
     desenhar: (el, w) => linhas(el, w, { x: S.dias, xFmt: dm, series: [{ rot: segCurto('veiculo'), cor: 'var(--c-dado)', v: veic }], bandas, altura: 200, rotFim: false }),
     tabela: () => ({ cols: [{ rot: t('dia') }, { rot: t('posts'), n: true }], linhas: S.dias.map((d, i) => [dm(d), fmt.int(veic[i])]) }),
   });
   grafico(duas, {
-    titulo: t('geral.g3'), legenda: t('geral.g3_leg'),
+    titulo: t('geral.g3'), legenda: t('geral.g3_leg'), ajuda: 'geral_ativas',
     desenhar: (el, w) => linhas(el, w, { x: S.dias, xFmt: dm, series: [{ rot: t('geral.ativas'), cor: 'var(--c-dado)', v: S.contas_ativas }], bandas, altura: 200, rotFim: false }),
     tabela: () => ({ cols: [{ rot: t('dia') }, { rot: t('contas'), n: true }], linhas: S.dias.map((d, i) => [dm(d), fmt.int(S.contas_ativas[i])]) }),
   });
-  const c = cartao(p, { titulo: t('geral.semanas'), legenda: t('geral.semanas_leg') });
+  const c = cartao(p, { titulo: t('geral.semanas'), legenda: t('geral.semanas_leg'), ajuda: 'geral_semanas' });
   c.style.marginTop = '16px';
-  c.append(tabelaEl([{ rot: t('semana') }, { rot: t('geral.fonte') }, { rot: t('posts'), n: true }, { rot: t('contas'), n: true }],
-    M.semanas.map(sm => [rotSemana(sm.inicio, sm.fim), t(`fonte.${sm.fonte}`, null, sm.fonte), fmt.int(sm.posts), fmt.int(sm.contas)])));
+  c.append(tabelaEl([{ rot: t('semana') }, { rot: t('posts'), n: true }, { rot: t('contas'), n: true }],
+    M.semanas.map(sm => [rotSemana(sm.inicio, sm.fim), fmt.int(sm.posts), fmt.int(sm.contas)])));
 }
 
 // ---------------------------------------------------------------- perfis
@@ -652,7 +705,7 @@ function abaPerfis(p) {
   p.append(filtros);
   const ficha = h('div', { id: 'ficha' });
   p.append(ficha);
-  const c = cartao(p, { titulo: t('perfis.card'), legenda: t('perfis.card_leg') });
+  const c = cartao(p, { titulo: t('perfis.card'), legenda: t('perfis.card_leg'), ajuda: 'perfis' });
   const alvo = h('div');
   c.append(alvo);
 
@@ -769,84 +822,141 @@ function abaPerfis(p) {
 
 // ---------------------------------------------------------------- engajamento
 function abaEngajamento(p) {
-  const E = D.engajamento;
-  const semanasBase = D.meta.semanas.filter(sm => sm.fonte !== 'provisoria');
-  const est = { m: 'curtidas', cargo: 'todos', semana: semanasBase.at(-1)?.inicio };
-  const filtros = h('div', { class: 'filtros' });
-  filtros.append(
+  const E = D.engajamento, B = E.hist.bins_por_decada, MIN_N = D.meta.min_n;
+  const hist = new Map();
+  for (const [sem, cargo, seg, formato, m, n, i0, hs] of E.hist.linhas) hist.set(`${sem}|${cargo}|${seg}|${formato}|${m}`, { n, i0, hs });
+  const semanasBase = D.meta.semanas.filter(sm => sm.com_semanal);
+  const todasSemanas = () => new Set(semanasBase.map(sm => sm.inicio));
+  const est = { m: 'curtidas', cargo: 'todos', sel: todasSemanas() };
+  const tudo = () => est.sel.size === semanasBase.length;
+
+  /** Mediana e quartis da soma dos histogramas das semanas escolhidas, interpolando dentro da faixa (escala log). */
+  function estat(cargo, seg, formato, m) {
+    const partes = [...est.sel].map(sm => hist.get(`${sm}|${cargo}|${seg}|${formato}|${m}`)).filter(Boolean);
+    const n = soma(partes.map(x => x.n));
+    if (n < MIN_N) return { n };
+    const i0 = Math.min(...partes.map(x => x.i0));
+    const i1 = Math.max(...partes.map(x => x.i0 + x.hs.length - 1));
+    const cont = new Array(i1 - i0 + 1).fill(0);
+    for (const x of partes) x.hs.forEach((c, k) => { cont[x.i0 - i0 + k] += c; });
+    const q = f => {
+      const alvo = f * n;
+      let acc = 0;
+      for (let k = 0; k < cont.length; k++) {
+        if (cont[k] && acc + cont[k] >= alvo) {
+          const faixa = i0 + k;
+          return faixa === 0 ? 0 : Math.pow(10, (faixa - 1 + (alvo - acc) / cont[k]) / B);
+        }
+        acc += cont[k];
+      }
+      return null;
+    };
+    return { n, med: q(0.5), p25: q(0.25), p75: q(0.75) };
+  }
+  const periodo = () => tudo() ? t('eng.periodo_todo')
+    : est.sel.size === 1 ? t('eng.periodo_1', { s: semanaRot([...est.sel][0]) }) : t('eng.periodo_n', { n: est.sel.size });
+  const idadeSel = () => {
+    const xs = semanasBase.filter(sm => est.sel.has(sm.inicio)).map(sm => sm.idade_dias).filter(v => v != null);
+    if (!xs.length) return '';
+    const a = Math.round(Math.min(...xs)), b = Math.round(Math.max(...xs));
+    return a === b ? t('eng.idade_sel1', { a }) : t('eng.idade_sel', { a, b });
+  };
+
+  const chips = h('div', { class: 'chips-sel', role: 'group', 'aria-label': t('eng.semanas') });
+  const filtros = h('div', { class: 'filtros' },
     seletor(t('eng.metrica'), opcoes(METRICAS, 'metrica'), est.m, v => { est.m = v; desenhar(); }),
     seletor(t('cargo'), opcoes(CARGOS, 'cargo'), est.cargo, v => { est.cargo = v; desenhar(); }),
-    seletor(t('eng.semana'), semanasBase.map(sm => [sm.inicio, rotSemana(sm.inicio, sm.fim)]), est.semana, v => { est.semana = v; desenhar(); }));
+    h('div', { class: 'grupo-chips' }, h('span', { class: 'rot-chips', text: t('eng.semanas') }), chips));
   p.append(filtros);
-  aviso(p, t('eng.aviso'));
   const alvo = h('div');
   p.append(alvo);
+  function desenharChips() {
+    chips.replaceChildren();
+    const b0 = h('button', { type: 'button', class: 'chip-sel', 'aria-pressed': String(tudo()), text: t('eng.todo') });
+    b0.addEventListener('click', () => { est.sel = todasSemanas(); atualizar(); });
+    chips.append(b0);
+    for (const sm of semanasBase) {
+      const b = h('button', { type: 'button', class: 'chip-sel', 'aria-pressed': String(!tudo() && est.sel.has(sm.inicio)), text: rotSemana(sm.inicio, sm.fim) });
+      b.addEventListener('click', () => {
+        if (tudo()) est.sel = new Set([sm.inicio]);
+        else if (est.sel.has(sm.inicio)) { est.sel.delete(sm.inicio); if (!est.sel.size) est.sel = todasSemanas(); }
+        else est.sel.add(sm.inicio);
+        atualizar();
+      });
+      chips.append(b);
+    }
+  }
+  function atualizar() { desenharChips(); desenhar(); }
 
   function desenhar() {
     alvo.replaceChildren();
-    const m = est.m, mr = t(`metrica.${m}`).toLowerCase();
-    const cargoMin = cargoRot(est.cargo).toLowerCase();
-    const segs = CAMPOS;  // partidos e veículos têm outra escala (contas nacionais): ficam na tabela
+    const m = est.m, mr = t(`metrica.${m}`).toLowerCase(), cargoMin = cargoRot(est.cargo).toLowerCase();
+    const per = periodo(), idade = idadeSel();
     const segsTabela = est.cargo === 'todos' ? SEGMENTOS : CAMPOS;
-    const linhaSeg = (r, seg) => ({
-      rot: segRot(seg), cor: CORES[seg], chave: true, v: r ? r[`med_${m}`] : null,
-      iqr: r && r[`p25_${m}`] != null ? [r[`p25_${m}`], r[`p75_${m}`]] : null,
-      dica: r ? {
-        titulo: segRot(seg), linhas: [{ rot: t('mediana'), val: fmt.int(r[`med_${m}`]) }, { rot: t('eng.quartis'), val: t('intervalo', { a: fmt.int(r[`p25_${m}`]), b: fmt.int(r[`p75_${m}`]) }) },
-          { rot: t('posts'), val: fmt.int(r[`n_${m}`]) }], extra: t('eng.idade', { d: nf1.format(r.idade_med / 24) }),
-      } : { titulo: segRot(seg), linhas: [], extra: t('menos10') },
-    });
-    const daSemana = E.por_semana.filter(r => r.semana === est.semana && r.cargo_g === est.cargo);
+    const linhaSeg = (seg, formato = 'todos', curto = false) => {
+      const r = estat(est.cargo, seg, formato, m);
+      return {
+        rot: curto ? segCurto(seg) : segRot(seg), cor: CORES[seg], chave: true, v: r.med ?? null,
+        iqr: r.med != null ? [r.p25, r.p75] : null,
+        dica: r.med != null ? {
+          titulo: segRot(seg), extra: idade,
+          linhas: [{ rot: t('mediana'), val: fmt.int(r.med) }, { rot: t('eng.quartis'), val: t('intervalo', { a: fmt.int(r.p25), b: fmt.int(r.p75) }) }, { rot: t('posts'), val: fmt.int(r.n) }],
+        } : { titulo: segRot(seg), linhas: [], extra: t('menos10') },
+      };
+    };
     grafico(alvo, {
-      titulo: t('eng.g1', { m: mr, s: semanaRot(est.semana) }),
-      legenda: t('eng.g1_leg', { cargo: cargoMin }), nota: t('eng.g1_nota'),
-      desenhar: (el, w) => barras(el, w, { linhas: segs.map(seg => linhaSeg(daSemana.find(r => r.seg === seg), seg)) }),
+      titulo: t('eng.g1', { m: mr, p: per }), legenda: `${t('eng.g1_leg', { cargo: cargoMin })} ${idade}`, ajuda: 'eng_mediana', nota: t('eng.g1_nota'),
+      desenhar: (el, w) => barras(el, w, { linhas: CAMPOS.map(seg => linhaSeg(seg)) }),
       tabela: () => ({
-        cols: [{ rot: t('semana') }, { rot: t('eng.segmento') }, { rot: t('posts'), n: true }, { rot: t('mediana'), n: true }, { rot: t('eng.q1'), n: true }, { rot: t('eng.q3'), n: true }, { rot: t('eng.idade_col'), n: true }],
-        linhas: E.por_semana.filter(r => r.cargo_g === est.cargo && segsTabela.includes(r.seg)).map(r => [semanaRot(r.semana), segRot(r.seg), fmt.int(r[`n_${m}`]), fmt.int(r[`med_${m}`]), fmt.int(r[`p25_${m}`]), fmt.int(r[`p75_${m}`]), fmt.dec(r.idade_med / 24)]),
+        cols: [{ rot: t('eng.segmento') }, { rot: t('posts'), n: true }, { rot: t('mediana'), n: true }, { rot: t('eng.q1'), n: true }, { rot: t('eng.q3'), n: true }],
+        linhas: segsTabela.map(seg => { const r = estat(est.cargo, seg, 'todos', m); return [segRot(seg), fmt.int(r.n), fmt.int(r.med), fmt.int(r.p25), fmt.int(r.p75)]; }),
       }),
     });
     const duas = h('div', { class: 'grade duas', style: 'margin-top:16px' });
     alvo.append(duas);
-    const formatos = FORMATOS.filter(f => f !== 'story');
+    const formatos = ['video', 'foto', 'carrossel'];
     grafico(duas, {
-      titulo: t('eng.g2', { m: mr }), legenda: t('eng.g2_leg', { cargo: cargoMin }), nota: t('eng.g2_nota'),
-      desenhar: (el, w) => barras(el, w, {
-        linhas: formatos.flatMap(f => segs.map(seg => {
-          const frot = t(`formato.${f}`);
-          const r = E.por_formato.find(x => x.formato === f && x.cargo_g === est.cargo && x.seg === seg);
-          return { grupo: frot, rot: segCurto(seg), cor: CORES[seg], chave: true, v: r ? r[`med_${m}`] : null, dica: { titulo: `${frot} · ${segRot(seg)}`, linhas: [{ rot: t('mediana'), val: fmt.int(r?.[`med_${m}`]) }, { rot: t('posts'), val: fmt.int(r?.[`n_${m}`]) }] } };
-        })),
-      }),
+      titulo: t('eng.g2', { m: mr, p: per }), legenda: t('eng.g2_leg', { cargo: cargoMin }), ajuda: 'eng_formato', nota: t('eng.g2_nota'),
+      desenhar: (el, w) => barras(el, w, { linhas: formatos.flatMap(f => CAMPOS.map(seg => ({ ...linhaSeg(seg, f, true), grupo: t(`formato.${f}`), iqr: null }))) }),
       tabela: () => ({
         cols: [{ rot: t('eng.formato') }, { rot: t('eng.segmento') }, { rot: t('posts'), n: true }, { rot: t('mediana'), n: true }],
-        linhas: E.por_formato.filter(r => r.cargo_g === est.cargo && segsTabela.includes(r.seg) && r.formato !== 'story').map(r => [t(`formato.${r.formato}`), segRot(r.seg), fmt.int(r[`n_${m}`]), fmt.int(r[`med_${m}`])]),
+        linhas: formatos.flatMap(f => segsTabela.map(seg => { const r = estat(est.cargo, seg, f, m); return [t(`formato.${f}`), segRot(seg), fmt.int(r.n), fmt.int(r.med)]; })),
       }),
-    });
-    const faixasIdade = ['0–2 h', '2–4 h', '4–8 h', '8–12 h', '12–24 h'];
-    const serieHoras = CAMPOS.map(c => ({ rot: segRot(c), curto: segCurto(c), cor: CORES[c], v: faixasIdade.map(f => E.primeiras_horas.find(r => r.faixa === f && r.seg === c)?.[`med_${m}`] ?? null) }));
-    const semViews = serieHoras.every(se => se.v.every(v => v == null));
-    grafico(duas, {
-      titulo: t('eng.g3', { m: mr }), legenda: t('eng.g3_leg'),
-      itens: semViews ? null : serieHoras, nota: semViews ? t('eng.g3_sem_views') : null,
-      desenhar: (el, w) => semViews ? el.append(h('p', { class: 'nota', text: t('eng.g3_vazio') })) :
-        linhas(el, w, { x: faixasIdade, series: serieHoras, pontos: true, altura: 240, rotFim: false }),
-      tabela: semViews ? null : () => ({ cols: [{ rot: t('eng.idade_curta') }, ...serieHoras.map(se => ({ rot: se.curto, n: true }))], linhas: faixasIdade.map((f, i) => [f, ...serieHoras.map(se => fmt.int(se.v[i]))]) }),
     });
     const horas = [...Array(24).keys()];
     const serieHora = CAMPOS.map(c => {
       const tot = soma(E.horas.filter(r => r.seg === c).map(r => r.n));
       return { rot: segRot(c), curto: segCurto(c), cor: CORES[c], v: horas.map(hh => (E.horas.find(r => r.seg === c && r.hora_brt === hh)?.n || 0) / (tot || 1)) };
     });
-    const c2 = h('div', { style: 'margin-top:16px' });
-    alvo.append(c2);
-    grafico(c2, {
-      titulo: t('eng.g4'), legenda: t('eng.g4_leg'), itens: serieHora,
-      desenhar: (el, w) => linhas(el, w, { x: horas, xFmt: v => `${v}h`, series: serieHora, yFmt: v => fmt.pct(v), altura: 220 }),
+    grafico(duas, {
+      titulo: t('eng.g4'), legenda: t('eng.g4_leg'), ajuda: 'eng_horario', itens: serieHora,
+      desenhar: (el, w) => linhas(el, w, { x: horas, xFmt: v => `${v}h`, series: serieHora, yFmt: v => fmt.pct(v), altura: 220, rotFim: false }),
       tabela: () => ({ cols: [{ rot: t('eng.hora') }, ...serieHora.map(se => ({ rot: se.curto, n: true }))], linhas: horas.map(hh => [`${hh}h`, ...serieHora.map(se => fmt.pct(se.v[hh]))]) }),
     });
+    const DO = E.duas_obs || [];
+    if (DO.length) {
+      const mo = m === 'comentarios' ? 'comentarios' : 'curtidas';
+      const c3 = h('div', { style: 'margin-top:16px' });
+      alvo.append(c3);
+      grafico(c3, {
+        titulo: t('eng.g5'), legenda: t('eng.g5_leg'), ajuda: 'eng_duas',
+        desenhar: (el, w) => barras(el, w, {
+          fmt: fmt.pct,
+          linhas: CAMPOS.map(seg => {
+            const r = DO.find(x => x.seg === seg && x.faixa === 'todas');
+            const v = r?.[`med_${mo}`] ?? null;
+            return { rot: segRot(seg), cor: CORES[seg], chave: true, v, iqr: v != null ? [r[`p25_${mo}`], r[`p75_${mo}`]] : null,
+              dica: { titulo: segRot(seg), linhas: [{ rot: t('mediana'), val: fmt.pct(v) }, { rot: t('posts'), val: fmt.int(r?.[`n_${mo}`]) }] } };
+          }),
+        }),
+        tabela: () => ({
+          cols: [{ rot: t('eng.faixa_captura') }, { rot: t('eng.segmento') }, { rot: t('posts'), n: true }, { rot: t('mediana'), n: true }, { rot: t('eng.q1'), n: true }, { rot: t('eng.q3'), n: true }],
+          linhas: DO.filter(r => CAMPOS.includes(r.seg)).map(r => [r.faixa === 'todas' ? t('todas') : r.faixa, segRot(r.seg), fmt.int(r[`n_${mo}`]), fmt.pct(r[`med_${mo}`]), fmt.pct(r[`p25_${mo}`]), fmt.pct(r[`p75_${mo}`])]),
+        }),
+      });
+    }
   }
-  desenhar();
+  atualizar();
 }
 
 // ---------------------------------------------------------------- temas e menções
@@ -856,12 +966,10 @@ function abaTemas(p) {
   const alvoRot = a => rotuloDe('alvo', a.chave, a.rotulo);
   const semanas = [['todas', t('todas_semanas')], ...D.meta.semanas.map(sm => [sm.inicio, rotSemana(sm.inicio, sm.fim)])];
   const est = { semana: 'todas', alvo: 'lula', seg: 'lula' };
-  const filtros = h('div', { class: 'filtros' });
-  filtros.append(
+  p.append(h('div', { class: 'filtros' },
     seletor(t('semana'), semanas, est.semana, v => { est.semana = v; desenhar(); }),
     seletor(t('temas.alvo'), T.alvos.map(a => [a.chave, alvoRot(a)]), est.alvo, v => { est.alvo = v; desenhar(); }),
-    seletor(t('temas.hashtags_de'), SEGMENTOS.map(sg => [sg, segRot(sg)]), est.seg, v => { est.seg = v; desenhar(); }));
-  p.append(filtros);
+    seletor(t('temas.hashtags_de'), SEGMENTOS.map(sg => [sg, segRot(sg)]), est.seg, v => { est.seg = v; desenhar(); })));
   aviso(p, t('temas.aviso'));
   const alvo = h('div');
   p.append(alvo);
@@ -872,8 +980,8 @@ function abaTemas(p) {
     alvo.replaceChildren();
     const duas = h('div', { class: 'grade duas' });
     alvo.append(duas);
-    const mapa = (titulo, legenda, lista, pref, rotular) => grafico(duas, {
-      titulo, legenda,
+    const mapa = (titulo, legenda, ajuda, lista, pref, rotular) => grafico(duas, {
+      titulo, legenda, ajuda,
       desenhar: (el, w) => calor(el, w, {
         linhas: lista.map(x => ({ id: x.chave, rot: rotular(x) })), colunas: colunasSeg,
         valor: (l, c) => { const r = reg(est.semana, c.id); return r && r.total ? r[`${pref}_${l.id}`] / r.total : null; },
@@ -881,8 +989,8 @@ function abaTemas(p) {
       }),
       tabela: () => ({ cols: [{ rot: '' }, ...colunasSeg.map(c => ({ rot: c.rot, n: true }))], linhas: lista.map(x => [rotular(x), ...colunasSeg.map(c => { const r = reg(est.semana, c.id); return r ? fmt.pct(r[`${pref}_${x.chave}`] / r.total) : '—'; })]) }),
     });
-    mapa(t('temas.mapa_temas', { s: semanaRot(est.semana) }), t('temas.mapa_temas_leg'), T.temas, 'tema', temaRot);
-    mapa(t('temas.mapa_alvos', { s: semanaRot(est.semana) }), t('temas.mapa_alvos_leg'), T.alvos, 'alvo', alvoRot);
+    mapa(t('temas.mapa_temas', { s: semanaRot(est.semana) }), t('temas.mapa_temas_leg'), 'temas_mapa', T.temas, 'tema', temaRot);
+    mapa(t('temas.mapa_alvos', { s: semanaRot(est.semana) }), t('temas.mapa_alvos_leg'), 'temas_mencoes', T.alvos, 'alvo', alvoRot);
 
     const nomeAlvo = alvoRot(T.alvos.find(a => a.chave === est.alvo));
     const sems = D.meta.semanas;
@@ -893,14 +1001,14 @@ function abaTemas(p) {
     const dois = h('div', { class: 'grade duas', style: 'margin-top:16px' });
     alvo.append(dois);
     grafico(dois, {
-      titulo: t('temas.linha', { a: nomeAlvo }), legenda: t('temas.linha_leg'),
+      titulo: t('temas.linha', { a: nomeAlvo }), legenda: t('temas.linha_leg'), ajuda: 'temas_linha',
       itens: serie.slice(0, 4), nota: t('temas.linha_nota'),
       desenhar: (el, w) => linhas(el, w, { x: sems.map(sm => sm.inicio), xFmt: semanaCurta, xDica: ini => t('semana_de', { s: semanaRot(ini) }), series: serie, yFmt: v => fmt.pct(v), pontos: true, altura: 240, rotFim: false }),
       tabela: () => ({ cols: [{ rot: t('semana') }, ...serie.map(se => ({ rot: se.curto, n: true }))], linhas: sems.map((sm, i) => [rotSemana(sm.inicio, sm.fim), ...serie.map(se => fmt.pct(se.v[i]))]) }),
     });
     const tags = D.hashtags.filter(r => r.semana === est.semana && r.seg === est.seg);
     grafico(dois, {
-      titulo: t('temas.tags', { seg: segRot(est.seg) }), legenda: t('temas.tags_leg', { s: semanaRot(est.semana) }),
+      titulo: t('temas.tags', { seg: segRot(est.seg) }), legenda: t('temas.tags_leg', { s: semanaRot(est.semana) }), ajuda: 'temas_tags',
       desenhar: (el, w) => tags.length ? barras(el, w, { linhas: tags.map(tg => ({ rot: '#' + tg.hashtag, v: tg.n, dica: { titulo: '#' + tg.hashtag, linhas: [{ rot: t('posts'), val: fmt.int(tg.n) }] } })) })
         : el.append(h('p', { class: 'nota', text: t('temas.tags_vazio') })),
       tabela: () => ({ cols: [{ rot: 'Hashtag' }, { rot: t('posts'), n: true }], linhas: tags.map(tg => ['#' + tg.hashtag, fmt.int(tg.n)]) }),
@@ -913,51 +1021,82 @@ function abaTemas(p) {
 function abaConversa(p) {
   const C = D.conversa;
   if (!C) { aviso(p, t('conv.vazio')); return; }
-  const tot = soma(C.semanas.map(sm => sm.posts));
+  const alvoRot = a => rotuloDe('alvo', a.chave, a.rotulo);
+  const temaRot = tm => rotuloDe('tema', tm.chave, tm.rotulo);
   kpis(p, [
-    { rot: t('conv.k_posts'), val: fmt.int(tot), det: t('conv.k_posts_det') },
+    { rot: t('conv.k_posts'), val: fmt.int(soma(C.semanas.map(sm => sm.posts))), det: t('conv.k_posts_det') },
     { rot: t('geral.k_semanas'), val: fmt.int(C.semanas.length), det: C.semanas.map(sm => semanaRot(sm.semana)).join(' · ') },
     { rot: t('conv.k_contas'), val: fmt.cp(mediana(C.semanas.map(sm => sm.contas))), det: t('conv.k_contas_det') },
   ]);
   aviso(p, t('conv.aviso'));
   const x = C.dias;
   grafico(p, {
-    titulo: t('conv.g1'), legenda: t('conv.g1_leg'),
-    desenhar: (el, w) => linhas(el, w, { x, xFmt: dm, series: [{ rot: t('posts'), cor: 'var(--c-dado)', v: C.total }], altura: 220, rotFim: false }),
+    titulo: t('conv.g1'), legenda: t('conv.g1_leg'), ajuda: 'conv_total',
+    desenhar: (el, w) => linhas(el, w, { x, xFmt: dm, series: [{ rot: t('posts'), cor: 'var(--c-dado)', v: C.total }], altura: 200, rotFim: false }),
     tabela: () => ({ cols: [{ rot: t('dia') }, { rot: t('posts'), n: true }], linhas: x.map((d, i) => [dm(d), fmt.int(C.total[i])]) }),
   });
-  p.append(h('div', { class: 'secao-titulo', text: t('conv.por_consulta') }));
-  const grade = h('div', { class: 'grade duas' });
-  p.append(grade);
-  for (const q of C.consultas) {
-    const v = C.por_consulta[q.chave];
-    if (!v) continue;
-    grafico(grade, {
-      titulo: `${q.chave} · ${rotuloDe('consulta', q.chave, q.rotulo)}`,
-      desenhar: (el, w) => linhas(el, w, { x, xFmt: dm, series: [{ rot: q.chave, cor: 'var(--c-dado)', v }], altura: 170, rotFim: false }),
-      tabela: () => ({ cols: [{ rot: t('dia') }, { rot: t('posts'), n: true }], linhas: x.map((d, i) => [dm(d), fmt.int(v[i])]) }),
-    });
+
+  // quem domina a conversa: um gráfico por nome, todos na mesma escala
+  const parcelas = C.alvos.map(a => {
+    const v = x.map((d, i) => C.total[i] ? (C.mencoes[a.chave][i] ?? 0) / C.total[i] : null);
+    const ok = v.filter(y => y != null);
+    return { a, v, media: ok.length ? soma(ok) / ok.length : 0 };
+  }).sort((a, b) => b.media - a.media);
+  const ymax = Math.max(...parcelas.flatMap(o => o.v.filter(y => y != null)));
+  const cm = cartao(p, { titulo: t('conv.mencoes'), legenda: t('conv.mencoes_leg'), ajuda: 'conv_mencoes' });
+  cm.style.marginTop = '16px';
+  const grade = h('div', { class: 'multiplos' });
+  cm.append(grade);
+  for (const o of parcelas) {
+    const fig = h('div', { class: 'fig' });
+    grade.append(h('div', { class: 'multiplo' },
+      h('div', { class: 'mult-tit' }, h('strong', { text: alvoRot(o.a) }), h('span', { text: t('conv.media', { v: fmt.pct(o.media) }) })), fig));
+    observar(fig, (el, w) => linhas(el, w, { x, xFmt: dm, series: [{ rot: alvoRot(o.a), cor: 'var(--c-dado)', v: o.v }], yFmt: fmt.pct, ymax, altura: 120, rotFim: false }));
   }
+  rodape(cm, null, () => ({ cols: [{ rot: t('dia') }, ...parcelas.map(o => ({ rot: alvoRot(o.a), n: true }))], linhas: x.map((d, i) => [dm(d), ...parcelas.map(o => fmt.pct(o.v[i]))]) }));
+
   const semanas = C.semanas.map(sm => [sm.semana, semanaRot(sm.semana)]);
   const est = { semana: semanas.at(-1)[0] };
-  const filtros = h('div', { class: 'filtros', style: 'margin-top:24px' });
-  filtros.append(seletor(t('semana'), semanas, est.semana, v => { est.semana = v; desenhar(); }));
-  p.append(filtros);
+  p.append(h('div', { class: 'filtros', style: 'margin-top:24px' }, seletor(t('semana'), semanas, est.semana, v => { est.semana = v; desenhar(); })));
   const alvo = h('div', { class: 'grade duas' });
   p.append(alvo);
   function desenhar() {
     alvo.replaceChildren();
-    const termos = C.termos.filter(r => r.semana === est.semana);
+    const s = semanaRot(est.semana);
+    const conv = C.temas.find(r => r.semana === est.semana);
+    const cand = D.temas.contagens.find(r => r.semana === est.semana && r.seg === 'candidatos');
+    const pares = D.temas.temas.map(tm => ({
+      rot: temaRot(tm), a: conv && conv.total ? conv[`tema_${tm.chave}`] / conv.total : null, b: cand && cand.total ? cand[`tema_${tm.chave}`] / cand.total : null,
+    })).sort((u, v) => (v.a ?? 0) - (u.a ?? 0));
     grafico(alvo, {
-      titulo: t('conv.termos'), legenda: t('conv.termos_leg'),
-      desenhar: (el, w) => barras(el, w, { linhas: termos.map(tm => ({ rot: tm.termo, v: tm.n, dica: { titulo: tm.termo, linhas: [{ rot: t('posts'), val: fmt.int(tm.n) }] } })) }),
-      tabela: () => ({ cols: [{ rot: t('conv.termo') }, { rot: t('posts'), n: true }], linhas: termos.map(tm => [tm.termo, fmt.int(tm.n)]) }),
+      titulo: t('conv.agenda', { s }), legenda: t('conv.agenda_leg'), ajuda: 'conv_agenda', tipoLegenda: 'ponto',
+      itens: [{ rot: t('conv.publico'), cor: 'var(--c-dado)' }, { rot: t('conv.candidatos'), cor: 'var(--c-outros)' }],
+      desenhar: (el, w) => barrasPares(el, w, { linhas: pares, rotA: t('conv.publico'), rotB: t('conv.candidatos'), corA: 'var(--c-dado)', corB: 'var(--c-outros)' }),
+      tabela: () => ({ cols: [{ rot: '' }, { rot: t('conv.publico'), n: true }, { rot: t('conv.candidatos'), n: true }], linhas: pares.map(r => [r.rot, fmt.pct(r.a), fmt.pct(r.b)]) }),
     });
-    const tags = C.hashtags.filter(r => r.semana === est.semana);
-    grafico(alvo, {
-      titulo: t('conv.tags'), legenda: t('conv.tags_leg'),
-      desenhar: (el, w) => barras(el, w, { linhas: tags.map(tg => ({ rot: '#' + tg.hashtag, v: tg.n, dica: { titulo: '#' + tg.hashtag, linhas: [{ rot: t('posts'), val: fmt.int(tg.n) }] } })) }),
-      tabela: () => ({ cols: [{ rot: 'Hashtag' }, { rot: t('posts'), n: true }], linhas: tags.map(tg => ['#' + tg.hashtag, fmt.int(tg.n)]) }),
+    const coluna = h('div', { class: 'grade' });
+    alvo.append(coluna);
+    const tags = C.em_alta.filter(r => r.semana === est.semana).map(r => ({
+      ...r, variacao: r.n_ant == null ? null : r.n_ant === 0 ? Infinity : (r.n - r.n_ant) / r.n_ant,
+    }));
+    const comAnterior = tags.some(r => r.n_ant != null);
+    const ordem = comAnterior ? tags.slice().sort((u, v) => (v.variacao ?? -1) - (u.variacao ?? -1) || v.n - u.n) : tags;
+    const ca = cartao(coluna, { titulo: t(comAnterior ? 'conv.alta' : 'conv.mais_usadas', { s }), legenda: t('conv.alta_leg'), ajuda: 'conv_alta' });
+    const varTxt = r => r.variacao == null ? '—' : r.variacao === Infinity ? t('conv.nova') : `${r.variacao >= 0 ? '+' : ''}${fmt.pct(r.variacao)}`;
+    ca.append(tabelaEl([{ rot: 'Hashtag' }, { rot: t('posts'), n: true }, { rot: t('conv.ant'), n: true }, { rot: t('conv.var'), n: true }],
+      ordem.slice(0, 15).map(r => ['#' + r.hashtag, fmt.int(r.n), r.n_ant == null ? '—' : fmt.int(r.n_ant), varTxt(r)])));
+    const tipos = C.tipos.filter(r => r.semana === est.semana);
+    const forms = C.formatos.filter(r => r.semana === est.semana);
+    const tt = soma(tipos.map(r => r.n)) || 1, tf = soma(forms.map(r => r.n)) || 1;
+    grafico(coluna, {
+      titulo: t('conv.quem', { s }), legenda: t('conv.quem_leg'), ajuda: 'conv_quem',
+      desenhar: (el, w) => barras(el, w, {
+        fmt: fmt.pct, max: 1,
+        linhas: [
+          ...tipos.sort((u, v) => v.n - u.n).map(r => ({ grupo: t('perfis.tipo'), rot: rotuloDe('tipo_conta', r.tipo_conta), v: r.n / tt, dica: { titulo: rotuloDe('tipo_conta', r.tipo_conta), linhas: [{ rot: t('posts'), val: fmt.int(r.n) }] } })),
+          ...forms.sort((u, v) => v.n - u.n).map(r => ({ grupo: t('eng.formato'), rot: t(`formato.${r.formato}`), v: r.n / tf, dica: { titulo: t(`formato.${r.formato}`), linhas: [{ rot: t('posts'), val: fmt.int(r.n) }] } })),
+        ],
+      }),
     });
   }
   desenhar();
@@ -965,93 +1104,190 @@ function abaConversa(p) {
 
 // ---------------------------------------------------------------- anúncios
 function abaAnuncios(p) {
-  const A = D.anuncios;
-  if (!A) { aviso(p, t('ads.vazio')); return; }
-  const T = A.total;
-  const baixado = A.baixado_em ? dm(`${A.baixado_em.slice(0, 4)}-${A.baixado_em.slice(4, 6)}-${A.baixado_em.slice(6, 8)}`) : '';
-  const faixaReais = (a, b) => t('intervalo', { a: fmt.reais(a), b: fmt.cp(b) });
+  const R = D.anuncios && D.anuncios.relatorio, Bq = D.anuncios && D.anuncios.busca;
+  if (!R && !Bq) { aviso(p, t('ads.vazio')); return; }
+  if (R) secaoRelatorio(p, R);
+  if (Bq) secaoBusca(p, Bq);
+}
+
+function secaoRelatorio(p, R) {
+  const T = R.total;
+  const grupoRot = g => segRot(g);
+  const tipoGov = R.por_tipo.find(r => r.tipo === 'governo')?.gasto || 0;
+  secaoTitulo(p, t('ads.rel_titulo'));
   kpis(p, [
-    { rot: t('ads.anuncios'), val: fmt.int(T.n), det: t('ads.paginas', { n: fmt.int(T.paginas) }) },
-    { rot: t('ads.gasto'), val: faixaReais(T.gasto_min, T.gasto_max), det: t('ads.gasto_det') },
-    { rot: t('ads.impressoes'), val: t('intervalo', { a: fmt.cp(T.imp_min), b: fmt.cp(T.imp_max) }), det: T.imp_sem_teto ? t('ads.imp_sem_teto', { n: fmt.int(T.imp_sem_teto) }) : t('ads.imp_det') },
-    { rot: t('ads.citam'), val: fmt.pct(T.cita_lula / T.n), det: t('ads.citam_det') },
-    { rot: t('ads.casados'), val: fmt.pct(A.casados / T.n), det: t('ads.casados_det') },
+    { rot: t('ads.k_total'), val: fmt.reais(T.gasto), det: t('ads.k_total_det', { n: fmt.int(T.paginas_100) }) },
+    { rot: t('ads.k_cand'), val: fmt.reais(T.gasto_candidaturas), det: t('ads.k_cand_det', { p: fmt.pct(T.gasto_candidaturas / T.gasto) }) },
+    { rot: t('ads.k_n'), val: fmt.int(T.candidaturas), det: t('ads.k_n_det', { n: fmt.int(T.candidaturas_registradas) }) },
+    { rot: t('ads.k_gov'), val: fmt.reais(tipoGov), det: t('ads.k_gov_det', { p: fmt.pct(tipoGov / T.gasto) }) },
   ]);
-  aviso(p, t('ads.aviso', { b: A.busca, d: baixado, ini: dm('2026-08-16') }));
+  aviso(p, t('ads.rel_aviso', { janela: t(`janela.${R.relatorio.janela}`, null, R.relatorio.janela), d: `${dm(R.relatorio.data)} ${R.relatorio.data.slice(0, 4)}` }));
+  const ufs = R.por_uf.map(r => r.uf).sort();
+  const cargosDisputa = ['presidente', 'governador', 'senador', 'dep_federal', 'dep_estadual'];
+  const est = { uf: 'BR', cargo: 'governador' };
+  p.append(h('div', { class: 'filtros' },
+    seletor(t('ads.local'), [['BR', t('brasil')], ...ufs.map(u => [u, u])], est.uf, v => { est.uf = v; desenhar(); }),
+    seletor(t('ads.disputa_cargo'), cargosDisputa.map(c => [c, cargoRot(c)]), est.cargo, v => { est.cargo = v; desenhar(); })));
+  const alvo = h('div');
+  p.append(alvo);
+  const nomeUf = u => u === 'BR' ? t('brasil') : u;
+  const subTop = r => r.tipo === 'candidatura' ? [cargoRot(r.cargo_g), r.uf_cand, r.partido].filter(Boolean).join(' · ')
+    : r.tipo === 'partido' ? [t('tipo_ad.partido'), r.partido].join(' · ') : t(`tipo_ad.${r.tipo}`);
+
+  function desenhar() {
+    alvo.replaceChildren();
+    const uf = est.uf, cargo = est.cargo;
+    const duas = h('div', { class: 'grade duas' });
+    alvo.append(duas);
+    const porUf = R.por_uf.slice().sort((a, b) => b.gasto - a.gasto);
+    grafico(duas, {
+      titulo: t('ads.g_uf'), legenda: t('ads.g_uf_leg'), ajuda: 'ads_uf',
+      desenhar: (el, w) => barras(el, w, { fmt: fmt.reais, linhas: porUf.map(r => ({ rot: r.uf, v: r.gasto, cor: uf === 'BR' || r.uf === uf ? 'var(--c-dado)' : 'var(--c-claro)', dica: { titulo: r.uf, linhas: [{ rot: t('ads.gasto_curto'), val: fmt.reais(r.gasto) }, { rot: t('parcela'), val: fmt.pct(r.gasto / T.gasto) }] } })) }),
+      tabela: () => ({ cols: [{ rot: t('uf') }, { rot: t('ads.gasto_curto'), n: true }], linhas: porUf.map(r => [r.uf, fmt.reais(r.gasto)]) }),
+    });
+    const coluna = h('div', { class: 'grade' });
+    duas.append(coluna);
+    const grupos = [...CAMPOS, 'governo', 'outros'];
+    const somaGrupo = g => soma(R.por_uf_grupo.filter(r => r.grupo === g && (uf === 'BR' || r.uf === uf)).map(r => r.gasto));
+    const quem = grupos.map(g => ({ g, v: somaGrupo(g) }));
+    const totQuem = soma(quem.map(r => r.v)) || 1;
+    grafico(coluna, {
+      titulo: t('ads.g_tipo', { uf: nomeUf(uf) }), legenda: t('ads.g_tipo_leg'), ajuda: 'ads_tipo',
+      desenhar: (el, w) => barras(el, w, { fmt: fmt.reais, linhas: quem.map(r => ({ rot: grupoRot(r.g), cor: CORES[r.g], chave: true, v: r.v, sub: fmt.pct(r.v / totQuem), dica: { titulo: grupoRot(r.g), linhas: [{ rot: t('ads.gasto_curto'), val: fmt.reais(r.v) }, { rot: t('parcela'), val: fmt.pct(r.v / totQuem) }] } })) }),
+      tabela: () => ({ cols: [{ rot: '' }, { rot: t('ads.gasto_curto'), n: true }, { rot: t('parcela'), n: true }], linhas: quem.map(r => [grupoRot(r.g), fmt.reais(r.v), fmt.pct(r.v / totQuem)]) }),
+    });
+    const cd = cartao(coluna, { titulo: t('ads.destaques'), legenda: t('ads.destaques_leg'), ajuda: 'ads_destaques' });
+    cd.append(h('ul', { class: 'destaques' }, destaques(R, uf, cargo).map(frase => h('li', { text: frase }))));
+
+    const dois = h('div', { class: 'grade duas', style: 'margin-top:16px' });
+    alvo.append(dois);
+    const top = R.top.filter(r => r.uf === uf);
+    grafico(dois, {
+      titulo: t('ads.g_top', { uf: nomeUf(uf) }), legenda: t('ads.g_top_leg', { uf: nomeUf(uf) }), ajuda: 'ads_top',
+      desenhar: (el, w) => barras(el, w, { fmt: fmt.reais, reserva: 90, linhas: top.map(r => ({ rot: r.page_name, sub: subTop(r), cor: CORES[r.grupo], chave: true, v: r.gasto, dica: { titulo: r.page_name, linhas: [{ rot: t('ads.gasto_curto'), val: fmt.reais(r.gasto) }], extra: `${grupoRot(r.grupo)} · ${subTop(r)}` } })) }),
+      tabela: () => ({ cols: [{ rot: t('ads.pagina') }, { rot: '' }, { rot: t('campo') }, { rot: t('ads.gasto_curto'), n: true }], linhas: top.map(r => [r.page_name, subTop(r), grupoRot(r.grupo), fmt.reais(r.gasto)]) }),
+    });
+    // a disputa escolhida
+    let lista = R.disputa.filter(r => r.cargo_g === cargo && (cargo === 'presidente' || uf === 'BR' || r.uf === uf));
+    lista = lista.sort((a, b) => b.gasto - a.gasto || b.n_anuncios - a.n_anuncios);
+    const proporcional = cargo.startsWith('dep_') || (uf === 'BR' && cargo !== 'presidente');
+    if (proporcional) lista = lista.slice(0, 20);
+    const resumo = R.resumo_cargo.filter(r => r.cargo_g === cargo && (cargo === 'presidente' || uf === 'BR' || r.uf === uf));
+    const a = soma(resumo.map(r => r.anunciaram)), n = soma(resumo.map(r => r.candidaturas));
+    const ufDisputa = cargo === 'presidente' ? t('brasil') : nomeUf(uf);
+    grafico(dois, {
+      titulo: t('ads.g_disputa', { cargo: cargoRot(cargo), uf: ufDisputa }),
+      legenda: proporcional ? t('ads.g_disputa_prop', { a: fmt.int(a), n: fmt.int(n) }) : t('ads.g_disputa_leg', { a: fmt.int(a), n: fmt.int(n) }), ajuda: 'ads_disputa',
+      desenhar: (el, w) => barras(el, w, {
+        fmt: fmt.reais, reserva: 100,
+        linhas: lista.map(r => ({
+          rot: nomeProprio(r.nome_urna), sub: [r.partido, uf === 'BR' && cargo !== 'presidente' ? r.uf : ''].filter(Boolean).join(' · '),
+          cor: CORES[r.campo] || 'var(--c-outros)', chave: true, v: r.gasto,
+          rotVal: !r.anunciou ? t('ads.nao_anunciou') : r.gasto === 0 ? t('ads.menos100') : null,
+          dica: { titulo: r.nome_urna, linhas: [{ rot: t('ads.gasto_curto'), val: fmt.reais(r.gasto) }, { rot: t('ads.anuncios'), val: fmt.int(r.n_anuncios) }], extra: `${segRot(r.campo)} · ${r.partido}` },
+        })),
+      }),
+      tabela: () => ({ cols: [{ rot: '' }, { rot: t('partido') }, { rot: t('uf') }, { rot: t('campo') }, { rot: t('ads.anuncios'), n: true }, { rot: t('ads.gasto_curto'), n: true }],
+        linhas: lista.map(r => [r.nome_urna, r.partido, r.uf, segRot(r.campo), fmt.int(r.n_anuncios), fmt.reais(r.gasto)]) }),
+    });
+    const c3 = h('div', { style: 'margin-top:16px' });
+    alvo.append(c3);
+    grafico(c3, {
+      titulo: t('ads.g_cargo'), legenda: t('ads.g_cargo_leg'), ajuda: 'ads_cargo',
+      desenhar: (el, w) => barras(el, w, {
+        fmt: fmt.reais,
+        linhas: cargosDisputa.flatMap(cg => CAMPOS.map(c => {
+          const r = R.por_cargo.find(x => x.cargo_g === cg && x.campo === c);
+          return { grupo: cargoRot(cg), rot: segCurto(c), cor: CORES[c], chave: true, v: r ? r.gasto : 0, sub: r ? t(r.candidaturas === 1 ? 'ads.n_cand1' : 'ads.n_cand', { n: fmt.int(r.candidaturas) }) : '',
+            dica: { titulo: `${cargoRot(cg)} · ${segRot(c)}`, linhas: [{ rot: t('ads.gasto_curto'), val: fmt.reais(r?.gasto || 0) }, { rot: t('ads.k_n'), val: fmt.int(r?.candidaturas || 0) }] } };
+        })),
+      }),
+      tabela: () => ({ cols: [{ rot: t('cargo') }, { rot: t('campo') }, { rot: t('ads.k_n'), n: true }, { rot: t('ads.gasto_curto'), n: true }],
+        linhas: R.por_cargo.map(r => [cargoRot(r.cargo_g), segRot(r.campo), fmt.int(r.candidaturas), fmt.reais(r.gasto)]) }),
+    });
+  }
+  desenhar();
+}
+
+/** Frases descritivas tiradas dos números do relatório; mudam com o estado e a disputa escolhidos. */
+function destaques(R, uf, cargo) {
+  const T = R.total, out = [];
+  const topo = R.disputa.slice().sort((a, b) => b.gasto - a.gasto)[0];
+  if (topo) out.push(t('ads.d1', { nome: nomeProprio(topo.nome_urna), cargo: cargoRot(topo.cargo_g).toLowerCase(), partido: topo.partido, v: fmt.reais(topo.gasto), p: fmt.pct(topo.gasto / T.gasto_candidaturas) }));
+  const gov = R.por_tipo.find(r => r.tipo === 'governo')?.gasto || 0;
+  out.push(t('ads.d2', { p1: fmt.pct(T.gasto_candidaturas / T.gasto), p2: fmt.pct(gov / T.gasto) }));
+  const campo = R.por_campo.slice().sort((a, b) => b.gasto - a.gasto)[0];
+  if (campo) out.push(t('ads.d3', { campo: segRot(campo.campo), v: fmt.reais(campo.gasto), p: fmt.pct(campo.gasto / T.gasto_candidaturas) }));
+  const maiorUf = R.por_uf.slice().sort((a, b) => b.gasto - a.gasto)[0];
+  if (uf === 'BR' && maiorUf) out.push(t('ads.d4', { uf: maiorUf.uf, p: fmt.pct(maiorUf.gasto / T.gasto) }));
+  if (uf !== 'BR') {
+    const top = R.top.find(r => r.uf === uf);
+    if (top) out.push(t('ads.d5', { uf, nome: top.page_name, tipo: t(`tipo_ad.${top.tipo}`).toLowerCase(), v: fmt.reais(top.gasto) }));
+    if (cargo !== 'presidente') {
+      const lista = R.disputa.filter(r => r.cargo_g === cargo && r.uf === uf);
+      const res = R.resumo_cargo.find(r => r.cargo_g === cargo && r.uf === uf);
+      const lider = lista.slice().sort((a, b) => b.gasto - a.gasto)[0];
+      if (res && lider && res.gasto > 0) out.push(t('ads.d6', { cargo: cargoRot(cargo).toLowerCase(), uf, a: fmt.int(res.anunciaram), n: fmt.int(res.candidaturas), nome: nomeProprio(lider.nome_urna), p: fmt.pct(lider.gasto / res.gasto) }));
+    }
+  }
+  return out;
+}
+
+function secaoBusca(p, A) {
+  const T = A.total;
+  const termo = A.busca.split('|').join(', ');
+  const baixado = A.baixado_em ? dm(`${A.baixado_em.slice(0, 4)}-${A.baixado_em.slice(4, 6)}-${A.baixado_em.slice(6, 8)}`) : '';
+  const div = h('div', { style: 'margin-top:32px' });
+  p.append(div);
+  secaoTitulo(div, t('ads.busca_titulo', { b: termo }), 'busca');
+  kpis(div, [
+    { rot: t('ads.anuncios'), val: fmt.int(T.n), det: t('ads.n_paginas', { n: fmt.int(T.paginas) }) },
+    { rot: t('ads.gasto_curto'), val: t('intervalo', { a: fmt.reais(T.gasto_min), b: fmt.cp(T.gasto_max) }) },
+    { rot: t('ads.citam', { b: termo }), val: fmt.pct(T.cita_lula / T.n) },
+  ]);
+  aviso(div, t('ads.busca_aviso', { b: termo, d: baixado, ini: dm('2026-08-16') }));
   const segs = [...CAMPOS, 'sem_casamento'];
-  const duas = h('div', { class: 'grade duas' });
-  p.append(duas);
-  const faixaDica = (rot, r) => ({ titulo: rot, linhas: [{ rot: t('ads.anuncios'), val: fmt.int(r.n) }, { rot: t('ads.gasto_curto'), val: t('intervalo', { a: fmt.reais(r.gasto_min), b: fmt.reais(r.gasto_max) }) }, { rot: t('ads.impressoes'), val: t('intervalo', { a: fmt.cp(r.imp_min), b: fmt.cp(r.imp_max) }) }, { rot: t('ads.citam_lula'), val: fmt.pct(r.cita_lula / r.n) }] });
   const porSeg = segs.map(sg => A.por_seg.find(r => r.seg === sg)).filter(Boolean);
+  const duas = h('div', { class: 'grade duas' });
+  div.append(duas);
   grafico(duas, {
-    titulo: t('ads.g1'), legenda: t('ads.g1_leg'),
-    desenhar: (el, w) => barras(el, w, {
-      faixa: true, fmt: fmt.reais, rotFaixa: r => faixaReais(r.lo, r.hi),
-      linhas: porSeg.map(r => ({ rot: segRot(r.seg), cor: CORES[r.seg], chave: true, lo: r.gasto_min, hi: r.gasto_max, dica: faixaDica(segRot(r.seg), r) })),
-    }),
-    tabela: () => ({ cols: [{ rot: t('campo') }, { rot: t('ads.anuncios'), n: true }, { rot: t('ads.paginas_col'), n: true }, { rot: t('ads.gasto_min'), n: true }, { rot: t('ads.gasto_max'), n: true }, { rot: t('ads.citam_lula'), n: true }],
-      linhas: A.por_seg.map(r => [segRot(r.seg), fmt.int(r.n), fmt.int(r.paginas), fmt.reais(r.gasto_min), fmt.reais(r.gasto_max), fmt.pct(r.cita_lula / r.n)]) }),
-  });
-  grafico(duas, {
-    titulo: t('ads.g2'), legenda: t('ads.g2_leg'),
+    titulo: t('ads.b_quem'), legenda: t('ads.b_quem_leg'),
     desenhar: (el, w) => barras(el, w, {
       fmt: fmt.pct, max: 1,
-      linhas: porSeg.map(r => ({ rot: segRot(r.seg), cor: CORES[r.seg], chave: true, v: r.cita_lula / r.n, sub: t('ads.n_anuncios', { n: fmt.int(r.n) }), dica: faixaDica(segRot(r.seg), r) })),
+      linhas: porSeg.map(r => ({ rot: segRot(r.seg), cor: CORES[r.seg], chave: true, v: r.cita_lula / r.n, sub: t('ads.n_anuncios', { n: fmt.int(r.n) }),
+        dica: { titulo: segRot(r.seg), linhas: [{ rot: t('ads.anuncios'), val: fmt.int(r.n) }, { rot: t('ads.gasto_curto'), val: t('intervalo', { a: fmt.reais(r.gasto_min), b: fmt.reais(r.gasto_max) }) }, { rot: t('ads.citam_lula'), val: fmt.pct(r.cita_lula / r.n) }] } })),
     }),
   });
   const dias = [...new Set(A.por_dia.map(r => r.ad_delivery_start_time))].sort();
   const serieDia = CAMPOS.map(c => ({ rot: segRot(c), curto: segCurto(c), cor: CORES[c], v: dias.map(d => A.por_dia.find(r => r.ad_delivery_start_time === d && r.seg === c)?.n || 0) }));
-  const c1 = h('div', { style: 'margin-top:16px' });
-  p.append(c1);
-  grafico(c1, {
-    titulo: t('ads.g3'), legenda: t('ads.g3_leg'), itens: serieDia,
-    desenhar: (el, w) => linhas(el, w, { x: dias, xFmt: dm, series: serieDia, altura: 240 }),
+  grafico(duas, {
+    titulo: t('ads.b_dia'), legenda: t('ads.b_dia_leg'), itens: serieDia,
+    desenhar: (el, w) => linhas(el, w, { x: dias, xFmt: dm, series: serieDia, altura: 220, rotFim: false }),
     tabela: () => ({ cols: [{ rot: t('dia') }, ...serieDia.map(se => ({ rot: se.curto, n: true }))], linhas: dias.map((d, i) => [dm(d), ...serieDia.map(se => fmt.int(se.v[i]))]) }),
   });
-  const dois = h('div', { class: 'grade duas', style: 'margin-top:16px' });
-  p.append(dois);
-  grafico(dois, {
-    titulo: t('ads.g4'),
-    desenhar: (el, w) => barras(el, w, {
-      faixa: true, fmt: fmt.reais, rotFaixa: r => faixaReais(r.lo, r.hi),
-      linhas: A.por_cargo.slice().sort((a, b) => b.gasto_max - a.gasto_max).map(r => ({ rot: cargoRot(r.cargo_g), lo: r.gasto_min, hi: r.gasto_max, dica: faixaDica(cargoRot(r.cargo_g), r) })),
-    }),
-    tabela: () => ({ cols: [{ rot: t('cargo') }, { rot: t('ads.anuncios'), n: true }, { rot: t('ads.gasto_min'), n: true }, { rot: t('ads.gasto_max'), n: true }], linhas: A.por_cargo.map(r => [cargoRot(r.cargo_g), fmt.int(r.n), fmt.reais(r.gasto_min), fmt.reais(r.gasto_max)]) }),
-  });
-  grafico(dois, {
-    titulo: t('ads.g5'),
-    desenhar: (el, w) => barras(el, w, { linhas: A.plataformas.map(r => { const rot = rotuloDe('plataforma', r.plataformas); return { rot, v: r.n, dica: { titulo: rot, linhas: [{ rot: t('ads.anuncios'), val: fmt.int(r.n) }] } }; }) }),
-  });
-
-  const ct = cartao(p, { titulo: t('ads.top'), legenda: t('ads.top_leg') });
-  ct.style.marginTop = '16px';
-  ct.append(tabelaEl([{ rot: t('ads.pagina') }, { rot: t('perfis.col_cargo') }, { rot: t('partido') }, { rot: t('campo') }, { rot: t('ads.anuncios'), n: true }, { rot: t('ads.gasto_curto'), n: true }, { rot: t('ads.impressoes'), n: true }, { rot: t('ads.citam_lula'), n: true }],
-    A.top_paginas.map(r => [r.page_name, [r.cargo ? cargoRot(r.cargo) : '', r.uf].filter(Boolean).join(' · '), r.partido || '—', r.seg ? segCurto(r.seg) : '—', fmt.int(r.n), faixaReais(r.gasto_min, r.gasto_max), t('intervalo', { a: fmt.cp(r.imp_min), b: fmt.cp(r.imp_max) }), fmt.pct(r.cita_lula / r.n)])));
-
   const est = { seg: 'todos' };
-  const filtros = h('div', { class: 'filtros', style: 'margin-top:24px' });
-  filtros.append(seletor(t('ads.publico_de'), [['todos', t('ads.todos')], ...segs.map(sg => [sg, segRot(sg)])], est.seg, v => { est.seg = v; desenharPublico(); }));
-  p.append(filtros);
+  div.append(h('div', { class: 'filtros', style: 'margin-top:16px' },
+    seletor(t('ads.publico_de'), [['todos', t('ads.todos')], ...segs.map(sg => [sg, segRot(sg)])], est.seg, v => { est.seg = v; desenharPublico(); })));
   const alvo = h('div', { class: 'grade duas' });
-  p.append(alvo);
+  div.append(alvo);
   function desenharPublico() {
     alvo.replaceChildren();
     const demo = A.demografia.filter(r => r.seg === est.seg);
     const idades = [...new Set(demo.map(r => r.idade))].filter(i => i !== 'Unknown').sort();
     const generos = ['female', 'male', 'unknown'].map(g => [g, t(`publico.${g}`)]);
     grafico(alvo, {
-      titulo: t('ads.g6'), legenda: t('ads.g6_leg'),
+      titulo: t('ads.b_publico'), legenda: t('ads.b_publico_leg'),
       desenhar: (el, w) => calor(el, w, {
         linhas: idades.map(i => ({ id: i, rot: i })), colunas: generos.map(([id, rot]) => ({ id, rot })),
         valor: (l, c) => demo.find(r => r.idade === l.id && r.genero === c.id)?.parcela ?? null,
         dica: (l, c) => ({ titulo: `${l.rot} · ${c.rot}`, linhas: [{ rot: t('ads.impressoes'), val: fmt.pct(demo.find(r => r.idade === l.id && r.genero === c.id)?.parcela) }] }),
       }),
-      tabela: () => ({ cols: [{ rot: t('eng.idade_curta') }, ...generos.map(([, rot]) => ({ rot, n: true }))], linhas: idades.map(i => [i, ...generos.map(([g]) => fmt.pct(demo.find(r => r.idade === i && r.genero === g)?.parcela))]) }),
+      tabela: () => ({ cols: [{ rot: '' }, ...generos.map(([, rot]) => ({ rot, n: true }))], linhas: idades.map(i => [i, ...generos.map(([g]) => fmt.pct(demo.find(r => r.idade === i && r.genero === g)?.parcela))]) }),
     });
     const reg = A.regioes.filter(r => r.seg === est.seg).sort((a, b) => b.parcela - a.parcela);
-    const ufRot = uf => rotuloDe('regiao', uf);
+    const ufRot = u => rotuloDe('regiao', u);
     grafico(alvo, {
-      titulo: t('ads.g7'), legenda: t('ads.g7_leg'),
+      titulo: t('ads.b_regiao'), legenda: t('ads.b_regiao_leg'),
       desenhar: (el, w) => barras(el, w, { fmt: fmt.pct, linhas: reg.map(r => ({ rot: ufRot(r.uf), v: r.parcela, dica: { titulo: ufRot(r.uf), linhas: [{ rot: t('ads.impressoes'), val: fmt.pct(r.parcela) }] } })) }),
       tabela: () => ({ cols: [{ rot: t('uf') }, { rot: t('ads.impressoes'), n: true }], linhas: reg.map(r => [ufRot(r.uf), fmt.pct(r.parcela)]) }),
     });
@@ -1063,8 +1299,8 @@ function abaAnuncios(p) {
 function abaMetodo(p) {
   const C = D.cobertura;
   const rot = g => rotuloDe('tse', g, g.charAt(0) + g.slice(1).toLowerCase());
-  const bloco = (pai, titulo, legenda, lista) => grafico(pai, {
-    titulo, legenda, nota: t('met.nota'),
+  const bloco = (pai, titulo, legenda, lista, ajuda) => grafico(pai, {
+    titulo, legenda, ajuda, nota: t('met.nota'),
     desenhar: (el, w) => barras(el, w, {
       fmt: fmt.pct, max: 1,
       linhas: lista.filter(r => r.registrados >= 10).map(r => ({
@@ -1080,11 +1316,11 @@ function abaMetodo(p) {
     { rot: t('met.k_reg'), val: fmt.int(tot.registrados), det: t('met.k_reg_det') },
     { rot: t('met.k_censo'), val: fmt.int(tot.no_censo), det: t('met.k_censo_det', { p: fmt.pct(tot.no_censo / tot.registrados) }) },
   ]);
-  bloco(p, t('met.cargo'), t('met.cargo_leg'), C.cargo);
+  bloco(p, t('met.cargo'), t('met.cargo_leg'), C.cargo, 'met_cobertura');
   const g2 = h('div', { class: 'grade duas', style: 'margin-top:16px' });
   p.append(g2);
-  bloco(g2, t('met.genero'), t('met.genero_leg'), C.genero);
-  bloco(g2, t('met.raca'), t('met.raca_leg'), C.raca);
+  bloco(g2, t('met.genero'), t('met.genero_leg'), C.genero, 'met_cobertura');
+  bloco(g2, t('met.raca'), t('met.raca_leg'), C.raca, 'met_cobertura');
 
   const tx = h('div', { class: 'cartao texto', style: 'margin-top:16px' });
   p.append(tx);
