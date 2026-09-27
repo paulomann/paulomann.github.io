@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>BRPOL · Rotulagem</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='2' width='12' height='12' rx='3' fill='none' stroke='%234a3aa7' stroke-width='2'/%3E%3Cpath d='M5 8.2l2 2 4-4.4' fill='none' stroke='%234a3aa7' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="estilo.css?v=19b9d74ea3">
+<script src="config.js?v=d7a5ca97da"></script>
+<script src="codebook.js?v=88c0e08d63"></script>
+</head>
+<body>
+
+<div class="entrada" id="entrada">
+  <form id="form-entrada" autocomplete="off">
+    <h1>BRPOL · Rotulagem</h1>
+    <p>Codificação humana de posts da campanha de 2026. O arquivo dos posts é aberto só neste navegador e nunca é
+      enviado; para a planilha vão apenas o número do post e os seus códigos.</p>
+    <details class="como">
+      <summary>Como funciona</summary>
+      <div id="como-funciona">Carregando…</div>
+    </details>
+
+    <div id="bloco-arquivo">
+      <label class="campo" for="arquivo">Arquivo dos posts (<code>posts_v1.bin</code>)</label>
+      <input type="file" id="arquivo" accept=".bin,application/octet-stream">
+    </div>
+    <div id="arquivo-guardado" class="guardado" hidden>
+      <span id="arquivo-guardado-texto">Arquivo guardado neste navegador.</span>
+      <button type="button" class="link" id="trocar-arquivo">Trocar</button>
+    </div>
+
+    <label class="campo" for="senha">Senha do arquivo</label>
+    <input type="password" id="senha" autocomplete="off">
+
+    <label class="campo" for="codigo">Seu código</label>
+    <input type="text" id="codigo" autocomplete="off" autocapitalize="off" spellcheck="false">
+
+    <div class="linha">
+      <label class="lembrar"><input type="checkbox" id="lembrar"> Lembrar arquivo e senha neste navegador</label>
+      <button class="botao" type="submit" id="entrar">Entrar</button>
+    </div>
+    <div class="erro" id="erro-entrada" role="alert"></div>
+    <p class="nota">Use só em computador seu. Cada seção tem um botão <b>?</b> com a parte do guia que explica ela; o
+      botão Guia, no topo, põe o guia inteiro ao lado das seções.</p>
+  </form>
+</div>
+
+<div id="app" hidden>
+  <header class="topo">
+    <div class="dentro">
+      <div class="marca">
+        <strong>BRPOL · Rotulagem</strong>
+        <span class="selo" id="selo-fase"></span>
+      </div>
+      <div class="progresso num" id="progresso" aria-live="polite"></div>
+      <div class="acoes">
+        <button type="button" id="botao-adjudicar" hidden>Adjudicar</button>
+        <button type="button" id="botao-codificar" hidden>Codificar</button>
+        <button type="button" id="botao-guia" aria-pressed="false" title="Guia ao lado de cada seção (tecla G)">Guia <kbd>G</kbd></button>
+        <button type="button" id="botao-sair">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="palco" id="palco">
+    <aside class="coluna-post" id="coluna-post">
+      <div class="aviso" id="aviso" role="status" hidden></div>
+      <article class="post" id="post">
+        <div class="post-meta" id="post-meta"></div>
+        <div class="post-texto" id="post-texto" tabindex="0" aria-label="Texto do post"></div>
+      </article>
+    </aside>
+
+    <section class="trabalho" id="trabalho">
+      <div class="guia-bloco" id="guia-topo"></div>
+
+      <section class="comparacao" id="comparacao" hidden>
+        <h2>Codificações a adjudicar</h2>
+        <p>Decida só as tarefas marcadas. As que concordam já vêm preenchidas.</p>
+        <div id="comparacao-tabela"></div>
+      </section>
+
+      <form class="rotulos" id="rotulos" autocomplete="off">
+        <div class="grupo" data-tarefa="codificavel"></div>
+        <div class="grupo" data-tarefa="sentimento"></div>
+        <div class="grupo" data-tarefa="funcao"></div>
+        <div class="grupo" data-tarefa="incivilidade"></div>
+        <div class="grupo" data-tarefa="intolerancia"></div>
+        <div class="grupo" data-tarefa="alvos"></div>
+        <div class="grupo" data-tarefa="temas"></div>
+        <div class="grupo extras" id="extras" data-tarefa="extras"></div>
+        <div class="rodape-form">
+          <button type="button" class="secundario" id="corrigir" hidden>← Corrigir o anterior</button>
+          <div class="erro" id="erro-form" role="alert"></div>
+          <button type="submit" class="botao" id="salvar">Salvar e próximo <kbd>Enter</kbd></button>
+        </div>
+      </form>
+
+      <div class="guia-bloco" id="guia-fim"></div>
+      <div class="fim" id="fim" hidden></div>
+    </section>
+  </div>
+</div>
+
+<div class="popover" id="popover" role="dialog" aria-modal="false" hidden>
+  <div class="popover-topo">
+    <strong id="popover-titulo"></strong>
+    <button type="button" class="fechar" id="popover-fechar" aria-label="Fechar">×</button>
+  </div>
+  <div class="popover-corpo" id="popover-corpo"></div>
+</div>
+
+<script src="app.js?v=bb01c32589"></script>
+</body>
+</html>
