@@ -2,7 +2,10 @@
  *
  * O arquivo dos posts (data/rotulagem/posts_v1.bin, passo 11) é decifrado aqui, no navegador, e nunca é enviado.
  * O backend (apps_script.gs) só vê o código da pessoa, o número do post e os rótulos.
- * Categorias: codebook.js, gerado de config/codebook_v1.json. Guia: guia.md, cópia de docs/14-guia-codificacao.md.
+ * Categorias: codebook.js, gerado de config/codebook_v2.json (passo 10, --rotular). Guia: guia.md, cópia de
+ * docs/14-guia-codificacao.md. As tarefas, a ordem e os tipos vêm do codebook: unica, multipla, alvos (lista fechada
+ * com postura) e nomes (outros citados, escritos pelo codificador, com postura); `so_se` liga uma tarefa só quando
+ * outra tem certos códigos (o foco, com aclamação, ataque ou defesa).
  */
 'use strict';
 
@@ -10,20 +13,29 @@ const CB = window.CODEBOOK;
 const API = new URLSearchParams(location.search).get('api') || window.BRPOL_ROTULAR_API || '';
 const MAGICO = new TextEncoder().encode('BRROT1');
 const LS = { arquivo: 'brpol-rotular-arquivo', chave: 'brpol-rotular-chave', codigo: 'brpol-rotular-codigo' };
-const LISTAS = ['funcao', 'incivilidade', 'intolerancia', 'temas'];
-const TAREFAS = ['codificavel', 'sentimento', 'funcao', 'incivilidade', 'intolerancia', 'alvos', 'temas'];
-const MAX_COMENTARIO = 300;
-const ATALHOS = {  // tecla -> [tarefa, código]
+const TAREFAS = Object.keys(CB.tarefas);
+const tipoDe = t => CB.tarefas[t].tipo;
+const MAX_COMENTARIO = 300, MAX_NOME = 60;
+const ATALHOS = {  // tecla -> [tarefa, código]; os que o codebook não tem saem abaixo
   '1': ['sentimento', 'negativo'], '2': ['sentimento', 'neutro'], '3': ['sentimento', 'positivo'],
-  a: ['funcao', 'aclamacao'], t: ['funcao', 'ataque'], d: ['funcao', 'defesa'],
+  a: ['funcao', 'aclamacao'], t: ['funcao', 'ataque'], d: ['funcao', 'defesa'], c: ['funcao', 'chamada_acao'],
+  h: ['funcao', 'cerimonial'], f: ['funcao', 'informacao'], i: ['foco', 'imagem'], p: ['foco', 'proposta'],
+  r: ['apelo_religioso', 'sim'], n: ['apelo_religioso', 'nao'],
   '7': ['confianca', '1'], '8': ['confianca', '2'], '9': ['confianca', '3'],
 };
+for (const [k, [t, c]] of Object.entries(ATALHOS)) {
+  if (t !== 'confianca' && !(CB.tarefas[t] && CB.tarefas[t].opcoes.some(o => o[0] === c))) delete ATALHOS[k];
+}
 const TECLA = {};  // [tarefa|código] -> tecla, para mostrar nos botões
 for (const [k, [t, c]] of Object.entries(ATALHOS)) TECLA[t + '|' + c] = k.toUpperCase();
 TECLA['precisa_midia|1'] = 'M';
-// seções do guia (docs/14, "## N. Título") -> seção do formulário
-const SECAO_DO_NUMERO = { 1: 'codificavel', 2: 'sentimento', 3: 'funcao', 4: 'incivilidade', 5: 'intolerancia', 6: 'alvos',
-                          7: 'temas', 8: 'extras' };
+// seções do guia (docs/14, "## N. Título") -> seção do formulário: as tarefas na ordem do codebook, depois os extras
+const SECAO_DO_NUMERO = Object.fromEntries([...TAREFAS, 'extras'].map((t, i) => [i + 1, t]));
+const FALTA = {
+  sentimento: 'Falta o sentimento (teclas 1, 2 e 3).', foco: 'Falta o foco: imagem ou proposta (teclas I e P).',
+  funcao: 'Falta a função; se o post só informa, marque "Informação" (tecla F).',
+  tema: 'Falta o tema principal.', apelo_religioso: 'Falta o apelo religioso ou moral (teclas R e N).',
+};
 const SECAO_DO_TITULO = [[/^Como funciona/, 'como'], [/^Regras gerais/, 'regras'], [/^Exemplos/, 'exemplos'],
                          [/^Atalhos/, 'atalhos'], [/^Emendas/, 'emendas']];
 
@@ -45,11 +57,31 @@ const b64 = {
   para: str => Uint8Array.from(atob(str), c => c.charCodeAt(0)),
 };
 const hex = bytes => [...bytes].map(b => b.toString(16).padStart(2, '0')).join('');
+const comNumero = (codigo, rotulo) => /^\d+$/.test(codigo) ? `${codigo} ${rotulo}` : rotulo;  // temas do CAP: "03 Saúde"
 const rotuloDe = (tarefa, codigo) => {
   const d = CB.tarefas[tarefa];
-  const o = d && d.opcoes.find(x => x[0] === codigo);
-  return o ? o[1] : codigo;
+  const o = d && d.opcoes && d.opcoes.find(x => x[0] === codigo);
+  return o ? comNumero(codigo, o[1]) : codigo;
 };
+const postura = c => (CB.tarefas.alvos.posturas.find(x => x[0] === c) || [c, c])[1].toLowerCase();
+const limparNome = s => String(s).replace(/[|:\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, MAX_NOME);
+const chaveNome = s => limparNome(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, ' ').trim();
+
+/** A tarefa vale neste post? Só as que têm `so_se` dependem de outra (o foco, da função). */
+function condicaoOk(t, r) {
+  const cond = CB.tarefas[t].so_se;
+  if (!cond) return true;
+  return Object.entries(cond).some(([k, cods]) => cods.some(c => (r[k] instanceof Set ? r[k].has(c) : r[k] === c)));
+}
+function valorVazio(t) {
+  const tp = tipoDe(t);
+  return tp === 'unica' ? null : tp === 'multipla' ? new Set() : tp === 'alvos' ? new Map() : [];
+}
+function copiarValor(t, v) {
+  const tp = tipoDe(t);
+  return tp === 'unica' ? v : tp === 'multipla' ? new Set(v) : tp === 'alvos' ? new Map(v) : v.map(o => ({ ...o }));
+}
 
 // ------------------------------------------------------------------------------------------------ estado
 const S = {
@@ -61,34 +93,61 @@ const S = {
   r: null,            // respostas do post atual
   anterior: null,     // {numero, fase, r} do último salvo, para corrigir
   corrigindo: false,
+  fazGabarito: false, // esta pessoa faz o gabarito da calibração
+  retorno: false,     // mostrando o gabarito do post de calibração que acabou de salvar
   enviando: false,
   guia: {},           // seção -> {titulo, md}
 };
 
 function vazio() {
-  return { codificavel: 'sim', sentimento: null, funcao: new Set(), incivilidade: new Set(), intolerancia: new Set(),
-           alvos: new Map(), temas: new Set(), precisa_midia: false, confianca: null, comentario: '' };
+  const r = { precisa_midia: false, confianca: null, comentario: '' };
+  for (const t of TAREFAS) r[t] = valorVazio(t);
+  r.codificavel = 'sim';
+  return r;
 }
 function copiar(r) {
-  return { ...r, funcao: new Set(r.funcao), incivilidade: new Set(r.incivilidade), intolerancia: new Set(r.intolerancia),
-           alvos: new Map(r.alvos), temas: new Set(r.temas) };
+  const c = { ...r };
+  for (const t of TAREFAS) c[t] = copiarValor(t, r[t]);
+  return c;
 }
 
-/** Respostas -> formato da planilha: listas "a|b" na ordem do codebook; alvos "alvo:postura". */
+/** Respostas -> formato da planilha: listas "a|b" na ordem do codebook; alvos "alvo:postura"; nomes "Nome:postura",
+ *  em ordem alfabética. Post não codificável (ou tarefa cuja condição não vale): padrão ou vazio. */
 function serializar(r) {
-  const nao = r.codificavel !== 'sim';
-  const lista = t => nao ? '' : CB.tarefas[t].opcoes.map(o => o[0]).filter(c => r[t].has(c)).join('|');
-  const saida = { codificavel: r.codificavel, sentimento: nao ? 'neutro' : (r.sentimento || '') };
-  for (const t of LISTAS) saida[t] = lista(t);
-  saida.alvos = nao ? '' : CB.tarefas.alvos.opcoes.map(o => o[0]).filter(c => r.alvos.has(c)).map(c => c + ':' + r.alvos.get(c)).join('|');
-  return saida;
+  const nao = r.codificavel !== 'sim', s = {};
+  for (const t of TAREFAS) {
+    const d = CB.tarefas[t], tp = d.tipo;
+    if (t === 'codificavel') s[t] = r[t];
+    else if (tp === 'unica') s[t] = nao ? (d.padrao || (t === 'sentimento' ? 'neutro' : '')) : (r[t] || '');
+    else if (nao || !condicaoOk(t, r)) s[t] = '';
+    else if (tp === 'multipla') s[t] = d.opcoes.map(o => o[0]).filter(c => r[t].has(c)).join('|');
+    else if (tp === 'alvos') s[t] = d.opcoes.map(o => o[0]).filter(c => r[t].has(c)).map(c => c + ':' + r[t].get(c)).join('|');
+    else s[t] = [...r[t]].sort((a, b) => chaveNome(a.nome).localeCompare(chaveNome(b.nome)))
+      .map(o => limparNome(o.nome) + ':' + o.postura).join('|');
+  }
+  return s;
+}
+/** Valor serializado comparável: listas em ordem, nomes sem maiúsculas nem acentos, tema 5 como "05" (igual ao backend). */
+function normal(t, v) {
+  let s = String(v === undefined || v === null ? '' : v);
+  if (t === 'tema' && /^\d$/.test(s)) s = '0' + s;
+  let partes = s.split('|').filter(Boolean);
+  if (tipoDe(t) === 'nomes') partes = partes.map(x => { const i = x.lastIndexOf(':'); return chaveNome(x.slice(0, i)) + ':' + x.slice(i + 1); });
+  return partes.sort().join('|');
 }
 function desserializar(s) {
   const r = vazio();
-  r.codificavel = s.codificavel || 'sim';
-  r.sentimento = s.sentimento || null;
-  for (const t of LISTAS) r[t] = new Set(String(s[t] || '').split('|').filter(Boolean));
-  r.alvos = new Map(String(s.alvos || '').split('|').filter(Boolean).map(x => x.split(':')));
+  for (const t of TAREFAS) {
+    const v = String(s[t] === undefined || s[t] === null ? '' : s[t]), tp = tipoDe(t);
+    if (tp === 'unica') {
+      // a planilha pode ter guardado "05" como o número 5: volta ao código do codebook
+      const cod = /^\d+$/.test(v) ? (CB.tarefas[t].opcoes.find(o => /^\d+$/.test(o[0]) && Number(o[0]) === Number(v)) || [v])[0] : v;
+      r[t] = cod || (t === 'codificavel' ? 'sim' : null);
+    }
+    else if (tp === 'multipla') r[t] = new Set(v.split('|').filter(Boolean));
+    else if (tp === 'alvos') r[t] = new Map(v.split('|').filter(Boolean).map(x => x.split(':')));
+    else r[t] = v.split('|').filter(Boolean).map(x => { const i = x.lastIndexOf(':'); return { nome: x.slice(0, i), postura: x.slice(i + 1) }; });
+  }
   return r;
 }
 
@@ -196,6 +255,7 @@ async function abrir(dados, codigo) {
   const eu = await api('entrar', { codigo });
   S.eu = { codigo, nome: eu.nome, papel: eu.papel };
   S.fase = eu.fase;
+  S.fazGabarito = !!eu.faz_gabarito;
   gravar(LS.codigo, codigo);
   $('#entrada').hidden = true;
   $('#app').hidden = false;
@@ -229,7 +289,9 @@ function trocarModo(modo) {
 // ------------------------------------------------------------------------------------------------ fluxo
 async function proximo() {
   S.corrigindo = false;
+  S.retorno = false;
   $('#aviso').hidden = true;
+  $('#retorno').hidden = true;
   try {
     const p = await api('proximo', { modo: S.modo });
     atualizarProgresso();
@@ -246,10 +308,11 @@ async function proximo() {
 }
 
 function mostrarFim(motivo, detalhe) {
-  $('#post').hidden = true; $('#rotulos').hidden = true; $('#comparacao').hidden = true;
+  $('#post').hidden = true; $('#rotulos').hidden = true; $('#comparacao').hidden = true; $('#retorno').hidden = true;
   const textos = {
-    calibracao_completa: ['Calibração concluída', 'Você codificou todos os posts de calibração. O sorteio começa depois da reunião sobre as divergências.'],
-    sem_posts: ['Não há mais posts para você agora', 'Todos os posts já têm duas codificações ou estão com outra pessoa. Volte mais tarde: reservas vencidas voltam ao sorteio.'],
+    calibracao_completa: ['Calibração concluída', 'Você codificou todos os posts de calibração. O sorteio abre quando a coordenação liberar; volte depois.'],
+    aguardando_gabarito: ['Aguardando o gabarito', 'A calibração começa quando o gabarito dos posts de calibração estiver pronto. Volte mais tarde.'],
+    sem_posts: ['Não há mais posts para você agora', 'Todos os posts já têm as codificações previstas ou estão com outra pessoa. Volte mais tarde: reservas vencidas voltam ao sorteio.'],
     sem_divergencias: ['Nada para adjudicar agora', 'Não há pares divergentes esperando. Volte quando mais pares estiverem completos.'],
     erro: ['Algo deu errado', detalhe || ''],
   };
@@ -262,8 +325,9 @@ function mostrarFim(motivo, detalhe) {
 }
 
 function mostrarPost(post) {
-  $('#fim').hidden = true; $('#post').hidden = false; $('#rotulos').hidden = false;
-  const faseTexto = { calibracao: 'Calibração', sorteio: 'Codificação', adjudicacao: 'Adjudicação' }[S.atual.fase];
+  $('#fim').hidden = true; $('#retorno').hidden = true; $('#post').hidden = false; $('#rotulos').hidden = false;
+  const faseTexto = S.atual.fase === 'calibracao' && S.fazGabarito ? 'Gabarito'
+    : { calibracao: 'Calibração', sorteio: 'Codificação', adjudicacao: 'Adjudicação' }[S.atual.fase];
   $('#selo-fase').textContent = faseTexto;
   $('#post-meta').replaceChildren(
     el('strong', {}, post.autor || '—'), el('span', {}, post.cargo), el('span', {}, post.formato), el('span', {}, post.data),
@@ -280,14 +344,16 @@ function mostrarPost(post) {
 function preencherConcordancias(p) {
   const cods = p.codificacoes.map(desserializar);
   const base = cods[0];
-  for (const t of TAREFAS) {
-    if (p.divergentes.includes(t)) continue;
-    if (t === 'codificavel' || t === 'sentimento') S.r[t] = base[t];
-    else if (t === 'alvos') S.r.alvos = new Map(base.alvos);
-    else S.r[t] = new Set(base[t]);
-  }
-  if (p.divergentes.includes('codificavel')) S.r.codificavel = null;
-  if (p.divergentes.includes('sentimento')) S.r.sentimento = null;
+  for (const t of TAREFAS) S.r[t] = p.divergentes.includes(t) ? valorVazio(t) : copiarValor(t, base[t]);
+}
+
+/** Uma tarefa de uma codificação (já desserializada) em texto, para as tabelas de comparação. */
+function textoTarefa(r, t) {
+  const tp = tipoDe(t);
+  if (tp === 'unica') return r[t] ? rotuloDe(t, r[t]) : '—';
+  if (tp === 'alvos') return [...r[t]].map(([k, v]) => `${rotuloDe(t, k)}: ${postura(v)}`).join('; ') || '—';
+  if (tp === 'nomes') return r[t].map(o => `${o.nome}: ${postura(o.postura)}`).join('; ') || '—';
+  return [...r[t]].map(c => rotuloDe(t, c)).join(', ') || '—';
 }
 
 function mostrarComparacao() {
@@ -295,14 +361,7 @@ function mostrarComparacao() {
   caixa.hidden = a.fase !== 'adjudicacao';
   if (caixa.hidden) return;
   const cods = a.codificacoes.map(desserializar);
-  const texto = (r, t) => {
-    if (t === 'codificavel' || t === 'sentimento') return r[t] ? rotuloDe(t, r[t]) : '—';
-    if (t === 'alvos') {
-      const postura = c => (CB.tarefas.alvos.posturas.find(x => x[0] === c) || [c, c])[1].toLowerCase();
-      return [...r.alvos].map(([k, v]) => `${rotuloDe('alvos', k)}: ${postura(v)}`).join('; ') || '—';
-    }
-    return [...r[t]].map(c => rotuloDe(t, c)).join(', ') || '—';
-  };
+  const texto = textoTarefa;
   const tabela = el('table', {}, el('thead', {}, el('tr', {}, el('th', {}, ''), cods.map((_, i) => el('th', {}, `Codificação ${i + 1}`)))),
     el('tbody', {}, TAREFAS.map(t =>
     el('tr', { class: a.divergentes.includes(t) ? 'diverge' : '' }, el('th', {}, CB.tarefas[t].rotulo),
@@ -320,9 +379,15 @@ async function salvar() {
   botao.disabled = true;
   try {
     const seg = Math.round((Date.now() - S.atual.inicio) / 1000);
-    await api('salvar', { numero: S.atual.numero, fase: S.atual.fase, rotulos: serializar(S.r),
-                          precisa_midia: S.r.precisa_midia, confianca: S.r.confianca || '',
-                          comentario: $('#comentario').value.slice(0, MAX_COMENTARIO), segundos: seg });
+    const rotulos = serializar(S.r);
+    const resp = await api('salvar', { numero: S.atual.numero, fase: S.atual.fase, rotulos,
+                                       precisa_midia: S.r.precisa_midia, confianca: S.r.confianca || '',
+                                       comentario: $('#comentario').value.slice(0, MAX_COMENTARIO), segundos: seg });
+    if (resp.gabarito) {
+      // calibração com gabarito: a resposta fica como está (não se corrige depois de ver o gabarito)
+      S.anterior = null;
+      return mostrarRetorno(rotulos, resp.gabarito);
+    }
     S.anterior = { numero: S.atual.numero, fase: S.atual.fase, r: copiar({ ...S.r, comentario: $('#comentario').value }),
                    codificacoes: S.atual.codificacoes, divergentes: S.atual.divergentes, segundos: seg };
     await proximo();
@@ -331,6 +396,33 @@ async function salvar() {
   } finally {
     S.enviando = false; botao.disabled = false;
   }
+}
+
+/** Depois de salvar um post de calibração: a resposta da pessoa ao lado da do gabarito, com as diferenças marcadas. */
+function mostrarRetorno(meus, gab) {
+  S.atual = null;
+  S.retorno = true;
+  $('#rotulos').hidden = true; $('#comparacao').hidden = true; $('#corrigir').hidden = true;
+  const m = desserializar(meus), g = desserializar(gab);
+  const difere = TAREFAS.filter(t => normal(t, meus[t]) !== normal(t, gab[t]));
+  const iguais = TAREFAS.length - difere.length;
+  const tabela = el('table', {},
+    el('thead', {}, el('tr', {}, el('th', {}, ''), el('th', {}, 'Você'), el('th', {}, 'Gabarito'))),
+    el('tbody', {}, TAREFAS.map(t => el('tr', { class: difere.includes(t) ? 'diverge' : '' },
+      el('th', {}, CB.tarefas[t].rotulo), el('td', {}, textoTarefa(m, t)), el('td', {}, textoTarefa(g, t))))));
+  const caixa = $('#retorno');
+  caixa.hidden = false;
+  caixa.replaceChildren(
+    el('h2', {}, 'Gabarito deste post'),
+    el('p', {}, difere.length
+      ? `Você coincidiu com o gabarito em ${iguais} de ${TAREFAS.length} tarefas. As diferenças estão marcadas: releia no guia as seções delas. A sua resposta fica gravada como está.`
+      : `Você coincidiu com o gabarito nas ${TAREFAS.length} tarefas.`),
+    tabela,
+    gab.comentario ? el('p', { class: 'nota-gabarito' }, el('strong', {}, 'Nota do gabarito: '), gab.comentario) : null,
+    el('div', { class: 'rodape-form' }, el('span', {}),
+      el('button', { class: 'botao', type: 'button', onclick: proximo }, 'Próximo post ', el('kbd', {}, 'Enter'))));
+  atualizarProgresso();
+  window.scrollTo({ top: 0 });
 }
 
 function corrigirAnterior() {
@@ -350,11 +442,20 @@ function corrigirAnterior() {
 function validar() {
   const r = S.r;
   document.querySelectorAll('.grupo.invalido').forEach(g => g.classList.remove('invalido'));
-  const marcar = t => { const g = document.querySelector(`.grupo[data-tarefa="${t}"]`); if (g) g.classList.add('invalido'); };
-  if (!r.codificavel) { marcar('codificavel'); return 'Diga se o post é codificável.'; }
-  if (r.codificavel === 'sim' && !r.sentimento) { marcar('sentimento'); return 'Falta o sentimento (teclas 1, 2 e 3).'; }
-  const semPostura = [...r.alvos].filter(([, p]) => !p).map(([a]) => rotuloDe('alvos', a));
-  if (r.codificavel === 'sim' && semPostura.length) { marcar('alvos'); return `Escolha a postura: ${semPostura.join(', ')}.`; }
+  const invalido = t => { const g = document.querySelector(`.grupo[data-tarefa="${t}"]`); if (g) g.classList.add('invalido'); };
+  if (!r.codificavel) { invalido('codificavel'); return 'Diga se o post é codificável.'; }
+  if (r.codificavel === 'sim') {
+    for (const t of TAREFAS) {
+      const d = CB.tarefas[t];
+      if (t === 'codificavel' || !condicaoOk(t, r)) continue;
+      const falta = FALTA[t] || `Falta: ${d.rotulo.toLowerCase()}.`;
+      if (d.tipo === 'unica' && !r[t]) { invalido(t); return falta; }
+      if (d.tipo === 'multipla' && (d.so_se || d.obrigatoria) && !r[t].size) { invalido(t); return falta; }
+      const sem = d.tipo === 'alvos' ? [...r[t]].filter(([, p]) => !p).map(([a]) => rotuloDe(t, a))
+        : d.tipo === 'nomes' ? r[t].filter(o => !o.postura).map(o => o.nome) : [];
+      if (sem.length) { invalido(t); return `Escolha a postura: ${sem.join(', ')}.`; }
+    }
+  }
   if (S.atual.fase !== 'adjudicacao' && !r.confianca) { $('#extras').classList.add('invalido'); return 'Falta a confiança (teclas 7, 8 e 9).'; }
   return '';
 }
@@ -363,10 +464,16 @@ async function atualizarProgresso() {
   try {
     const p = await api('progresso');
     S.fase = p.fase;
-    const partes = [];
-    if (p.fase === 'calibracao') partes.push(`Calibração: você fez ${p.calibracao.meus} de ${p.calibracao.total}`);
-    else partes.push(`Você: ${p.sorteio.meus} posts`, `Equipe: ${p.sorteio.codificacoes} de ${p.sorteio.meta} codificações`);
-    if (S.eu.papel === 'adjudicador') partes.push(`Pares completos: ${p.sorteio.pares} · divergentes: ${p.sorteio.divergentes} · adjudicados: ${p.adjudicados}`);
+    const partes = [], c = p.calibracao, s = p.sorteio;
+    if (p.faz_gabarito && c.gabarito < c.total) partes.push(`Gabarito: ${c.gabarito} de ${c.total}`);
+    else if (c.meus < c.total || p.fase === 'calibracao') {
+      partes.push(`Calibração: você fez ${c.meus} de ${c.total}`);
+      if (c.coincidencia !== undefined && c.coincidencia !== null) partes.push(`coincidência com o gabarito: ${Math.round(100 * c.coincidencia)}%`);
+    }
+    if (p.fase === 'sorteio' && c.meus >= c.total) {
+      partes.push(`Você: ${s.meus} posts`, `Equipe: ${s.cobertos} de ${s.posts} posts codificados, ${s.pares} com duas codificações`);
+    }
+    if (S.eu.papel === 'adjudicador') partes.push(`Pares divergentes: ${s.divergentes} · adjudicados: ${p.adjudicados}`);
     $('#progresso').textContent = `${S.eu.nome} · ` + partes.join(' · ');
   } catch (e) { /* o progresso é só informativo */ }
 }
@@ -387,10 +494,18 @@ function titulo(secao, texto, dica) {
 
 function montarFormulario() {
   const dicas = {
-    codificavel: '', sentimento: 'o tom predominante', funcao: 'nenhuma, uma ou mais',
-    incivilidade: 'só o que o autor diz', intolerancia: 'ataca grupos ou direitos',
+    codificavel: '', sentimento: 'o tom predominante', funcao: 'uma ou mais; informação quando só informa',
+    foco: 'só com aclamação, ataque ou defesa', incivilidade: 'só o que o autor diz', intolerancia: 'ataca grupos ou direitos',
     alvos: 'marque só os citados; os outros contam como não citados', temas: 'campanha e pedido de voto não são tema',
+    outros: 'o nome ou, sem nome, o cargo; aliado ou adversário é calculado depois', tema: 'um só: o principal',
+    apelo_religioso: 'Deus, fé, igreja, valores de família',
   };
+  // um grupo por tarefa, na ordem do codebook, antes dos extras
+  const form = $('#rotulos'), extras = $('#extras');
+  for (const g of form.querySelectorAll('.grupo[data-tarefa]')) if (g.dataset.tarefa !== 'extras' && !CB.tarefas[g.dataset.tarefa]) g.remove();
+  for (const t of TAREFAS) {
+    if (!form.querySelector(`.grupo[data-tarefa="${t}"]`)) form.insertBefore(el('div', { class: 'grupo', 'data-tarefa': t }), extras);
+  }
   for (const g of document.querySelectorAll('.grupo[data-tarefa]')) {
     const t = g.dataset.tarefa;
     if (t === 'extras') continue;
@@ -400,6 +515,21 @@ function montarFormulario() {
       corpo = el('div', { class: 'alvos' },
         el('div', { class: 'opcoes' }, d.opcoes.map(([c, rot]) => botao('alvo', c, rot))),
         el('div', { class: 'alvos-marcados', id: 'alvos-marcados' }));
+    } else if (d.tipo === 'nomes') {
+      const campo = el('input', { type: 'text', id: 'nome-' + t, maxlength: MAX_NOME, 'aria-label': d.rotulo,
+        placeholder: 'Como aparece no texto: João Campos, PL, prefeitura de Salvador, o prefeito',
+        onkeydown: ev => { if (ev.key === 'Enter') { ev.preventDefault(); adicionarNome(t); } } });
+      corpo = el('div', { class: 'alvos' },
+        el('div', { class: 'nomes-entrada' }, campo,
+          el('button', { type: 'button', class: 'secundario', onclick: () => adicionarNome(t) }, 'Adicionar')),
+        el('div', { class: 'alvos-marcados', id: 'nomes-' + t }));
+    } else if (d.opcoes.some(([c]) => /^\d+$/.test(c))) {  // tema do CAP: política pública e o resto
+      const pol = d.opcoes.filter(([c]) => /^\d+$/.test(c)), resto = d.opcoes.filter(([c]) => !/^\d+$/.test(c));
+      corpo = el('div', {},
+        el('p', { class: 'subtitulo' }, 'Política pública (Comparative Agendas Project)'),
+        el('div', { class: 'opcoes' }, pol.map(([c, rot]) => botao(t, c, comNumero(c, rot)))),
+        el('p', { class: 'subtitulo' }, 'Sem política pública'),
+        el('div', { class: 'opcoes' }, resto.map(([c, rot]) => botao(t, c, rot))));
     } else {
       corpo = el('div', { class: 'opcoes' }, d.opcoes.map(([c, rot]) =>
         botao(t, c, rot, t === 'sentimento' ? { 'data-tom': c } : {})));
@@ -420,10 +550,33 @@ function montarFormulario() {
   preencherGuias();
 }
 
+/** Acrescenta o nome digitado na tarefa de nomes (sem repetir o mesmo nome com outra grafia). */
+function adicionarNome(t) {
+  const campo = document.getElementById('nome-' + t), r = S.r;
+  if (!campo || !r || r.codificavel !== 'sim') return;
+  const nome = limparNome(campo.value);
+  if (!chaveNome(nome)) return;
+  if (!r[t].some(o => chaveNome(o.nome) === chaveNome(nome))) r[t].push({ nome, postura: null });
+  campo.value = '';
+  $('#erro-form').textContent = '';
+  desenhar();
+  campo.focus();
+}
+
 function marcar(tarefa, codigo) {
   if (!S.r) return;
   const r = S.r;
-  if (tarefa === 'codificavel' || tarefa === 'sentimento') r[tarefa] = codigo;
+  if (CB.tarefas[tarefa] && tarefa !== 'alvos') {
+    if (tarefa !== 'codificavel' && (r.codificavel !== 'sim' || !condicaoOk(tarefa, r))) return;  // seção desligada
+    if (tipoDe(tarefa) === 'unica') r[tarefa] = codigo;
+    else if (r[tarefa].has(codigo)) r[tarefa].delete(codigo);
+    else {
+      const exc = CB.tarefas[tarefa].exclusiva;  // "informação" vale sozinha: marcá-la limpa as outras, e vice-versa
+      if (exc) { if (codigo === exc) r[tarefa].clear(); else r[tarefa].delete(exc); }
+      r[tarefa].add(codigo);
+    }
+    for (const t of TAREFAS) if (!condicaoOk(t, r)) r[t] = valorVazio(t);  // o foco sai junto com a função que o sustenta
+  }
   else if (tarefa === 'confianca') r.confianca = codigo;
   else if (tarefa === 'precisa_midia') r.precisa_midia = !r.precisa_midia;
   else if (tarefa === 'alvo') {
@@ -433,8 +586,12 @@ function marcar(tarefa, codigo) {
     r.alvos.set(alvo, postura);
   } else if (tarefa === 'tirar-alvo') {
     r.alvos.delete(codigo);
-  } else {
-    r[tarefa].has(codigo) ? r[tarefa].delete(codigo) : r[tarefa].add(codigo);
+  } else if (tarefa === 'postura-nome') {
+    const [t, i, p] = codigo.split(':');
+    if (r[t][i]) r[t][i].postura = p;
+  } else if (tarefa === 'tirar-nome') {
+    const [t, i] = codigo.split(':');
+    r[t].splice(Number(i), 1);
   }
   $('#erro-form').textContent = '';
   desenhar();
@@ -443,21 +600,22 @@ function marcar(tarefa, codigo) {
 function desenhar() {
   const r = S.r, nao = r.codificavel !== 'sim' && r.codificavel !== null;
   desenharAlvos();
+  for (const t of TAREFAS) if (tipoDe(t) === 'nomes') desenharNomes(t);
   for (const b of document.querySelectorAll('#rotulos .opcao')) {
     const t = b.dataset.tarefa, c = b.dataset.codigo;
     let on;
-    if (t === 'codificavel' || t === 'sentimento') on = r[t] === c;
-    else if (t === 'confianca') on = r.confianca === c;
+    if (t === 'confianca') on = r.confianca === c;
     else if (t === 'precisa_midia') on = r.precisa_midia;
     else if (t === 'alvo') on = r.alvos.has(c);
     else if (t === 'postura') { const [a, p] = c.split(':'); on = r.alvos.get(a) === p; }
-    else if (t === 'tirar-alvo') continue;
-    else on = r[t].has(c);
+    else if (t === 'postura-nome') { const [tt, i, p] = c.split(':'); on = !!(r[tt][i] && r[tt][i].postura === p); }
+    else if (CB.tarefas[t]) on = tipoDe(t) === 'unica' ? r[t] === c : r[t].has(c);
+    else continue;
     b.setAttribute('aria-pressed', on ? 'true' : 'false');
   }
   for (const g of document.querySelectorAll('.grupo[data-tarefa]')) {
     const t = g.dataset.tarefa;
-    g.classList.toggle('desligado', nao && t !== 'codificavel' && t !== 'extras');
+    g.classList.toggle('desligado', (nao && t !== 'codificavel' && t !== 'extras') || !!(CB.tarefas[t] && !condicaoOk(t, r)));
     g.classList.toggle('divergente', !!(S.atual && S.atual.fase === 'adjudicacao' && S.atual.divergentes.includes(t)));
     g.classList.remove('invalido');
   }
@@ -483,6 +641,23 @@ function desenharAlvos() {
                      onclick: () => marcar('tirar-alvo', c) }, '×'))));
 }
 
+/** Uma linha por nome escrito, com as três posturas; sem nome, uma nota curta. */
+function desenharNomes(t) {
+  const caixa = document.getElementById('nomes-' + t);
+  if (!caixa) return;
+  const lista = S.r[t];
+  if (!lista.length) {
+    caixa.replaceChildren(el('p', { class: 'nenhum' }, 'Nenhum nome: escreva e tecle Enter ou clique em Adicionar.'));
+    return;
+  }
+  caixa.replaceChildren(...lista.map((o, i) =>
+    el('div', { class: 'alvo-linha' + (o.postura ? '' : ' sem-postura') },
+      el('span', { class: 'nome' }, o.nome),
+      el('div', { class: 'opcoes' }, CB.tarefas[t].posturas.map(([p, prot]) => botao('postura-nome', `${t}:${i}:${p}`, prot, { 'data-postura': p }))),
+      el('button', { type: 'button', class: 'tirar', 'aria-label': `Tirar ${o.nome}`, title: 'Tirar este nome',
+                     onclick: () => marcar('tirar-nome', `${t}:${i}`) }, '×'))));
+}
+
 function ligarTeclado() {
   document.addEventListener('keydown', ev => {
     if ($('#app').hidden || ev.metaKey || ev.ctrlKey || ev.altKey) return;
@@ -491,7 +666,7 @@ function ligarTeclado() {
     if (digitando) return;
     const k = ev.key.toLowerCase();
     if (k === 'escape') { fecharAjuda(); return; }
-    if (k === 'enter') { ev.preventDefault(); salvar(); return; }
+    if (k === 'enter') { ev.preventDefault(); if (S.retorno) proximo(); else salvar(); return; }
     if (k === 'g') { alternarGuia(); return; }  // escolha gravada
     if (k === 'm') { marcar('precisa_midia', '1'); return; }
     if (ATALHOS[k]) { const [t, c] = ATALHOS[k]; if (!(t !== 'confianca' && S.r && S.r.codificavel !== 'sim')) marcar(t, c); }
