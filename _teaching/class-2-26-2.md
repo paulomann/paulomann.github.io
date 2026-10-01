@@ -225,7 +225,7 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 01/10</td>
                     <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Resolução da P1</td>
                     <td>
                         &mdash;
                     </td>
