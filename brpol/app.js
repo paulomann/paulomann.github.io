@@ -61,11 +61,12 @@ function linguaInicial() {
 }
 
 // números e datas no formato de cada idioma
-let nf, nf1, ncp;
+let nf, nf1, nfx1, ncp;
 function criarFormatos() {
   const loc = LANG === 'en' ? 'en-GB' : 'pt-BR';
   nf = new Intl.NumberFormat(loc);
   nf1 = new Intl.NumberFormat(loc, { maximumFractionDigits: 1 });
+  nfx1 = new Intl.NumberFormat(loc, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   ncp = new Intl.NumberFormat(loc, { notation: 'compact', maximumFractionDigits: 1 });
 }
 const fmt = {
@@ -73,6 +74,7 @@ const fmt = {
   dec: v => v == null ? '—' : nf1.format(v),
   cp: v => v == null ? '—' : (Math.abs(v) < 1000 ? nf.format(Math.round(v)) : ncp.format(v)),
   pct: v => v == null ? '—' : nf1.format(v * 100) + '%',
+  pct1: v => v == null ? '—' : nfx1.format(v * 100) + '%',  // sempre com uma casa: para comparar dois valores
   reais: v => v == null ? '—' : 'R$ ' + (Math.abs(v) < 1000 ? nf.format(Math.round(v)) : ncp.format(v)),
 };
 const MESES_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -253,6 +255,7 @@ const observador = new ResizeObserver(entradas => {
 });
 function observar(el, fn) { desenhos.set(el, { fn, w: 0 }); observador.observe(el); observados.add(el); }
 function largarTodos() { for (const el of observados) observador.unobserve(el); observados.clear(); }
+function largarDe(raiz) { for (const el of [...observados]) if (raiz.contains(el)) { observador.unobserve(el); observados.delete(el); } }
 
 // ---------------------------------------------------------------- blocos
 // botão "?": explicação detalhada do gráfico, ao passar o mouse, focar ou tocar
@@ -511,14 +514,14 @@ function barras(el, w, o) {
 }
 
 // ---------------------------------------------------------------- mapa de calor
-/** o: {linhas:[{id, rot}], colunas:[{id, rot, cor}], valor(l, c), fmt, dica(l, c)} — rampa de uma cor (violeta). */
+/** o: {linhas:[{id, rot, aoClicar}], colunas:[{id, rot, cor}], valor(l, c), fmt, dica(l, c)} — rampa de uma cor (violeta). */
 function calor(el, w, o) {
   const f = o.fmt || fmt.pct;
   let max = 0;
   for (const l of o.linhas) for (const c of o.colunas) { const v = o.valor(l, c); if (v != null && v > max) max = v; }
   const cab = h('tr', {}, h('th', {}), o.colunas.map(c => h('th', {},
     c.cor ? h('span', { class: 'chave-ponto', style: `background:${c.cor};margin-right:4px;vertical-align:middle` }) : null, c.rot)));
-  const corpo = o.linhas.map(l => h('tr', {}, h('th', { text: l.rot }), o.colunas.map(c => {
+  const corpo = o.linhas.map(l => h('tr', {}, h('th', {}, l.aoClicar ? h('button', { type: 'button', class: 'link', text: l.rot, onclick: l.aoClicar }) : l.rot), o.colunas.map(c => {
     const v = o.valor(l, c);
     const tt = v == null ? 0 : v / (max || 1);
     const td = h('td', {
@@ -588,22 +591,150 @@ function barrasPares(el, w, o) {
   }
   el.append(g);
 }
+/** Diferença em pontos percentuais, tema a tema, centrada no zero: à direita, mais em A; à esquerda, mais em B.
+    o: {linhas:[{rot, v, dica}], corA, corB} (v em fração: 0,032 = 3,2 pontos) */
+function divergente(el, w, o) {
+  const larg = Math.min(200, Math.round(w * 0.4)), trilho = Math.max(80, w - larg - 8), meio = trilho / 2;
+  const max = Math.max(1e-9, ...o.linhas.map(r => Math.abs(r.v || 0)));
+  const escala = (meio - 44) / max;
+  const g = h('div', { class: 'barras divergente', style: `grid-template-columns:${larg}px 1fr` });
+  for (const r of o.linhas) {
+    const bw = Math.abs(r.v || 0) * escala, pos = (r.v || 0) >= 0;
+    const area = h('div', { class: 'area-div' },
+      h('div', { class: 'meio', style: `left:${meio}px` }),
+      h('div', { class: 'barra', style: `left:${pos ? meio : meio - bw}px;width:${bw}px;background:${pos ? o.corA : o.corB};border-radius:${pos ? '0 3px 3px 0' : '3px 0 0 3px'}` }),
+      h('span', { class: 'val', style: pos ? `left:${meio + bw + 4}px` : `right:${trilho - meio + bw + 4}px`, text: pp(r.v, false) }));
+    const linha = h('div', { class: 'linha-alvo' }, h('div', { class: 'rot' }, h('span', { class: 't', text: r.rot, title: r.rot })), area);
+    if (r.dica) comDica(linha, () => r.dica);
+    g.append(linha);
+  }
+  el.append(g);
+}
+/** 0,032 -> '+3,2 p.p.' (com unidade) ou '+3,2' */
+function pp(v, unidade = true) {
+  if (v == null || Number.isNaN(v)) return '—';
+  const x = Math.round(v * 1000) / 10;
+  const txt = `${x > 0 ? '+' : x < 0 ? '−' : ''}${nfx1.format(Math.abs(x))}`;
+  return unidade ? t('pp', { v: txt }) : txt;
+}
+
 const LIGACOES = new Set(['de', 'da', 'do', 'dos', 'das', 'e']);
 /** 'ELMANO DE FREITAS' -> 'Elmano de Freitas' */
 const nomeProprio = s => (s || '').toLowerCase().split(/\s+/).map((p, i) => i && LIGACOES.has(p) ? p : p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
 
+// ---------------------------------------------------------------- agenda: temas e menções por grupo e semana
+// Grupos: candidatos (e cada campo), partidos, conversa pública e veículos de notícia. Para veículos, só posts sobre
+// política, e cada veículo pesa igual (média das parcelas); os demais somam os posts. Stories ficam fora.
+const VEIC = ['veiculo_nacional', 'veiculo_regional'];
+const ehVeiculo = g => g === 'veiculos' || VEIC.includes(g);
+let AGENDA = new Map();
+function indexarAgenda() {
+  const A = D.temas.agenda, R = A.rotulos;
+  AGENDA = new Map(A.linhas.map(([sem, g, peso, n, k, p, ep]) => [`${sem}|${g}|${peso}`,
+    { n, k, p: Object.fromEntries(R.map((r, i) => [r, p[i]])), ep: Object.fromEntries(R.map((r, i) => [r, ep[i]])) }]));
+}
+const agenda = (sem, g) => AGENDA.get(`${sem}|${g}|${ehVeiculo(g) ? 'veiculo' : 'post'}`) || null;
+const grpRot = g => CAMPOS.includes(g) ? segRot(g) : t(`grp.${g}`);
+const grpCurto = g => CAMPOS.includes(g) ? segCurto(g) : t(`grp.${g}.curto`);
+const corGrupo = g => CAMPOS.includes(g) ? CORES[g] : null;
+const temaRotulo = tm => rotuloDe('tema', tm.chave, tm.rotulo);
+const temaCurto = tm => rotuloDe('tema_curto', tm.chave, temaRotulo(tm));
+const alvoRotulo = a => rotuloDe('alvo', a.chave, a.rotulo);
+/** 'tema_saude' -> 'Saúde'; 'alvo_lula' -> 'Lula'; 'pol' -> 'posts sobre política' */
+function rotuloNome(r) {
+  if (r === 'pol') return t('veic.sobre_politica');
+  const [tipo, ...resto] = r.split('_'), chave = resto.join('_');
+  const lista = tipo === 'tema' ? D.temas.temas : D.temas.alvos;
+  const x = lista.find(y => y.chave === chave);
+  return x ? (tipo === 'tema' ? temaRotulo(x) : alvoRotulo(x)) : r;
+}
+/** Semana anterior a `sem` numa lista de inícios de semana; null para 'todas' ou para a primeira. */
+function semanaAnterior(sem, lista) {
+  const i = lista.indexOf(sem);
+  return i > 0 ? lista[i - 1] : null;
+}
+/** Rótulo de semana para seletores: a semana em curso leva a marca "em curso". */
+function semanaOpcao(sm) {
+  const emCurso = !sm.completa && sm.inicio !== D.meta.semanas[0].inicio;
+  return rotSemana(sm.inicio, sm.fim) + (emCurso ? ` · ${t('em_curso')}` : '');
+}
+/** Base de uma estimativa: "12.345 posts" ou "1.234 posts de 80 veículos". */
+function baseTxt(r, g) {
+  if (!r) return '—';
+  return ehVeiculo(g) ? t('agenda.base_veic', { n: fmt.int(r.n), k: fmt.int(r.k) }) : t('agenda.base_posts', { n: fmt.int(r.n) });
+}
+
+/** Comparação de agendas: diferença em pontos percentuais entre dois grupos, tema a tema, e o mapa dos grupos.
+    o: {semana, semanas (inícios, para achar a anterior), grupos (opções de A e B), colunas (mapa), a, b, aoMudar(a, b)} */
+function comparacaoAgenda(pai, o) {
+  const temas = D.temas.temas;
+  const ant = semanaAnterior(o.semana, o.semanas);
+  const A = agenda(o.semana, o.a), B = agenda(o.semana, o.b);
+  const Aa = ant && agenda(ant, o.a), Ba = ant && agenda(ant, o.b);
+  const s = semanaRot(o.semana);
+  const dif = (x, y, r) => x && y && x.p[r] != null && y.p[r] != null ? x.p[r] - y.p[r] : null;
+  const linhasDif = temas.map(tm => {
+    const r = `tema_${tm.chave}`, rot = temaRotulo(tm);
+    const ln = [{ cor: 'var(--c-dado)', rot: grpRot(o.a), val: fmt.pct(A?.p[r]) }, { cor: 'var(--c-outros)', rot: grpRot(o.b), val: fmt.pct(B?.p[r]) }];
+    if (ant) ln.push({ rot: t('agenda.var_a', { g: grpCurto(o.a) }), val: pp(dif(A, Aa, r)) }, { rot: t('agenda.var_b', { g: grpCurto(o.b) }), val: pp(dif(B, Ba, r)) });
+    return { r, rot, v: dif(A, B, r), dica: { titulo: `${rot} · ${pp(dif(A, B, r))}`, linhas: ln } };
+  }).filter(x => x.v != null).sort((x, y) => y.v - x.v);
+  const opcoesG = o.grupos.map(g => [g, grpRot(g)]);
+  const c = grafico(pai, {
+    titulo: t('agenda.dif', { s }), legenda: t('agenda.dif_leg'), ajuda: 'agenda_dif', tipoLegenda: 'ponto',
+    itens: [{ rot: t('agenda.mais_em', { g: grpCurto(o.a) }), cor: 'var(--c-dado)' }, { rot: t('agenda.mais_em', { g: grpCurto(o.b) }), cor: 'var(--c-outros)' }],
+    nota: A && B ? t('agenda.bases', { a: grpCurto(o.a), na: baseTxt(A, o.a), b: grpCurto(o.b), nb: baseTxt(B, o.b) }) : null,
+    desenhar: (el, w) => linhasDif.length ? divergente(el, w, { linhas: linhasDif, corA: 'var(--c-dado)', corB: 'var(--c-outros)' })
+      : el.append(h('p', { class: 'nota', text: t('agenda.sem_dados', { g: grpRot(!A ? o.a : o.b) }) })),
+    tabela: () => ({
+      cols: [{ rot: t('tema') }, { rot: grpCurto(o.a), n: true }, { rot: grpCurto(o.b), n: true }, { rot: t('agenda.diferenca'), n: true },
+        ...(ant ? [{ rot: t('agenda.var_a', { g: grpCurto(o.a) }), n: true }, { rot: t('agenda.var_b', { g: grpCurto(o.b) }), n: true }] : [])],
+      linhas: temas.map(tm => { const r = `tema_${tm.chave}`; return [temaRotulo(tm), fmt.pct(A?.p[r]), fmt.pct(B?.p[r]), pp(dif(A, B, r)), ...(ant ? [pp(dif(A, Aa, r)), pp(dif(B, Ba, r))] : [])]; }),
+    }),
+  });
+  c.insertBefore(h('div', { class: 'filtros filtros-cartao' },
+    seletor(t('agenda.grupo_a'), opcoesG, o.a, v => o.aoMudar(v, o.b)),
+    seletor(t('agenda.grupo_b'), opcoesG, o.b, v => o.aoMudar(o.a, v))), c.querySelector('.cab-cartao').nextSibling);
+
+  const cols = o.colunas.filter(g => agenda(o.semana, g)).map(g => ({ id: g, rot: grpCurto(g), cor: corGrupo(g) }));
+  grafico(pai, {
+    titulo: t('agenda.mapa', { s }), legenda: t('agenda.mapa_leg'), ajuda: 'agenda_mapa',
+    desenhar: (el, w) => calor(el, w, {
+      fmt: fmt.pct1,
+      linhas: temas.map(tm => ({ id: `tema_${tm.chave}`, rot: temaRotulo(tm) })), colunas: cols,
+      valor: (l, cc) => agenda(o.semana, cc.id)?.p[l.id] ?? null,
+      dica: (l, cc) => {
+        const r = agenda(o.semana, cc.id), ra = ant && agenda(ant, cc.id);
+        const ln = [{ rot: t('parcela'), val: fmt.pct(r?.p[l.id]) }, { rot: t('agenda.base'), val: baseTxt(r, cc.id) }];
+        if (ant) ln.push({ rot: t('agenda.vs_ant'), val: pp(dif(r, ra, l.id)) });
+        return { titulo: `${l.rot} · ${grpRot(cc.id)}`, linhas: ln };
+      },
+    }),
+    tabela: () => ({ cols: [{ rot: t('tema') }, ...cols.map(cc => ({ rot: cc.rot, n: true }))],
+      linhas: temas.map(tm => [temaRotulo(tm), ...cols.map(cc => fmt.pct(agenda(o.semana, cc.id)?.p[`tema_${tm.chave}`]))]) }),
+  });
+}
+
 // ================================================================ ABAS
 const ABAS = [
-  ['geral', abaGeral], ['perfis', abaPerfis], ['engajamento', abaEngajamento], ['temas', abaTemas],
-  ['conversa', abaConversa], ['anuncios', abaAnuncios], ['metodo', abaMetodo],
+  ['geral', abaGeral], ['temas', abaTemas], ['conversa', abaConversa], ['veiculos', abaVeiculos],
+  ['perfis', abaPerfis], ['engajamento', abaEngajamento], ['anuncios', abaAnuncios], ['metodo', abaMetodo],
 ];
+// Seleção levada de uma aba para outra: a semana (abas com seletor de semana), a conta a abrir em Perfis, o nome
+// acompanhado em Temas e os dois grupos da comparação de agendas.
+const ESTADO = { semana: null, conta: null, alvo: null, comparar: null };
+const USA_SEMANA = new Set(['temas', 'conversa', 'veiculos']);
 let montadas = {};
 function mostrarAba(id) {
   if (!ABAS.some(a => a[0] === id)) id = 'geral';
   for (const b of document.querySelectorAll('nav.abas button')) b.setAttribute('aria-selected', String(b.dataset.aba === id));
+  // aba montada com outra semana: monta de novo, para a semana escolhida noutra aba valer aqui
+  if (montadas[id] && USA_SEMANA.has(id) && montadas[id].dataset.semana !== String(ESTADO.semana)) {
+    largarDe(montadas[id]); montadas[id].remove(); delete montadas[id];
+  }
   for (const [k, painel] of Object.entries(montadas)) painel.hidden = k !== id;
   if (!montadas[id]) {
-    const painel = h('div', { role: 'tabpanel' });
+    const painel = h('div', { role: 'tabpanel', 'data-semana': String(ESTADO.semana) });
     $('#conteudo').append(painel);
     montadas[id] = painel;
     ABAS.find(a => a[0] === id)[1](painel);
@@ -611,10 +742,20 @@ function mostrarAba(id) {
   esconderDica();
   if (location.hash !== `#${id}`) history.replaceState(null, '', `#${id}`);
 }
+/** Vai para outra aba levando a seleção (semana, conta, nome, grupos); a aba de destino é montada de novo. */
+function irPara(id, sel = {}) {
+  Object.assign(ESTADO, sel);
+  if (montadas[id]) { largarDe(montadas[id]); montadas[id].remove(); delete montadas[id]; }
+  mostrarAba(id);
+  scrollTo({ top: 0, behavior: 'smooth' });
+}
+/** Guarda a semana escolhida numa aba, para as outras abas abrirem nela. */
+function lembrarSemana(painel, sem) { ESTADO.semana = sem; painel.dataset.semana = String(sem); }
 
 function abrirPainel(dados) {
   D = dados;
   D.contasObj = D.contas.linhas.map(l => Object.fromEntries(D.contas.colunas.map((c, i) => [c, l[i]])));
+  indexarAgenda();
   $('#bloqueio').remove();
   $('#app').hidden = false;
   $('#tema').addEventListener('click', () => {
@@ -645,10 +786,50 @@ function montarApp() {
 }
 
 // ---------------------------------------------------------------- visão geral
+/** "O que mudou?": frases geradas dos destaques do passo 9, cada uma com a base e o caminho até a análise. */
+function oQueMudou(p) {
+  const Q = D.destaques;
+  if (!Q) return;
+  const leg = Q.par ? t('mudou.leg', { s: semanaRot(Q.par[1]), a: semanaRot(Q.par[0]) })
+    + (Q.par_conversa && Q.par_conversa[1] !== Q.par[1] ? t('mudou.leg_conv', { s: semanaRot(Q.par_conversa[1]), a: semanaRot(Q.par_conversa[0]) }) : '')
+    : t('mudou.sem_par');
+  const c = cartao(p, { titulo: t('mudou.titulo'), legenda: leg, ajuda: 'mudou' });
+  c.classList.add('mudou');
+  c.style.marginBottom = '16px';
+  if (!Q.itens.length) { c.append(h('p', { class: 'nota', text: t('mudou.nada') })); return; }
+  const frase = x => {
+    const r = rotuloNome(x.rotulo), a = fmt.pct1(x.tipo === 'agenda' ? x.p : x.p_ant), b = fmt.pct1(x.tipo === 'agenda' ? x.p_b : x.p);
+    const r1 = v => Math.round(v * 1000) / 1000;  // a diferença sai dos valores como aparecem na frase
+    const d = pp(x.tipo === 'agenda' ? r1(x.p) - r1(x.p_b) : r1(x.p) - r1(x.p_ant));
+    const de = g => t(`grp.${g}.de`, null, grpRot(g));
+    if (x.tipo === 'agenda') return t('mudou.agenda', { tema: r, a, ga: de(x.grupo), b, gb: de(x.grupo_b), d });
+    return t(`mudou.${x.tipo}`, { g: x.tipo === 'veiculos' ? t(`grupo.${x.grupo}`) : grpRot(x.grupo), r, a, b, d });
+  };
+  const base = x => {
+    if (x.tipo === 'agenda') return t('mudou.base_agenda', { s: semanaRot(x.semana), na: ehVeiculo(x.grupo) ? baseTxt({ n: x.n, k: x.k }, x.grupo) : fmt.int(x.n), nb: fmt.int(x.n_b) });
+    const sems = t('mudou.semanas', { s: semanaRot(x.semana), a: semanaRot(x.semana_ant) });
+    return x.k != null ? t('mudou.base_k', { sems, k: fmt.int(x.k) }) : t('mudou.base_n', { sems, na: fmt.int(x.n_ant), nb: fmt.int(x.n) });
+  };
+  const destino = x => {
+    if (x.tipo === 'agenda') return [x.grupo === 'conversa' ? 'conversa' : 'veiculos', { semana: x.semana, comparar: [x.grupo, x.grupo_b] }];
+    if (x.grupo === 'conversa') return ['conversa', { semana: x.semana }];
+    if (ehVeiculo(x.grupo)) return ['veiculos', { semana: x.semana }];
+    return ['temas', { semana: x.semana, alvo: x.tipo === 'ator' ? x.rotulo.slice(5) : ESTADO.alvo }];
+  };
+  c.append(h('ul', { class: 'lista-mudou' }, Q.itens.map(x => {
+    const [aba, sel] = destino(x);
+    return h('li', {},
+      h('div', { class: 'frase', text: frase(x) }),
+      h('div', { class: 'base' }, h('span', { text: base(x) }),
+        h('button', { type: 'button', class: 'link', text: t('mudou.ver', { aba: t(`aba.${aba}`) }), onclick: () => irPara(aba, sel) })));
+  })));
+}
+
 function abaGeral(p) {
   const M = D.meta, S = D.serie;
   const idx = iso => S.dias.indexOf(iso);
   const g = M.por_grupo;
+  oQueMudou(p);
   kpis(p, [
     { rot: t('geral.k_posts'), val: fmt.int(M.posts), det: t('geral.k_posts_det') },
     { rot: t('contas'), val: fmt.int(M.contas), det: t('geral.k_contas_det', { c: fmt.int(g.candidato), p: fmt.int(g.partido || 0), v: fmt.int((g.veiculo_nacional || 0) + (g.veiculo_regional || 0)) }) },
@@ -690,7 +871,9 @@ function abaPerfis(p) {
   const todas = D.contasObj;
   const temas = D.temas.temas;
   const temaRot = tm => rotuloDe('tema', tm.chave, tm.rotulo);
-  const est = { q: '', grupo: 'todos', cargo: 'todos', uf: 'todas', seg: 'todos', ordem: 'posts', limite: 50 };
+  const pedida = ESTADO.conta ? todas.find(c => c.usuario === ESTADO.conta) : null;  // vinda de outra aba
+  ESTADO.conta = null;
+  const est = { q: '', grupo: pedida ? pedida.grupo : 'todos', cargo: 'todos', uf: 'todas', seg: 'todos', ordem: 'posts', limite: 50 };
   const ufs = [...new Set(todas.map(c => c.uf).filter(Boolean))].sort();
   const grupo1 = g => t(`grupo1.${g}`, null, '');
   const filtros = h('div', { class: 'filtros' });
@@ -818,6 +1001,7 @@ function abaPerfis(p) {
     ficha.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   desenhar();
+  if (pedida) mostrarFicha(pedida);
 }
 
 // ---------------------------------------------------------------- engajamento
@@ -962,48 +1146,57 @@ function abaEngajamento(p) {
 // ---------------------------------------------------------------- temas e menções
 function abaTemas(p) {
   const T = D.temas;
-  const temaRot = tm => rotuloDe('tema', tm.chave, tm.rotulo);
-  const alvoRot = a => rotuloDe('alvo', a.chave, a.rotulo);
-  const semanas = [['todas', t('todas_semanas')], ...D.meta.semanas.map(sm => [sm.inicio, rotSemana(sm.inicio, sm.fim)])];
-  const est = { semana: 'todas', alvo: 'lula', seg: 'lula' };
+  const sems = D.meta.semanas, inicios = sems.map(sm => sm.inicio);
+  const semanas = [['todas', t('todas_semanas')], ...sems.map(sm => [sm.inicio, semanaOpcao(sm)])];
+  const est = {
+    semana: inicios.includes(ESTADO.semana) ? ESTADO.semana : 'todas',
+    alvo: T.alvos.some(a => a.chave === ESTADO.alvo) ? ESTADO.alvo : 'lula', seg: 'lula',
+  };
   p.append(h('div', { class: 'filtros' },
-    seletor(t('semana'), semanas, est.semana, v => { est.semana = v; desenhar(); }),
-    seletor(t('temas.alvo'), T.alvos.map(a => [a.chave, alvoRot(a)]), est.alvo, v => { est.alvo = v; desenhar(); }),
+    seletor(t('semana'), semanas, est.semana, v => { est.semana = v; lembrarSemana(p, v); desenhar(); }),
+    seletor(t('temas.alvo'), T.alvos.map(a => [a.chave, alvoRotulo(a)]), est.alvo, v => { est.alvo = v; ESTADO.alvo = v; desenhar(); }),
     seletor(t('temas.hashtags_de'), SEGMENTOS.map(sg => [sg, segRot(sg)]), est.seg, v => { est.seg = v; desenhar(); })));
   aviso(p, t('temas.aviso'));
   const alvo = h('div');
   p.append(alvo);
-  const colunasSeg = SEGMENTOS.map(sg => ({ id: sg, rot: segCurto(sg), cor: CAMPOS.includes(sg) ? CORES[sg] : null }));
-  const reg = (sem, sg) => T.contagens.find(r => r.semana === sem && r.seg === sg);
+  const grupos = [...CAMPOS, 'partido', ...VEIC];
+  const colunasSeg = grupos.map(g => ({ id: g, rot: grpCurto(g), cor: corGrupo(g) }));
 
   function desenhar() {
     alvo.replaceChildren();
+    const ant = semanaAnterior(est.semana, inicios);
     const duas = h('div', { class: 'grade duas' });
     alvo.append(duas);
     const mapa = (titulo, legenda, ajuda, lista, pref, rotular) => grafico(duas, {
       titulo, legenda, ajuda,
       desenhar: (el, w) => calor(el, w, {
-        linhas: lista.map(x => ({ id: x.chave, rot: rotular(x) })), colunas: colunasSeg,
-        valor: (l, c) => { const r = reg(est.semana, c.id); return r && r.total ? r[`${pref}_${l.id}`] / r.total : null; },
-        dica: (l, c) => { const r = reg(est.semana, c.id); return { titulo: `${l.rot} · ${segRot(c.id)}`, linhas: [{ rot: t('temas.citam'), val: fmt.int(r?.[`${pref}_${l.id}`]) }, { rot: t('temas.no_seg'), val: fmt.int(r?.total) }] }; },
+        fmt: fmt.pct1,
+        linhas: lista.map(x => ({ id: `${pref}_${x.chave}`, rot: rotular(x) })), colunas: colunasSeg,
+        valor: (l, c) => agenda(est.semana, c.id)?.p[l.id] ?? null,
+        dica: (l, c) => {
+          const r = agenda(est.semana, c.id), ra = ant && agenda(ant, c.id);
+          const ln = [{ rot: t('parcela'), val: fmt.pct(r?.p[l.id]) }, { rot: t('agenda.base'), val: baseTxt(r, c.id) }];
+          if (ant) ln.push({ rot: t('agenda.vs_ant'), val: pp(r && ra && r.p[l.id] != null && ra.p[l.id] != null ? r.p[l.id] - ra.p[l.id] : null) });
+          return { titulo: `${l.rot} · ${grpRot(c.id)}`, linhas: ln };
+        },
       }),
-      tabela: () => ({ cols: [{ rot: '' }, ...colunasSeg.map(c => ({ rot: c.rot, n: true }))], linhas: lista.map(x => [rotular(x), ...colunasSeg.map(c => { const r = reg(est.semana, c.id); return r ? fmt.pct(r[`${pref}_${x.chave}`] / r.total) : '—'; })]) }),
+      tabela: () => ({ cols: [{ rot: '' }, ...colunasSeg.map(c => ({ rot: c.rot, n: true }))],
+        linhas: lista.map(x => [rotular(x), ...colunasSeg.map(c => fmt.pct(agenda(est.semana, c.id)?.p[`${pref}_${x.chave}`]))]) }),
     });
-    mapa(t('temas.mapa_temas', { s: semanaRot(est.semana) }), t('temas.mapa_temas_leg'), 'temas_mapa', T.temas, 'tema', temaRot);
-    mapa(t('temas.mapa_alvos', { s: semanaRot(est.semana) }), t('temas.mapa_alvos_leg'), 'temas_mencoes', T.alvos, 'alvo', alvoRot);
+    mapa(t('temas.mapa_temas', { s: semanaRot(est.semana) }), t('temas.mapa_temas_leg'), 'temas_mapa', T.temas, 'tema', temaRotulo);
+    mapa(t('temas.mapa_alvos', { s: semanaRot(est.semana) }), t('temas.mapa_alvos_leg'), 'temas_mencoes', T.alvos, 'alvo', alvoRotulo);
 
-    const nomeAlvo = alvoRot(T.alvos.find(a => a.chave === est.alvo));
-    const sems = D.meta.semanas;
-    const serie = [...CAMPOS, 'veiculo'].map(sg => ({
-      rot: segRot(sg), curto: segCurto(sg), cor: CORES[sg],
-      v: sems.map(sm => { const r = reg(sm.inicio, sg); return r && r.total ? r[`alvo_${est.alvo}`] / r.total : null; }),
+    const nomeAlvo = alvoRotulo(T.alvos.find(a => a.chave === est.alvo));
+    const serie = [...CAMPOS, 'veiculos'].map(g => ({
+      rot: grpRot(g), curto: grpCurto(g), cor: CORES[g] || 'var(--c-outros)',
+      v: sems.map(sm => agenda(sm.inicio, g)?.p[`alvo_${est.alvo}`] ?? null),
     })).filter(se => se.v.some(v => v != null));
     const dois = h('div', { class: 'grade duas', style: 'margin-top:16px' });
     alvo.append(dois);
     grafico(dois, {
       titulo: t('temas.linha', { a: nomeAlvo }), legenda: t('temas.linha_leg'), ajuda: 'temas_linha',
       itens: serie.slice(0, 4), nota: t('temas.linha_nota'),
-      desenhar: (el, w) => linhas(el, w, { x: sems.map(sm => sm.inicio), xFmt: semanaCurta, xDica: ini => t('semana_de', { s: semanaRot(ini) }), series: serie, yFmt: v => fmt.pct(v), pontos: true, altura: 240, rotFim: false }),
+      desenhar: (el, w) => linhas(el, w, { x: inicios, xFmt: semanaCurta, xDica: ini => t('semana_de', { s: semanaRot(ini) }), series: serie, yFmt: v => fmt.pct(v), pontos: true, altura: 240, rotFim: false }),
       tabela: () => ({ cols: [{ rot: t('semana') }, ...serie.map(se => ({ rot: se.curto, n: true }))], linhas: sems.map((sm, i) => [rotSemana(sm.inicio, sm.fim), ...serie.map(se => fmt.pct(se.v[i]))]) }),
     });
     const tags = D.hashtags.filter(r => r.semana === est.semana && r.seg === est.seg);
@@ -1022,7 +1215,6 @@ function abaConversa(p) {
   const C = D.conversa;
   if (!C) { aviso(p, t('conv.vazio')); return; }
   const alvoRot = a => rotuloDe('alvo', a.chave, a.rotulo);
-  const temaRot = tm => rotuloDe('tema', tm.chave, tm.rotulo);
   kpis(p, [
     { rot: t('conv.k_posts'), val: fmt.int(soma(C.semanas.map(sm => sm.posts))), det: t('conv.k_posts_det') },
     { rot: t('geral.k_semanas'), val: fmt.int(C.semanas.length), det: C.semanas.map(sm => semanaRot(sm.semana)).join(' · ') },
@@ -1055,26 +1247,25 @@ function abaConversa(p) {
   }
   rodape(cm, null, () => ({ cols: [{ rot: t('dia') }, ...parcelas.map(o => ({ rot: alvoRot(o.a), n: true }))], linhas: x.map((d, i) => [dm(d), ...parcelas.map(o => fmt.pct(o.v[i]))]) }));
 
-  const semanas = C.semanas.map(sm => [sm.semana, semanaRot(sm.semana)]);
-  const est = { semana: semanas.at(-1)[0] };
-  p.append(h('div', { class: 'filtros', style: 'margin-top:24px' }, seletor(t('semana'), semanas, est.semana, v => { est.semana = v; desenhar(); })));
-  const alvo = h('div', { class: 'grade duas' });
+  const inicios = C.semanas.map(sm => sm.semana);
+  const semanas = C.semanas.map(sm => [sm.semana, semanaRot(sm.semana) + (sm.completa || sm.semana === inicios[0] ? '' : ` · ${t('em_curso')}`)]);
+  const GRUPOS_CONV = ['conversa', 'candidatos', 'veiculos', ...VEIC, ...CAMPOS, 'partido'];
+  const cmp = ESTADO.comparar && ESTADO.comparar.every(g => GRUPOS_CONV.includes(g)) && ESTADO.comparar.includes('conversa')
+    ? ESTADO.comparar : ['conversa', 'candidatos'];
+  const est = { semana: inicios.includes(ESTADO.semana) ? ESTADO.semana : inicios.at(-1), a: cmp[0], b: cmp[1] };
+  p.append(h('div', { class: 'filtros', style: 'margin-top:24px' }, seletor(t('semana'), semanas, est.semana, v => { est.semana = v; lembrarSemana(p, v); desenhar(); })));
+  const alvo = h('div');
   p.append(alvo);
   function desenhar() {
     alvo.replaceChildren();
     const s = semanaRot(est.semana);
-    const conv = C.temas.find(r => r.semana === est.semana);
-    const cand = D.temas.contagens.find(r => r.semana === est.semana && r.seg === 'candidatos');
-    const pares = D.temas.temas.map(tm => ({
-      rot: temaRot(tm), a: conv && conv.total ? conv[`tema_${tm.chave}`] / conv.total : null, b: cand && cand.total ? cand[`tema_${tm.chave}`] / cand.total : null,
-    })).sort((u, v) => (v.a ?? 0) - (u.a ?? 0));
-    grafico(alvo, {
-      titulo: t('conv.agenda', { s }), legenda: t('conv.agenda_leg'), ajuda: 'conv_agenda', tipoLegenda: 'ponto',
-      itens: [{ rot: t('conv.publico'), cor: 'var(--c-dado)' }, { rot: t('conv.candidatos'), cor: 'var(--c-outros)' }],
-      desenhar: (el, w) => barrasPares(el, w, { linhas: pares, rotA: t('conv.publico'), rotB: t('conv.candidatos'), corA: 'var(--c-dado)', corB: 'var(--c-outros)' }),
-      tabela: () => ({ cols: [{ rot: '' }, { rot: t('conv.publico'), n: true }, { rot: t('conv.candidatos'), n: true }], linhas: pares.map(r => [r.rot, fmt.pct(r.a), fmt.pct(r.b)]) }),
+    const ag = h('div', { class: 'grade duas' });
+    alvo.append(ag);
+    comparacaoAgenda(ag, {
+      semana: est.semana, semanas: inicios, grupos: GRUPOS_CONV, colunas: ['conversa', 'candidatos', ...VEIC], a: est.a, b: est.b,
+      aoMudar: (a, b) => { est.a = a; est.b = b; ESTADO.comparar = [a, b]; desenhar(); },
     });
-    const coluna = h('div', { class: 'grade' });
+    const coluna = h('div', { class: 'grade duas', style: 'margin-top:16px' });
     alvo.append(coluna);
     const tags = C.em_alta.filter(r => r.semana === est.semana).map(r => ({
       ...r, variacao: r.n_ant == null ? null : r.n_ant === 0 ? Infinity : (r.n - r.n_ant) / r.n_ant,
@@ -1098,6 +1289,153 @@ function abaConversa(p) {
         ],
       }),
     });
+  }
+  desenhar();
+}
+
+// ---------------------------------------------------------------- veículos de notícia
+function abaVeiculos(p) {
+  const V = D.veiculos;
+  if (!V) { aviso(p, t('veic.vazio')); return; }
+  const MIN_N = D.meta.min_n;
+  const sems = D.meta.semanas, inicios = sems.map(sm => sm.inicio);
+  const R = D.temas.agenda.rotulos;
+  const ix = Object.fromEntries(V.semanal.colunas.map((c, i) => [c, i]));
+  const info = new Map(D.contasObj.filter(c => VEIC.includes(c.grupo)).map(c => [c.usuario, c]));
+  // por veículo e semana: posts de feed, posts sobre política e, entre estes, quantos citam cada tema e nome
+  const base = new Map();
+  for (const l of V.semanal.linhas) {
+    const u = l[ix.usuario];
+    if (!base.has(u)) base.set(u, new Map());
+    base.get(u).set(l[ix.semana], { posts: l[ix.posts], pol: l[ix.pol], r: R.map(r => l[ix[r]]) });
+  }
+  const GRUPOS_V = [...VEIC, 'veiculos', 'candidatos', ...CAMPOS, 'partido', 'conversa'];
+  const cmp = ESTADO.comparar && ESTADO.comparar.every(g => GRUPOS_V.includes(g)) && ESTADO.comparar.some(ehVeiculo)
+    ? ESTADO.comparar : VEIC;
+  const est = { semana: inicios.includes(ESTADO.semana) ? ESTADO.semana : 'todas', tipo: 'todos', mostrar: 'tema', todos: false, a: cmp[0], b: cmp[1] };
+  const doTipo = u => est.tipo === 'todos' || info.get(u)?.grupo === `veiculo_${est.tipo}`;
+  /** Soma das semanas escolhidas, por veículo. */
+  function somar(sem) {
+    const out = [];
+    for (const [u, porSem] of base) {
+      if (!info.has(u)) continue;
+      const x = { u, posts: 0, pol: 0, r: R.map(() => 0) };
+      for (const [s_, y] of porSem) {
+        if (sem !== 'todas' && s_ !== sem) continue;
+        x.posts += y.posts; x.pol += y.pol; y.r.forEach((c, i) => { x.r[i] += c; });
+      }
+      out.push(x);
+    }
+    return out;
+  }
+  const mediaPol = xs => { const ok = xs.filter(x => x.posts >= MIN_N); return ok.length ? soma(ok.map(x => x.pol / x.posts)) / ok.length : null; };
+  const nomeV = u => info.get(u)?.nome || '@' + u;
+  const tipoV = u => t(`grupo1.${info.get(u)?.grupo}`, null, '');
+
+  const tipos = [['todos', t('veic.tipo_todos')], ['nacional', t('grupo.veiculo_nacional')], ['regional', t('grupo.veiculo_regional')]];
+  p.append(h('div', { class: 'filtros' },
+    seletor(t('semana'), [['todas', t('todas_semanas')], ...sems.map(sm => [sm.inicio, semanaOpcao(sm)])], est.semana, v => { est.semana = v; lembrarSemana(p, v); desenhar(); }),
+    seletor(t('veic.tipo'), tipos, est.tipo, v => { est.tipo = v; desenhar(); })));
+  aviso(p, t('veic.aviso'));
+  const alvo = h('div');
+  p.append(alvo);
+
+  function desenhar() {
+    alvo.replaceChildren();
+    const ant = semanaAnterior(est.semana, inicios);
+    const sel = somar(est.semana).filter(x => doTipo(x.u) && x.posts > 0);
+    const selAnt = ant ? somar(ant).filter(x => doTipo(x.u) && x.posts > 0) : null;
+    const posts = soma(sel.map(x => x.posts)), pol = soma(sel.map(x => x.pol));
+    const nTipo = g => sel.filter(x => info.get(x.u)?.grupo === g).length;
+    const mp = mediaPol(sel), mpAnt = selAnt && mediaPol(selAnt);
+    const postsAnt = selAnt && soma(selAnt.map(x => x.posts));
+    kpis(alvo, [
+      { rot: t('veic.k_ativos'), val: fmt.int(sel.length), det: t('veic.k_ativos_det', { n: fmt.int(nTipo('veiculo_nacional')), r: fmt.int(nTipo('veiculo_regional')) }) },
+      { rot: t('veic.k_posts'), val: fmt.int(posts), det: postsAnt ? t('veic.vs_ant', { v: `${posts >= postsAnt ? '+' : '−'}${fmt.pct(Math.abs(posts / postsAnt - 1))}` }) : t('veic.k_posts_det') },
+      { rot: t('veic.k_pol'), val: fmt.pct(mp), det: mpAnt != null ? t('veic.k_pol_det_ant', { soma: fmt.pct(posts ? pol / posts : null), d: pp(mp - mpAnt) }) : t('veic.k_pol_det', { soma: fmt.pct(posts ? pol / posts : null) }) },
+    ]);
+
+    // volume por dia e parcela sobre política por semana, por tipo de veículo
+    const semColeta = faixas(V.dias.map(d => D.serie.sem_coleta.includes(d)));
+    const bandas = semColeta.map(f => ({ ...f, tipo: 'sem', rot: t('banda.sem') }));
+    const marcos = [['2026-08-28', 'hgpe'], ['2026-10-04', 'turno1'], ['2026-10-25', 'turno2']].map(([d, k]) => ({ i: V.dias.indexOf(d), rot: t(`marco.${k}`) }));
+    const serieDia = [{ rot: t('grupo.veiculo_nacional'), curto: grpCurto('veiculo_nacional'), cor: 'var(--c-dado)', v: V.posts.nacional },
+      { rot: t('grupo.veiculo_regional'), curto: grpCurto('veiculo_regional'), cor: 'var(--c-outros)', v: V.posts.regional }];
+    const porSemana = VEIC.map((g, k) => ({
+      rot: t(`grupo.${g}`), curto: grpCurto(g), cor: k ? 'var(--c-outros)' : 'var(--c-dado)',
+      v: inicios.map(sm => mediaPol(somar(sm).filter(x => info.get(x.u)?.grupo === g))),
+    }));
+    const duas = h('div', { class: 'grade duas', style: 'margin-top:16px' });
+    alvo.append(duas);
+    grafico(duas, {
+      titulo: t('veic.g_dia'), legenda: t('veic.g_dia_leg'), ajuda: 'veic_dia', itens: serieDia,
+      desenhar: (el, w) => linhas(el, w, { x: V.dias, xFmt: dm, series: serieDia, bandas, marcos, altura: 220, rotFim: false }),
+      tabela: () => ({ cols: [{ rot: t('dia') }, ...serieDia.map(se => ({ rot: se.curto, n: true })), { rot: t('veic.ativos_nac'), n: true }, { rot: t('veic.ativos_reg'), n: true }],
+        linhas: V.dias.map((d, i) => [dm(d), ...serieDia.map(se => fmt.int(se.v[i])), fmt.int(V.ativos.nacional[i]), fmt.int(V.ativos.regional[i])]) }),
+    });
+    grafico(duas, {
+      titulo: t('veic.g_pol'), legenda: t('veic.g_pol_leg'), ajuda: 'veic_pol', itens: porSemana,
+      desenhar: (el, w) => linhas(el, w, { x: inicios, xFmt: semanaCurta, xDica: ini => t('semana_de', { s: semanaRot(ini) }), series: porSemana, yFmt: v => fmt.pct(v), pontos: true, altura: 220, rotFim: false }),
+      tabela: () => ({ cols: [{ rot: t('semana') }, ...porSemana.map(se => ({ rot: se.curto, n: true }))], linhas: sems.map((sm, i) => [rotSemana(sm.inicio, sm.fim), ...porSemana.map(se => fmt.pct(se.v[i]))]) }),
+    });
+
+    // agendas: nacionais × regionais (ou outro par)
+    const ag = h('div', { class: 'grade duas', style: 'margin-top:16px' });
+    alvo.append(ag);
+    comparacaoAgenda(ag, {
+      semana: est.semana, semanas: inicios, grupos: GRUPOS_V, colunas: [...VEIC, 'candidatos', 'conversa'], a: est.a, b: est.b,
+      aoMudar: (a, b) => { est.a = a; est.b = b; ESTADO.comparar = [a, b]; desenhar(); },
+    });
+
+    // matriz veículos × temas (ou nomes), entre os posts sobre política de cada veículo
+    const lista = est.mostrar === 'tema' ? D.temas.temas : D.temas.alvos;
+    const colsM = lista.map(x => ({ id: `${est.mostrar === 'tema' ? 'tema' : 'alvo'}_${x.chave}`, rot: est.mostrar === 'tema' ? temaCurto(x) : alvoRotulo(x) }));
+    const elegiveis = sel.filter(x => x.pol >= MIN_N).sort((u, v) => v.pol - u.pol);
+    const visiveis = est.todos ? elegiveis : elegiveis.slice(0, 25);
+    const cm = grafico(alvo, {
+      titulo: t(est.mostrar === 'tema' ? 'veic.matriz_temas' : 'veic.matriz_alvos', { s: semanaRot(est.semana) }),
+      legenda: t('veic.matriz_leg', { n: MIN_N }), ajuda: 'veic_matriz',
+      desenhar: (el, w) => visiveis.length ? calor(el, w, {
+        linhas: visiveis.map(x => ({ id: x.u, rot: nomeV(x.u) + (info.get(x.u)?.uf ? ` (${info.get(x.u).uf})` : ''), aoClicar: () => irPara('perfis', { conta: x.u }) })),
+        colunas: colsM,
+        valor: (l, c) => { const x = visiveis.find(y => y.u === l.id); return x.r[R.indexOf(c.id)] / x.pol; },
+        dica: (l, c) => { const x = visiveis.find(y => y.u === l.id); return { titulo: `${nomeV(x.u)} · ${c.rot}`, linhas: [{ rot: t('parcela'), val: fmt.pct(x.r[R.indexOf(c.id)] / x.pol) }, { rot: t('veic.posts_pol'), val: fmt.int(x.pol) }] }; },
+      }) : el.append(h('p', { class: 'nota', text: t('veic.matriz_vazia', { n: MIN_N }) })),
+      tabela: () => ({ cols: [{ rot: t('veic.veiculo') }, { rot: t('veic.posts_pol'), n: true }, ...colsM.map(c => ({ rot: c.rot, n: true }))],
+        linhas: elegiveis.map(x => [nomeV(x.u), fmt.int(x.pol), ...colsM.map(c => fmt.pct(x.r[R.indexOf(c.id)] / x.pol))]) }),
+    });
+    const ctrl = h('div', { class: 'filtros filtros-cartao' },
+      seletor(t('veic.mostrar'), [['tema', t('veic.mostrar_temas')], ['alvo', t('veic.mostrar_alvos')]], est.mostrar, v => { est.mostrar = v; desenhar(); }));
+    if (elegiveis.length > 25) {
+      const b = h('button', { type: 'button', class: 'link', text: est.todos ? t('veic.so_25') : t('veic.todos', { n: elegiveis.length }) });
+      b.addEventListener('click', () => { est.todos = !est.todos; desenhar(); });
+      ctrl.append(b);
+    }
+    cm.style.marginTop = '16px';
+    cm.insertBefore(ctrl, cm.querySelector('.cab-cartao').nextSibling);
+
+    // tabela dos veículos: clique abre a ficha em Perfis
+    const ct = cartao(alvo, { titulo: t('veic.tabela', { s: semanaRot(est.semana) }), legenda: t('veic.tabela_leg'), ajuda: 'veic_tabela' });
+    ct.style.marginTop = '16px';
+    const ordem = sel.slice().sort((u, v) => v.posts - u.posts);
+    const cols = [t('veic.veiculo'), t('veic.tipo_uf'), t('posts'), t('veic.sobre_politica_col'), t('perfis.col_semana'), t('perfis.ord_curtidas'), t('perfis.ord_views')];
+    const corpo = h('tbody', {}, ordem.map(x => {
+      const c = info.get(x.u);
+      const tr = h('tr', { class: 'clicavel', tabindex: 0 },
+        h('td', {}, h('div', { class: 'conta-nome', text: nomeV(x.u) }), h('div', { class: 'conta-user', text: '@' + x.u })),
+        h('td', { text: [tipoV(x.u), c.uf].filter(Boolean).join(' · ') }),
+        h('td', { class: 'n', text: fmt.int(x.posts) }),
+        h('td', { class: 'n', text: fmt.pct(x.posts ? x.pol / x.posts : null) }),
+        h('td', {}, mini(inicios.map(sm => base.get(x.u)?.get(sm)?.posts || 0))),
+        h('td', { class: 'n', text: fmt.int(c.med_curtidas) }),
+        h('td', { class: 'n', text: fmt.cp(c.med_views) }));
+      const abrir = () => irPara('perfis', { conta: x.u });
+      tr.addEventListener('click', abrir);
+      tr.addEventListener('keydown', ev => { if (ev.key === 'Enter') abrir(); });
+      return tr;
+    }));
+    ct.append(h('div', { class: 'tabela-envolve' }, h('table', { class: 'dados' },
+      h('thead', {}, h('tr', {}, cols.map((c, i) => h('th', { class: [2, 3, 5, 6].includes(i) ? 'n' : null, text: c })))), corpo)));
   }
   desenhar();
 }
