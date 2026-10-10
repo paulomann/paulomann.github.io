@@ -243,17 +243,19 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 13/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 22 (introdução) do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O problema do caminho mínimo de origem única: propriedade do subcaminho, arestas negativas e ciclos, subgrafo predecessor e a intuição do algoritmo de Dijkstra</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dijkstra.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 15/10</td>
                     <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Atividade de Dijkstra</td>
                     <td>
                         &mdash;
                     </td>
@@ -261,44 +263,52 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 20/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 22.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O algoritmo de Dijkstra: relaxamento, corretude e complexidade</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dijkstra.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 22/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 14.1, 14.2 e 14.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Programação dinâmica: subestrutura ótima, memoização e tabulação</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dynamic_programming.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Ter 27/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 22.1 e 22.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Caminhos mínimos com pesos negativos: o algoritmo de Bellman-Ford e caminhos mínimos em dags</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/dynamic_programming.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 29/10</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulos 23.1 e 23.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Caminhos mínimos entre todos os pares: o algoritmo de Floyd-Warshall</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/floyd_warshall.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Ter 03/11</td>
                     <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Atividade de Floyd-Warshall</td>
                     <td>
                         &mdash;
                     </td>
@@ -306,26 +316,30 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 05/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 24.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Redes de fluxo: fluxo máximo, rede residual e caminhos aumentantes</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Ter 10/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>O método de Ford-Fulkerson e o teorema do fluxo máximo e corte mínimo</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 12/11</td>
                     <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Atividade de fluxo máximo</td>
                     <td>
                         &mdash;
                     </td>
@@ -333,38 +347,33 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 17/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 24.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Emparelhamento máximo em grafos bipartidos: modelagem como um problema de fluxo máximo</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Qui 19/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td>Capítulo 24.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
+                    <td>Emparelhamento máximo: o teorema da integralidade, complexidade e aplicações</td>
                     <td>
-                        &mdash;
+                        <ul>
+                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
+                        </ul>
                     </td>
                 </tr>
         
                 <tr>
                     <td>Ter 24/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 26/11</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
                 </tr>
         
                 <tr>
-                    <td>Ter 01/12</td>
+                    <td>Qui 26/11</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
                     <td>
@@ -373,12 +382,12 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 03/12</td>
+                    <td>Ter 01/12</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>
                 </tr>
         
                 <tr>
-                    <td>Ter 08/12</td>
+                    <td>Qui 03/12</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
                     <td>
@@ -387,8 +396,17 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 10/12</td>
+                    <td>Ter 08/12</td>
                     <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
+                </tr>
+        
+                <tr>
+                    <td>Qui 10/12</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
                 </tr>
         
                 <tr>
