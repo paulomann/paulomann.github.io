@@ -240,6 +240,15 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 15/10</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 20/10</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/05_knn/" style="color: #2a6496; text-decoration: underline;">Capítulo 5</a></td>
                     <td>k-Vizinhos mais Próximos (KNN)</td>
                     <td>
@@ -248,7 +257,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 20/10</td>
+                    <td>Qui 22/10</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/06_cart/" style="color: #2a6496; text-decoration: underline;">Capítulo 6</a></td>
                     <td>Árvores de decisão (CART)</td>
                     <td>
@@ -257,7 +266,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 22/10</td>
+                    <td>Ter 27/10</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/06_cart/" style="color: #2a6496; text-decoration: underline;">Capítulo 6</a></td>
                     <td>Árvores de decisão (CART): poda e regularização</td>
                     <td>
@@ -266,7 +275,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 27/10</td>
+                    <td>Qui 29/10</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/07_forests/" style="color: #2a6496; text-decoration: underline;">Capítulo 7</a></td>
                     <td>Random Forests</td>
                     <td>
@@ -275,7 +284,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 29/10</td>
+                    <td>Ter 03/11</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/08_neural_networks/" style="color: #2a6496; text-decoration: underline;">Capítulo 8</a></td>
                     <td>Redes Neurais</td>
                     <td>
@@ -284,7 +293,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 03/11</td>
+                    <td>Qui 05/11</td>
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/08_neural_networks/" style="color: #2a6496; text-decoration: underline;">Capítulo 8</a></td>
                     <td>Redes Neurais: treinamento e backpropagation</td>
                     <td>
@@ -293,7 +302,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 05/11</td>
+                    <td>Ter 10/11</td>
                     <td>&mdash;</td>
                     <td>Redes convolucionais</td>
                     <td>
@@ -302,7 +311,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 10/11</td>
+                    <td>Qui 12/11</td>
                     <td>&mdash;</td>
                     <td>Redes recorrentes e Transformers</td>
                     <td>
@@ -311,18 +320,9 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 12/11</td>
-                    <td>&mdash;</td>
-                    <td>Agrupamento: K-means e agrupamento hierárquico</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
                     <td>Ter 17/11</td>
                     <td>&mdash;</td>
-                    <td>Questões éticas em aprendizado de máquina</td>
+                    <td>Agrupamento: K-means e agrupamento hierárquico</td>
                     <td>
                         &mdash;
                     </td>
