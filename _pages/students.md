@@ -51,6 +51,24 @@ redirect_from:
 <!-- Add your current students here following the same pattern as below -->
 
 <details>
+  <summary>Lucas Mesquita de Alcantara</summary>
+  <div class="student-details">
+    <strong>Type</strong>: Undergraduate Research (Scientific Initiation)<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+<details>
+  <summary>Diogo dos Santos Machado Vieira</summary>
+  <div class="student-details">
+    <strong>Type</strong>: Undergraduate Research (Scientific Initiation)<br>
+    <strong>University</strong>: UFRJ<br>
+    <strong>Supervisors</strong>: Paulo Mann
+  </div>
+</details>
+
+<details>
   <summary>João Pedro Batista da Silva</summary>
   <div class="student-details">
     <strong>Degree</strong>: Bachelor of Computer Science<br>

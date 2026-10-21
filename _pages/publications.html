@@ -119,6 +119,14 @@ author_profile: true
     transform: scale(1.05);
 }
 
+.pub-image--contain img {
+    object-fit: contain;
+}
+
+.publication-card:hover .pub-image--contain img {
+    transform: none;
+}
+
 .pub-content {
     flex: 1;
     color: #333;
@@ -194,8 +202,8 @@ author_profile: true
 {% for post in site.publications reversed %}
   <a href="{{ post.url | relative_url }}" class="publication-card">
     {% if post.image %}
-    <div class="pub-image">
-      <img src="{{ post.image | prepend: '/images/' | relative_url }}" alt="{{ post.title }}">
+    <div class="pub-image{% if post.image_fit == 'contain' %} pub-image--contain{% endif %}">
+      <img src="{{ post.image | prepend: '/images/' | relative_url }}" alt="{{ post.image_alt | default: post.title | escape }}">
     </div>
     {% endif %}
     
