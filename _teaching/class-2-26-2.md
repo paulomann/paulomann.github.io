@@ -307,6 +307,15 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 03/11</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Qui 05/11</td>
                     <td>Capítulos 23.1 e 23.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Caminhos mínimos entre todos os pares: o algoritmo de Floyd-Warshall</td>
                     <td>
@@ -317,7 +326,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 05/11</td>
+                    <td>Ter 10/11</td>
                     <td>&mdash;</td>
                     <td>Atividade de Floyd-Warshall</td>
                     <td>
@@ -326,7 +335,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 10/11</td>
+                    <td>Qui 12/11</td>
                     <td>Capítulo 24.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Redes de fluxo: fluxo máximo, rede residual e caminhos aumentantes</td>
                     <td>
@@ -337,7 +346,7 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Qui 12/11</td>
+                    <td>Ter 17/11</td>
                     <td>Capítulo 24.2 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>O método de Ford-Fulkerson e o teorema do fluxo máximo e corte mínimo</td>
                     <td>
@@ -348,22 +357,11 @@ layout: custom-teaching
                 </tr>
         
                 <tr>
-                    <td>Ter 17/11</td>
+                    <td>Qui 19/11</td>
                     <td>&mdash;</td>
                     <td>Atividade de fluxo máximo</td>
                     <td>
                         &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 19/11</td>
-                    <td>Capítulo 24.3 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
-                    <td>Emparelhamento máximo em grafos bipartidos: modelagem como um problema de fluxo máximo</td>
-                    <td>
-                        <ul>
-                            <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
-                        </ul>
                     </td>
                 </tr>
         
