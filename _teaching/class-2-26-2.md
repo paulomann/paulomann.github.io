@@ -327,21 +327,21 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 10/11</td>
-                    <td>&mdash;</td>
-                    <td>Atividade de Floyd-Warshall</td>
-                    <td>
-                        &mdash;
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 12/11</td>
                     <td>Capítulo 24.1 do Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.</td>
                     <td>Redes de fluxo: fluxo máximo, rede residual e caminhos aumentantes</td>
                     <td>
                         <ul>
                             <li><a href="/files/lecture_notes/stanford/ford_fulkerson.pdf">[Nota de aula de Stanford]</a></li>
                         </ul>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Qui 12/11</td>
+                    <td>&mdash;</td>
+                    <td>Atividade de Floyd-Warshall</td>
+                    <td>
+                        &mdash;
                     </td>
                 </tr>
         
