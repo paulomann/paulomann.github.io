@@ -311,7 +311,7 @@ layout: custom-teaching
                     <td><a href="https://slds-lmu.github.io/i2ml/chapters/08_neural_networks/" style="color: #2a6496; text-decoration: underline;">Capítulo 8</a></td>
                     <td>Redes Neurais: treinamento e backpropagation</td>
                     <td>
-                        &mdash;
+                        <a href="{{ '/files/machine_learning/07_redes_neurais_pytorch.ipynb' | relative_url }}">[Notebook 7]</a>
                     </td>
                 </tr>
         
