@@ -317,8 +317,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 17/11</td>
-                    <td><a href="https://slds-lmu.github.io/i2ml/chapters/07_forests/" style="color: #2a6496; text-decoration: underline;">Capítulo 7</a></td>
-                    <td>Random Forests</td>
+                    <td>&mdash;</td>
+                    <td>Redes Neurais Recorrentes</td>
                     <td>
                         &mdash;
                     </td>
@@ -336,7 +336,7 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 24/11</td>
                     <td>&mdash;</td>
-                    <td>Redes recorrentes e Transformers</td>
+                    <td>Seleção de Modelos</td>
                     <td>
                         &mdash;
                     </td>
@@ -349,16 +349,12 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 01/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>
                 </tr>
         
                 <tr>
                     <td>Qui 03/12</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
                 </tr>
         
                 <tr>
@@ -372,7 +368,11 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 10/12</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
                 </tr>
         
                 <tr>
