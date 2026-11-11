@@ -318,7 +318,7 @@ layout: custom-teaching
                 <tr>
                     <td>Ter 17/11</td>
                     <td>&mdash;</td>
-                    <td>Redes Neurais Recorrentes</td>
+                    <td>Redes Convolucionais</td>
                     <td>
                         &mdash;
                     </td>
@@ -327,7 +327,7 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 19/11</td>
                     <td>&mdash;</td>
-                    <td>Redes convolucionais</td>
+                    <td>Redes Neurais Recorrentes</td>
                     <td>
                         &mdash;
                     </td>
