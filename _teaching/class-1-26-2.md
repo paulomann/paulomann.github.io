@@ -344,26 +344,26 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 26/11</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 01/12</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>
-                </tr>
-        
-                <tr>
-                    <td>Qui 03/12</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
-                </tr>
-        
-                <tr>
-                    <td>Ter 08/12</td>
                     <td>&mdash;</td>
                     <td>&mdash;</td>
                     <td>
                         &mdash;
                     </td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 01/12</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">P2</td>
+                </tr>
+        
+                <tr>
+                    <td>Qui 03/12</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PR</td>
+                </tr>
+        
+                <tr>
+                    <td>Ter 08/12</td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
                 </tr>
         
                 <tr>
