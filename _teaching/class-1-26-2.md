@@ -327,7 +327,7 @@ layout: custom-teaching
                 <tr>
                     <td>Qui 19/11</td>
                     <td>&mdash;</td>
-                    <td>Redes Convolucionais</td>
+                    <td>&mdash;</td>
                     <td>
                         &mdash;
                     </td>
@@ -335,8 +335,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 24/11</td>
-                    <td>&mdash;</td>
-                    <td>Redes Neurais Recorrentes</td>
+                    <td><a href="{{ '/files/slides_cnn_convolutional_networks.pdf' | relative_url }}" style="color: #2a6496; text-decoration: underline;">Slides de Redes Convolucionais</a></td>
+                    <td>Redes Convolucionais</td>
                     <td>
                         &mdash;
                     </td>
@@ -344,8 +344,8 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 26/11</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
+                    <td><a href="{{ '/files/slides_cnn_convolutional_networks.pdf' | relative_url }}" style="color: #2a6496; text-decoration: underline;">Slides de Redes Convolucionais</a></td>
+                    <td>Redes Convolucionais</td>
                     <td>
                         &mdash;
                     </td>
@@ -363,7 +363,11 @@ layout: custom-teaching
         
                 <tr>
                     <td>Ter 08/12</td>
-                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>
+                        &mdash;
+                    </td>
                 </tr>
         
                 <tr>
@@ -386,11 +390,7 @@ layout: custom-teaching
         
                 <tr>
                     <td>Qui 17/12</td>
-                    <td>&mdash;</td>
-                    <td>&mdash;</td>
-                    <td>
-                        &mdash;
-                    </td>
+                    <td colspan="3" style="text-align: center; font-weight: bold; color: blue;">PF</td>
                 </tr>
         
             </tbody>
