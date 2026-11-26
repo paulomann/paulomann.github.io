@@ -347,7 +347,7 @@ layout: custom-teaching
                     <td><a href="{{ '/files/slides_cnn_convolutional_networks.pdf' | relative_url }}" style="color: #2a6496; text-decoration: underline;">Slides de Redes Convolucionais</a></td>
                     <td>Redes Convolucionais</td>
                     <td>
-                        &mdash;
+                        <a href="{{ '/files/machine_learning/08_redes_convolucionais_pytorch.ipynb' | relative_url }}">[Notebook 8]</a>
                     </td>
                 </tr>
         
